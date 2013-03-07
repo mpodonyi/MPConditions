@@ -29,7 +29,7 @@ namespace MPConditions.Primitives
                     };
                 }
 
-                return null;
+                return ExecutionContext.Empty;
             });
 
             return this;

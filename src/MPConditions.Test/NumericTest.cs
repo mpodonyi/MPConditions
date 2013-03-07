@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 
 namespace MPConditions.Test
 {
@@ -67,55 +68,64 @@ namespace MPConditions.Test
         {
             int foo = 5;
 
-            foo.Condition("foo").Between(3, 6).Throw();
+            Action act = () => foo.Condition("foo").Between(3, 6).Throw();
 
-
-
-            //
-            // TODO: Add test logic here
-            //
+            act.ShouldNotThrow();
+            
         }
 
         [TestMethod]
         public void Int_Between_Fail()
         {
-            int i = 5;
+            int foo = 5;
 
+            Action act = () => foo.Condition("foo").Between(8, 12).Throw();
 
-
-            //
-            // TODO: Add test logic here
-            //
+            act.ShouldThrow<ArgumentOutOfRangeException>()
+                .WithMessage("'foo'", ComparisonMode.Substring)
+                .WithMessage("'5'", ComparisonMode.Substring)
+                .WithMessage("'8'", ComparisonMode.Substring)
+                .WithMessage("'12'", ComparisonMode.Substring);
         }
+
 
         [TestMethod]
         public void Int_Nullable_Between_Success()
         {
-            //
-            // TODO: Add test logic here
-            //
+            int? foo = 5;
+
+            Action act = () => foo.Condition("foo").Between(3, 6).Throw();
+            act.ShouldNotThrow();
         }
 
+        [TestMethod]
+        public void Int_Nullable_Between_Fail()
+        {
+            int? foo = 5;
 
-        //public static void Main()
-        //{
-        //    int uuu = 8;
+            Action act = () => foo.Condition("foo").Between(8, 12).Throw();
 
-        //    uuu.Conditionize("uuu").Between(2, 7).Or.Greater(6).Throw();
+            act.ShouldThrow<ArgumentOutOfRangeException>()
+                .WithMessage("'foo'", ComparisonMode.Substring)
+                .WithMessage("'5'", ComparisonMode.Substring)
+                .WithMessage("'8'", ComparisonMode.Substring)
+                .WithMessage("'12'", ComparisonMode.Substring);
 
 
-        //    int? uu2 = 8;
+            foo = null;
 
-        //    uu2.Conditionize("uuu").Between(2, 7).Or.Greater(6).Throw();
+            act = () => foo.Condition("foo").Between(8, 12).Throw();
 
-        //    decimal start = 6;
-        //    decimal end = 12;
+            act.ShouldThrow<ArgumentOutOfRangeException>()
+                .WithMessage("'foo'", ComparisonMode.Substring)
+                .WithMessage("'8'", ComparisonMode.Substring)
+                .WithMessage("'12'", ComparisonMode.Substring);
+        }
 
-        //    int? uu3 = 8;
+       
 
-        //    uu3.Conditionize("uuu").Between(start, end).Throw();
 
-        //}
+     
 
     }
 }

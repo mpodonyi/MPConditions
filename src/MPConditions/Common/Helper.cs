@@ -9,7 +9,7 @@ namespace MPConditions.Common
     {
         public static bool HasFlag(this ExecutionTypes value, ExecutionTypes flag)
         {
-            return true;
+            return (value & flag) > 0;
         }
     }
 }

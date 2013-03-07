@@ -8,6 +8,7 @@ namespace MPConditions.Common
     public abstract class ConditionBase<T, AssertT> where AssertT : ConditionBase<T, AssertT>
     {
         protected T _Value;
+        private string _ArgumentName;
 
         protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>();
 
@@ -15,21 +16,15 @@ namespace MPConditions.Common
 
         //private Condition<T> OrCondition;
 
-        private List<string> _FailedConditions = new List<string>();
-
-        protected bool HasFailed
-        {
-            get
-            {
-                return _FailedConditions.Count > 0;
-            }
-        }
+        
+      
 
 
 
         internal ConditionBase(T value, string name)
         {
             _Value = value;
+            _ArgumentName = name;
         }
 
 
@@ -46,19 +41,6 @@ namespace MPConditions.Common
             }
         }
 
-
-        //private bool TestForOr()
-        //{
-
-        //}
-
-
-
-        //public Condition<T> Or(Condition<T> orCondition)
-        //{
-
-        //    return this;
-        //}
 
         private ExecutionContext GetNextExecutionContext()
         {
@@ -82,7 +64,6 @@ namespace MPConditions.Common
             ExecutionContext execcontext = null;
             while((execcontext = GetNextExecutionContext()) != null)
             {
-
                 if(execcontext.ExecutionType.HasFlag(ExecutionTypes.Or))
                 {
                     if(savedexeccontext != null)
@@ -114,24 +95,6 @@ namespace MPConditions.Common
                 }
 
                 //-----
-
-                if(savedexeccontext == null)
-                {
-                    savedexeccontext = execcontext;
-                    continue;
-                }
-                else if(savedexeccontext != null)
-                {
-
-
-                }
-
-
-                //-----
-
-
-
-
 
                 if(execcontext.ExecutionType.HasFlag(ExecutionTypes.Error))
                 {
@@ -181,16 +144,29 @@ namespace MPConditions.Common
             return savedexeccontext;
         }
 
+        //private IDictionary<ExecutionTypes, Type> ExceptionMapping = new Dictionary<ExecutionTypes, Type>(5)
+        //    {
+        //        {ExecutionTypes.OutOfRange,typeof(ArgumentOutOfRangeException) },
+        //        {ExecutionTypes.StartsWith,typeof(ArgumentException) }
+        //     };  
+
+
         public void Throw()
         {
+            ExecutionContext execcontext = GetFinalExecutionContext();
 
+            if(execcontext == null || execcontext.ExecutionType == ExecutionTypes.None)
+                return;
 
+            string message=string.Format("Argument '{0}' with value '{1}': {2}",_ArgumentName,_Value, execcontext.Message);
 
+            switch(execcontext.ExecutionType)
+            {
+                case ExecutionTypes.OutOfRange:
+                    throw new ArgumentOutOfRangeException(_ArgumentName, message);
+            }
 
-
-
-
-            throw new Exception();
+            throw new Exception("UnknownException");
         }
 
     }

@@ -6,46 +6,57 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    public abstract class NumberConditionBase<T, V> : ConditionBase<T, V>
-        // where T : struct, IComparable<T>
-      where V : NumberConditionBase<T, V>
+    public abstract class NumberConditionBase<TValue, TType, TBase> : ConditionBase<TValue, TBase>
+      where TType : struct, IComparable<TType>
+      where TBase : NumberConditionBase<TValue, TType, TBase>
     {
 
-        public NumberConditionBase(T value, string name)
+        public NumberConditionBase(TValue value, string name)
             : base(value, name)
         {
         }
 
-        public V Between(T start, T end)
+
+        //public TBase Between(TType start, TType end) //MP: set an argument invalid exception when null values here
+        //{
+        //    ec.Enqueue(() =>
+        //    {
+        //        if(_Value == null)
+        //        {
+        //            return new ExecutionContext
+        //            {
+        //                ExecutionType = ExecutionTypes.OutOfRange,
+        //                Message = string.Format("Is not between '{0}' and '{1}'.", start, end),
+        //            };
+        //        }
+
+
+        //        start.CompareTo(_Value);
+
+
+        //        if(!((comparer.Compare(_Value, start) > 0) && (comparer.Compare(_Value, end) < 0)))
+        //        {
+        //            return new ExecutionContext
+        //            {
+        //                ExecutionType = ExecutionTypes.OutOfRange,
+        //                Message = string.Format("Is not between '{0}' and '{1}'.", start, end),
+        //            };
+        //        }
+
+        //        return ExecutionContext.Empty;
+        //    });
+
+        //    return (TBase)this;
+        //}
+
+        public TBase Between(object start, object end) //MP: set an argument invalid exception when null values here
         {
             ec.Enqueue(() =>
             {
                 var comparer = new UniversalNumberComparer();
 
 
-                if(!((comparer.Compare(_Value, start) > 0) && (comparer.Compare(_Value, start) < 0)))
-                {
-                    return new ExecutionContext
-                    {
-                        ExecutionType = ExecutionTypes.OutOfRange,
-                        Message = string.Format("Is not between '{0}' and '{1}'.", start, end),
-                    };
-                }
-
-                return null;
-            });
-
-            return (V)this;
-        }
-
-        public V Between(object start, object end)
-        {
-            ec.Enqueue(() =>
-            {
-                var comparer = new UniversalNumberComparer();
-
-
-                if(!((comparer.Compare(_Value, start) > 0) && (comparer.Compare(_Value, start) < 0)))
+                if(!((comparer.Compare(_Value, start) > 0) && (comparer.Compare(_Value, end) < 0)))
                 {
                     return new ExecutionContext
                     {
@@ -57,10 +68,10 @@ namespace MPConditions.Numeric
                 return ExecutionContext.Empty;
             });
 
-            return (V)this;
+            return (TBase)this;
         }
 
-        public V Greater(object start)
+        public TBase Greater(object start)
         {
             ec.Enqueue(() =>
             {
@@ -78,7 +89,7 @@ namespace MPConditions.Numeric
                 return ExecutionContext.Empty;
             });
 
-            return (V)this;
+            return (TBase)this;
         }
 
 

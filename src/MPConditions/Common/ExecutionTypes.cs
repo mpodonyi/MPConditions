@@ -8,9 +8,10 @@ namespace MPConditions.Common
     [Flags]
     public enum ExecutionTypes
     {
-        None = 0x0,
-        Or = 0x1,
-        OutOfRange = 0x2,
-        Error = OutOfRange,
+        None = 0x1,
+        Or = 0x2,
+        OutOfRange = 0x4,
+        StartsWith =0x8,
+        Error = OutOfRange | StartsWith,
     }
 }
