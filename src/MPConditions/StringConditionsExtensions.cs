@@ -8,7 +8,7 @@ namespace MPConditions
 {
     public static class StringConditionsExtensions
     {
-        public static StringCondition Conditionize(this string value, string name)
+        public static StringCondition Condition(this string value, string name)
         {
             return new StringCondition(value, name);
         }

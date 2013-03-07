@@ -69,7 +69,6 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Common\ConditionBase.cs" />
     <Compile Include="Common\ExecutionContext.cs" />
     <Compile Include="Common\Helper.cs" />

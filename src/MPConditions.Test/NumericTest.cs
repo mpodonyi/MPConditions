@@ -36,6 +36,10 @@ namespace MPConditions.Test
             }
         }
 
+
+
+
+
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
@@ -59,11 +63,59 @@ namespace MPConditions.Test
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void Int_Between_Success()
+        {
+            int foo = 5;
+
+            foo.Condition("foo").Between(3, 6).Throw();
+
+
+
+            //
+            // TODO: Add test logic here
+            //
+        }
+
+        [TestMethod]
+        public void Int_Between_Fail()
+        {
+            int i = 5;
+
+
+
+            //
+            // TODO: Add test logic here
+            //
+        }
+
+        [TestMethod]
+        public void Int_Nullable_Between_Success()
         {
             //
             // TODO: Add test logic here
             //
         }
+
+
+        //public static void Main()
+        //{
+        //    int uuu = 8;
+
+        //    uuu.Conditionize("uuu").Between(2, 7).Or.Greater(6).Throw();
+
+
+        //    int? uu2 = 8;
+
+        //    uu2.Conditionize("uuu").Between(2, 7).Or.Greater(6).Throw();
+
+        //    decimal start = 6;
+        //    decimal end = 12;
+
+        //    int? uu3 = 8;
+
+        //    uu3.Conditionize("uuu").Between(start, end).Throw();
+
+        //}
+
     }
 }
