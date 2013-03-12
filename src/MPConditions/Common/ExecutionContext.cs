@@ -21,6 +21,11 @@ namespace MPConditions.Common
             set;
         }
 
+        public bool FailFast
+        {
+            get;
+            set;
+        }
 
         public static ExecutionContext Empty = new ExecutionContext
         {

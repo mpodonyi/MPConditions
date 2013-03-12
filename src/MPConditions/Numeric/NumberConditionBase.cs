@@ -6,18 +6,28 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    public abstract class NumberConditionBase<TValue, TType, TBase> : ConditionBase<TValue, TBase>
-      where TType : struct, IComparable<TType>
-      where TBase : NumberConditionBase<TValue, TType, TBase>
+    //public abstract class NumberConditionBase<TValue, TType, TBase> : ConditionBase<TValue, TBase>
+    //  where TType : struct, IComparable<TType>
+    //  where TBase : NumberConditionBase<TValue, TType, TBase>
+    public abstract class NumberConditionBase<TValue, TBase> : ConditionBase<Nullable<TValue>, TBase>
+        //where TType : struct, IComparable<TType>
+        where TValue : struct, IComparable<TValue>
+        where TBase : NumberConditionBase<TValue, TBase>
     {
 
-        public NumberConditionBase(TValue value, string name)
+        public NumberConditionBase(TValue? value, string name)
             : base(value, name)
         {
         }
 
+        //public TBase Between(TValue start, TValue end) //MP: set an argument invalid exception when null values here
+        //{
+           
 
-        //public TBase Between(TType start, TType end) //MP: set an argument invalid exception when null values here
+        //    return (TBase)this;
+        //}
+
+        //public TBase Between(TValue start, TValue end) //MP: set an argument invalid exception when null values here
         //{
         //    ec.Enqueue(() =>
         //    {

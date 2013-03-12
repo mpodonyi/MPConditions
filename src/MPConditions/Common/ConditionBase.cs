@@ -8,7 +8,7 @@ namespace MPConditions.Common
     public abstract class ConditionBase<T, AssertT> where AssertT : ConditionBase<T, AssertT>
     {
         protected T _Value;
-        private string _ArgumentName;
+        protected string _ArgumentName;
 
         protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>();
 
@@ -16,7 +16,12 @@ namespace MPConditions.Common
 
         //private Condition<T> OrCondition;
 
-        
+        internal AssertT MerginQueue(Queue<Func<ExecutionContext>> executionContext)
+        {
+            foreach(var item in executionContext)
+                ec.Enqueue(item);
+            return (AssertT)this;
+        }
       
 
 
@@ -75,19 +80,25 @@ namespace MPConditions.Common
 
                         if(savedexeccontext.ExecutionType.HasFlag(ExecutionTypes.Error))
                         {
-                            execcontext = GetNextExecutionContext();
+                            do
+                            {
+                                execcontext = GetNextExecutionContext();
+                            } while(execcontext != null && execcontext.ExecutionType.HasFlag(ExecutionTypes.Or)); //fix for ---> X.Or.Or.Y
+                            
                             if(execcontext == null)
                                 break;
                             else if(execcontext.ExecutionType.HasFlag(ExecutionTypes.Error))
                             {
+                                if(execcontext.FailFast)
+                                    break;
+
                                 continue;
                             }
                             else if(execcontext.ExecutionType.HasFlag(ExecutionTypes.None))
                             {
                                 savedexeccontext = execcontext;
-                                break;
+                                continue;
                             }
-
                         }
                     }
 
@@ -101,6 +112,9 @@ namespace MPConditions.Common
                     if(savedexeccontext == null)
                     {
                         savedexeccontext = execcontext;
+                        if(execcontext.FailFast)
+                            break;
+
                         continue;
                     }
                     else if(savedexeccontext != null)
@@ -112,6 +126,9 @@ namespace MPConditions.Common
                         else if(savedexeccontext.ExecutionType.HasFlag(ExecutionTypes.None))
                         {
                             savedexeccontext = execcontext;
+                            if(execcontext.FailFast)
+                                break;
+
                             continue;
                         }
                     }
@@ -160,13 +177,16 @@ namespace MPConditions.Common
 
             string message=string.Format("Argument '{0}' with value '{1}': {2}",_ArgumentName,_Value, execcontext.Message);
 
-            switch(execcontext.ExecutionType)
-            {
-                case ExecutionTypes.OutOfRange:
-                    throw new ArgumentOutOfRangeException(_ArgumentName, message);
-            }
+            throw new ConditionException(_ArgumentName, message, execcontext.ExecutionType);
 
-            throw new Exception("UnknownException");
+
+            //switch(execcontext.ExecutionType)
+            //{
+            //    case ExecutionTypes.OutOfRange:
+            //        throw new ArgumentOutOfRangeException(_ArgumentName, message);
+            //}
+
+            
         }
 
     }

@@ -12,6 +12,8 @@ namespace MPConditions.Common
         Or = 0x2,
         OutOfRange = 0x4,
         StartsWith =0x8,
-        Error = OutOfRange | StartsWith,
+        WrongType = 0x16,
+
+        Error = OutOfRange | StartsWith | WrongType,
     }
 }
