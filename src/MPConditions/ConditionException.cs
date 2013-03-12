@@ -12,7 +12,7 @@ namespace MPConditions
         {
             ParamName = paramName;
             Message = message;
-            ExecutionTypes = executionTypes;
+           // ExecutionTypes = executionTypes;
         }
 
         public string ParamName
@@ -28,11 +28,11 @@ namespace MPConditions
             private set;
         }
 
-        public ExecutionTypes ExecutionTypes
-        {
-            get;
-            private set;
-        }
+        //public ExecutionTypes ExecutionTypes
+        //{
+        //    get;
+        //    private set;
+        //}
 
     }
 }

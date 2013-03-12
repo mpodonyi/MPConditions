@@ -5,12 +5,11 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    internal enum ExecutionTypes
+    public enum ExceptionTypes
     {
         None = 0,
-        Or,
-        Error,
+        OutOfRange,
+        StartsWith,
+        WrongType,
     }
-
-   
 }

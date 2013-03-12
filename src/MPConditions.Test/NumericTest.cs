@@ -3,6 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using MPConditions.Common;
 
 namespace MPConditions.Test
 {
@@ -68,10 +69,7 @@ namespace MPConditions.Test
         {
             int foo = 5;
 
-            Action act = () => foo.Condition("foo").Between(3, 6).Throw();
-
-            act.ShouldNotThrow();
-            
+            foo.Condition("foo").Between(3, 6).GetResult().Should().BeNull();
         }
 
         [TestMethod]
@@ -79,13 +77,10 @@ namespace MPConditions.Test
         {
             int foo = 5;
 
-            Action act = () => foo.Condition("foo").Between(8, 12).Throw();
+            var result = foo.Condition("foo").Between(8, 12).GetResult();
 
-            act.ShouldThrow<ArgumentOutOfRangeException>()
-                .WithMessage("'foo'", ComparisonMode.Substring)
-                .WithMessage("'5'", ComparisonMode.Substring)
-                .WithMessage("'8'", ComparisonMode.Substring)
-                .WithMessage("'12'", ComparisonMode.Substring);
+            result.Should().NotBeNull();
+            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
         }
 
 
@@ -94,8 +89,8 @@ namespace MPConditions.Test
         {
             int? foo = 5;
 
-            Action act = () => foo.Condition("foo").Between(3, 6).Throw();
-            act.ShouldNotThrow();
+            var result = foo.Condition("foo").Between(3, 6).GetResult();
+            result.Should().BeNull();
         }
 
         [TestMethod]
@@ -103,23 +98,17 @@ namespace MPConditions.Test
         {
             int? foo = 5;
 
-            Action act = () => foo.Condition("foo").Between(8, 12).Throw();
+            var result = foo.Condition("foo").Between(8, 12).GetResult();
 
-            act.ShouldThrow<ArgumentOutOfRangeException>()
-                .WithMessage("'foo'", ComparisonMode.Substring)
-                .WithMessage("'5'", ComparisonMode.Substring)
-                .WithMessage("'8'", ComparisonMode.Substring)
-                .WithMessage("'12'", ComparisonMode.Substring);
-
+            result.Should().NotBeNull();
+            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
 
             foo = null;
 
-            act = () => foo.Condition("foo").Between(8, 12).Throw();
+            result = foo.Condition("foo").Between(8, 12).GetResult();
 
-            act.ShouldThrow<ArgumentOutOfRangeException>()
-                .WithMessage("'foo'", ComparisonMode.Substring)
-                .WithMessage("'8'", ComparisonMode.Substring)
-                .WithMessage("'12'", ComparisonMode.Substring);
+            result.Should().NotBeNull();
+            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
         }
 
        

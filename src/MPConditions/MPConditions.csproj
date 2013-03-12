@@ -70,10 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ConditionBase.cs" />
+    <Compile Include="Common\ExceptionTypes.cs" />
     <Compile Include="Common\ExecutionContext.cs" />
-    <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\ExecutionTypes.cs" />
+    <Compile Include="Common\ICondition.cs" />
     <Compile Include="ConditionException.cs" />
+    <Compile Include="ConditionExtensions.cs" />
     <Compile Include="NumericConditionsExtensions.cs" />
     <Compile Include="Numeric\NullableNumberCondition.cs" />
     <Compile Include="Numeric\NumberCondition.cs" />

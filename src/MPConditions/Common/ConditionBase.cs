@@ -5,7 +5,8 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<T, AssertT> where AssertT : ConditionBase<T, AssertT>
+    public abstract class ConditionBase<T, AssertT> : ICondition
+        where AssertT : ConditionBase<T, AssertT>
     {
         protected T _Value;
         protected string _ArgumentName;
@@ -38,10 +39,7 @@ namespace MPConditions.Common
         {
             get
             {
-                ec.Enqueue(() => new ExecutionContext
-                {
-                    ExecutionType = ExecutionTypes.Or
-                });
+                ec.Enqueue(() => ExecutionContext.Or);
                 return (AssertT)this;
             }
         }
@@ -69,32 +67,32 @@ namespace MPConditions.Common
             ExecutionContext execcontext = null;
             while((execcontext = GetNextExecutionContext()) != null)
             {
-                if(execcontext.ExecutionType.HasFlag(ExecutionTypes.Or))
+                if(execcontext.ExecutionType == ExecutionTypes.Or)
                 {
                     if(savedexeccontext != null)
                     {
-                        if(savedexeccontext.ExecutionType.HasFlag(ExecutionTypes.None))
+                        if(savedexeccontext.ExecutionType == ExecutionTypes.None)
                         {
                             break;
                         }
 
-                        if(savedexeccontext.ExecutionType.HasFlag(ExecutionTypes.Error))
+                        if(savedexeccontext.ExecutionType == ExecutionTypes.Error)
                         {
                             do
                             {
                                 execcontext = GetNextExecutionContext();
-                            } while(execcontext != null && execcontext.ExecutionType.HasFlag(ExecutionTypes.Or)); //fix for ---> X.Or.Or.Y
+                            } while(execcontext != null && execcontext.ExecutionType ==ExecutionTypes.Or); //fix for ---> X.Or.Or.Y
                             
                             if(execcontext == null)
                                 break;
-                            else if(execcontext.ExecutionType.HasFlag(ExecutionTypes.Error))
+                            else if(execcontext.ExecutionType == ExecutionTypes.Error)
                             {
                                 if(execcontext.FailFast)
                                     break;
 
                                 continue;
                             }
-                            else if(execcontext.ExecutionType.HasFlag(ExecutionTypes.None))
+                            else if(execcontext.ExecutionType == ExecutionTypes.None)
                             {
                                 savedexeccontext = execcontext;
                                 continue;
@@ -107,7 +105,7 @@ namespace MPConditions.Common
 
                 //-----
 
-                if(execcontext.ExecutionType.HasFlag(ExecutionTypes.Error))
+                if(execcontext.ExecutionType == ExecutionTypes.Error)
                 {
                     if(savedexeccontext == null)
                     {
@@ -119,11 +117,11 @@ namespace MPConditions.Common
                     }
                     else if(savedexeccontext != null)
                     {
-                        if(savedexeccontext.ExecutionType.HasFlag(ExecutionTypes.Error))
+                        if(savedexeccontext.ExecutionType == ExecutionTypes.Error)
                         {
                             break;
                         }
-                        else if(savedexeccontext.ExecutionType.HasFlag(ExecutionTypes.None))
+                        else if(savedexeccontext.ExecutionType == ExecutionTypes.None)
                         {
                             savedexeccontext = execcontext;
                             if(execcontext.FailFast)
@@ -136,7 +134,7 @@ namespace MPConditions.Common
 
                 //---------
 
-                if(execcontext.ExecutionType.HasFlag(ExecutionTypes.None))
+                if(execcontext.ExecutionType == ExecutionTypes.None)
                 {
                     if(savedexeccontext == null)
                     {
@@ -145,11 +143,11 @@ namespace MPConditions.Common
                     }
                     else if(savedexeccontext != null)
                     {
-                        if(savedexeccontext.ExecutionType.HasFlag(ExecutionTypes.Error))
+                        if(savedexeccontext.ExecutionType == ExecutionTypes.Error)
                         {
                             break;
                         }
-                        else if(savedexeccontext.ExecutionType.HasFlag(ExecutionTypes.None))
+                        else if(savedexeccontext.ExecutionType == ExecutionTypes.None)
                         {
                             savedexeccontext = execcontext;
                             continue;
@@ -167,27 +165,20 @@ namespace MPConditions.Common
         //        {ExecutionTypes.StartsWith,typeof(ArgumentException) }
         //     };  
 
-
-        public void Throw()
+        public ExecutionContext GetResult()
         {
             ExecutionContext execcontext = GetFinalExecutionContext();
 
-            if(execcontext == null || execcontext.ExecutionType == ExecutionTypes.None)
-                return;
+            if(execcontext != null)
+                execcontext.SetNameAndValue(_ArgumentName, _Value);
 
-            string message=string.Format("Argument '{0}' with value '{1}': {2}",_ArgumentName,_Value, execcontext.Message);
-
-            throw new ConditionException(_ArgumentName, message, execcontext.ExecutionType);
-
-
-            //switch(execcontext.ExecutionType)
-            //{
-            //    case ExecutionTypes.OutOfRange:
-            //        throw new ArgumentOutOfRangeException(_ArgumentName, message);
-            //}
-
-            
+            return (execcontext == null || execcontext.ExecutionType == ExecutionTypes.None)
+                ? null
+                : execcontext;
         }
+
+
+       
 
     }
 }

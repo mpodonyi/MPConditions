@@ -5,12 +5,8 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    internal enum ExecutionTypes
+    public interface ICondition
     {
-        None = 0,
-        Or,
-        Error,
+        ExecutionContext GetResult();
     }
-
-   
 }

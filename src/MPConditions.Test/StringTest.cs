@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using MPConditions.Common;
+using System.Linq;
 
 namespace MPConditions.Test
 {
@@ -39,9 +40,6 @@ namespace MPConditions.Test
         }
 
 
-
-
-
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
@@ -69,10 +67,9 @@ namespace MPConditions.Test
         {
             string foo = "5";
 
-            Action act = () => foo.Condition("foo").AsNumber<int>().Between(3, 6).Throw();
+            var result = foo.Condition("foo").AsNumber<int>().Between(3, 6).GetResult();
 
-            act.ShouldNotThrow();
-            
+            result.Should().BeNull();
         }
 
         [TestMethod]
@@ -80,9 +77,10 @@ namespace MPConditions.Test
         {
             string foo = "xxx";
 
-            Action act = () => foo.Condition("foo").AsNumber<int>().Or.Between(3, 6).Throw();
+            var result = foo.Condition("foo").AsNumber<int>().Or.Between(3, 6).GetResult();
 
-            act.ShouldThrow<ConditionException>().Where(o => o.ExecutionTypes == ExecutionTypes.WrongType);
+            result.Should().NotBeNull();
+            result.ExceptionType.Should().Be(ExceptionTypes.WrongType);
         }
 
         

@@ -16,28 +16,24 @@ namespace MPConditions.Primitives
         {
         }
 
-        public StringCondition ConvertibleTo<T>()
-        {
-            ec.Enqueue(() =>
-           {
-               try
-               {
-                   Convert.ChangeType(_Value, typeof(T), null);
-               }
-               catch
-               {
-                   return new ExecutionContext
-                   {
-                       ExecutionType = ExecutionTypes.WrongType,
-                       Message = "issue",// string.Format("Type can not be translates to '{0}'", predicate),
-                   };
-               }
+        //public StringCondition ConvertibleTo<T>()
+        //{
+        //    ec.Enqueue(() =>
+        //   {
+        //       try
+        //       {
+        //           Convert.ChangeType(_Value, typeof(T), null);
+        //       }
+        //       catch
+        //       {
+        //           return new ExecutionContext(ExecutionTypes.WrongType, "issue");// string.Format("Type can not be translates to '{0}'", predicate),
+        //       }
 
-               return ExecutionContext.Empty;
-           });
+        //       return ExecutionContext.Empty;
+        //   });
 
-            return this;
-        }
+        //    return this;
+        //}
 
         public NumberCondition<T> AsNumber<T>() where T : struct, IComparable<T>
         {
@@ -50,11 +46,9 @@ namespace MPConditions.Primitives
                 }
                 catch
                 {
-                    return new ExecutionContext
+                    return new ExecutionContext(ExceptionTypes.WrongType, "issue")
                     {
-                        ExecutionType = ExecutionTypes.WrongType,
-                        Message = "issue",// string.Format("Type can not be translates to '{0}'", predicate),
-                        FailFast=true,
+                        FailFast = true// string.Format("Type can not be translates to '{0}'", predicate),
                     };
                 }
 
@@ -69,7 +63,7 @@ namespace MPConditions.Primitives
             }
             catch
             {
-                //in case of exception just give default value ot next condition because when Throw method executes it will break anyway in the enqued test
+                //in case of exception just give default value to next condition because when Throw method executes it will break anyway in the enqued test
             }
 
             return new NumberCondition<T>(value, _ArgumentName).MerginQueue(this.ec);
@@ -111,11 +105,7 @@ namespace MPConditions.Primitives
             {
                 if(!_Value.StartsWith(predicate))
                 {
-                    return new ExecutionContext
-                    {
-                        ExecutionType = ExecutionTypes.OutOfRange,
-                        Message = string.Format("Starts not with '{0}'", predicate),
-                    };
+                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
                 }
 
                 return ExecutionContext.Empty;

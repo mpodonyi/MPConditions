@@ -7,29 +7,80 @@ namespace MPConditions.Common
 {
     public class ExecutionContext
     {
-
-
         public string Message
         {
-            get;
-            set;
+            get
+            {
+                return string.Format(_Message, Args);
+            }
         }
 
-        public ExecutionTypes ExecutionType
+        public string VariableName{
+            get;
+            private set;
+        }
+
+        public object VariableValue{
+            get;
+            private set;
+        }
+
+        internal void SetNameAndValue(string variableName, object variableValue)
+        {
+            VariableName = variableName;
+            VariableValue = variableValue;
+        }
+
+        public string _Message
+        {
+            get;
+            private set;
+        }
+
+        public object[] Args
+        {
+            get;
+            private set;
+        }
+
+        public ExceptionTypes ExceptionType
+        {
+            get;
+            private set;
+        }
+
+        internal ExecutionTypes ExecutionType
+        {
+            get;
+            private set;
+        }
+
+        internal bool FailFast
         {
             get;
             set;
         }
 
-        public bool FailFast
+        private ExecutionContext()
         {
-            get;
-            set;
         }
 
-        public static ExecutionContext Empty = new ExecutionContext
+        internal ExecutionContext(ExceptionTypes exceptionType, string message, params object[] args)
+        {
+            _Message = message;
+            ExceptionType = exceptionType;
+            Args = args;
+            ExecutionType = ExecutionTypes.Error;
+        }
+
+        internal static ExecutionContext Empty = new ExecutionContext
         {
             ExecutionType = ExecutionTypes.None,
+        };
+
+        internal static ExecutionContext Or = new ExecutionContext
+        {
+            ExecutionType = ExecutionTypes.Or,
         };
     }
 }
