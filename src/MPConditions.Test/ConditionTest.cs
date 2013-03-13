@@ -11,9 +11,9 @@ namespace MPConditions.Test
     /// Summary description for NumericTest
     /// </summary>
     [TestClass]
-    public class NumericTest
+    public class ConditionTest
     {
-        public NumericTest()
+        public ConditionTest()
         {
             //
             // TODO: Add constructor logic here
@@ -65,56 +65,22 @@ namespace MPConditions.Test
         #endregion
 
         [TestMethod]
-        public void Int_Between_Success()
+        public void ThrowOrGet_Success()
         {
             int foo = 5;
 
-            foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
+            //int result = foo.Condition("foo").Between(3, 6).ThrowOrGet();
         }
 
         [TestMethod]
-        public void Int_Between_Fail()
+        public void ThrowOrGet_Fail()
         {
-            int foo = 5;
+            //int foo = 5;
 
-            var result = foo.Condition("foo").Between(8, 12).GetResult();
+            //var result = foo.Condition("foo").Between(8, 12).GetResult();
 
-            result.Should().NotBeNull();
-            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
+            //result.Should().NotBeNull();
+            //result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
         }
-
-
-        [TestMethod]
-        public void Int_Nullable_Between_Success()
-        {
-            int? foo = 5;
-
-            foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
-            
-        }
-
-        [TestMethod]
-        public void Int_Nullable_Between_Fail()
-        {
-            int? foo = 5;
-
-            var result = foo.Condition("foo").Between(8, 12).GetResult();
-
-            result.Should().NotBeNull();
-            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
-
-            foo = null;
-
-            result = foo.Condition("foo").Between(8, 12).GetResult();
-
-            result.Should().NotBeNull();
-            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
-        }
-
-       
-
-
-     
-
     }
 }

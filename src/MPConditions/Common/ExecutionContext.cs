@@ -15,12 +15,14 @@ namespace MPConditions.Common
             }
         }
 
-        public string VariableName{
+        public string VariableName
+        {
             get;
             private set;
         }
 
-        public object VariableValue{
+        public object VariableValue
+        {
             get;
             private set;
         }
@@ -76,6 +78,7 @@ namespace MPConditions.Common
         internal static ExecutionContext Empty = new ExecutionContext
         {
             ExecutionType = ExecutionTypes.None,
+            ExceptionType = ExceptionTypes.None,
         };
 
         internal static ExecutionContext Or = new ExecutionContext

@@ -169,12 +169,10 @@ namespace MPConditions.Common
         {
             ExecutionContext execcontext = GetFinalExecutionContext();
 
-            if(execcontext != null)
-                execcontext.SetNameAndValue(_ArgumentName, _Value);
+            execcontext = execcontext ?? ExecutionContext.Empty;
+            execcontext.SetNameAndValue(_ArgumentName, _Value);
 
-            return (execcontext == null || execcontext.ExecutionType == ExecutionTypes.None)
-                ? null
-                : execcontext;
+            return execcontext;
         }
 
 

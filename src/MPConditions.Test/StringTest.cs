@@ -67,9 +67,7 @@ namespace MPConditions.Test
         {
             string foo = "5";
 
-            var result = foo.Condition("foo").AsNumber<int>().Between(3, 6).GetResult();
-
-            result.Should().BeNull();
+            foo.Condition("foo").AsNumber<int>().Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
         [TestMethod]

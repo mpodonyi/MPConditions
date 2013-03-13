@@ -10,7 +10,25 @@ namespace MPConditions
     {
         public static bool Pass(this ICondition condition)
         {
-            return condition.GetResult() == null;
+            return condition.GetResult().ExceptionType == ExceptionTypes.None;
+        }
+
+
+
+        private static void ThrowInternal(ExecutionContext context)
+        {
+            throw new Exception();
+        }
+
+        public static T ThrowOrGet<T>(this ICondition condition)
+        {
+            ExecutionContext context=condition.GetResult();
+
+            if(context.ExceptionType==ExceptionTypes.None)
+                return (T)context.VariableValue;
+
+            ThrowInternal(context);
+            return default(T);
         }
 
 
