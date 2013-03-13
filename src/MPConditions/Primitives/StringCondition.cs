@@ -46,13 +46,13 @@ namespace MPConditions.Primitives
                 }
                 catch
                 {
-                    return new ExecutionContext(ExceptionTypes.WrongType, "issue")
+                    return new ExecutionContext<string>(ExceptionTypes.WrongType, "issue")
                     {
                         FailFast = true// string.Format("Type can not be translates to '{0}'", predicate),
                     };
                 }
 
-                return ExecutionContext.Empty;
+                return ExecutionContext<string>.Empty;
             });
 
             T value = default(T);
@@ -66,6 +66,7 @@ namespace MPConditions.Primitives
                 //in case of exception just give default value to next condition because when Throw method executes it will break anyway in the enqued test
             }
 
+            //MP: find better solution reactivate it
             return new NumberCondition<T>(value, _ArgumentName).MerginQueue(this.ec);
         }
 
@@ -105,10 +106,10 @@ namespace MPConditions.Primitives
             {
                 if(!_Value.StartsWith(predicate))
                 {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
+                    return new ExecutionContext<string>(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
                 }
 
-                return ExecutionContext.Empty;
+                return ExecutionContext<string>.Empty;
             });
 
             return this;

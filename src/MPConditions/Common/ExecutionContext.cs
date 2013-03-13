@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public class ExecutionContext
+    public class ExecutionContext<T>
     {
         public string Message
         {
@@ -21,13 +21,13 @@ namespace MPConditions.Common
             private set;
         }
 
-        public object VariableValue
+        public T VariableValue
         {
             get;
             private set;
         }
 
-        internal void SetNameAndValue(string variableName, object variableValue)
+        internal void SetNameAndValue(string variableName, T variableValue)
         {
             VariableName = variableName;
             VariableValue = variableValue;
@@ -75,13 +75,13 @@ namespace MPConditions.Common
             ExecutionType = ExecutionTypes.Error;
         }
 
-        internal static ExecutionContext Empty = new ExecutionContext
+        internal static ExecutionContext<T> Empty = new ExecutionContext<T>
         {
             ExecutionType = ExecutionTypes.None,
             ExceptionType = ExceptionTypes.None,
         };
 
-        internal static ExecutionContext Or = new ExecutionContext
+        internal static ExecutionContext<T> Or = new ExecutionContext<T>
         {
             ExecutionType = ExecutionTypes.Or,
         };

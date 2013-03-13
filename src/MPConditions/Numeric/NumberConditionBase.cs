@@ -9,20 +9,20 @@ namespace MPConditions.Numeric
     //public abstract class NumberConditionBase<TValue, TType, TBase> : ConditionBase<TValue, TBase>
     //  where TType : struct, IComparable<TType>
     //  where TBase : NumberConditionBase<TValue, TType, TBase>
-    public abstract class NumberConditionBase<TValue, TBase> : ConditionBase<Nullable<TValue>, TBase>
+    public abstract class NumberConditionBase<TOrigin, TValue, TBase> : ConditionBase<TValue, TBase>
         //where TType : struct, IComparable<TType>
-        where TValue : struct, IComparable<TValue>
-        where TBase : NumberConditionBase<TValue, TBase>
+        where TOrigin : struct, IComparable<TOrigin>
+        where TBase : NumberConditionBase<TOrigin, TValue, TBase>
     {
 
-        public NumberConditionBase(TValue? value, string name)
+        public NumberConditionBase(TValue value, string name)
             : base(value, name)
         {
         }
 
         //public TBase Between(TValue start, TValue end) //MP: set an argument invalid exception when null values here
         //{
-           
+
 
         //    return (TBase)this;
         //}
@@ -68,10 +68,10 @@ namespace MPConditions.Numeric
 
                 if(!((comparer.Compare(_Value, start) > 0) && (comparer.Compare(_Value, end) < 0)))
                 {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
+                    return new ExecutionContext<TValue>(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
                 }
 
-                return ExecutionContext.Empty;
+                return ExecutionContext<TValue>.Empty;
             });
 
             return (TBase)this;
@@ -85,10 +85,10 @@ namespace MPConditions.Numeric
 
                 if(!(comparer.Compare(_Value, start) > 0))
                 {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not greater then '{0}'.", start);
+                    return new ExecutionContext<TValue>(ExceptionTypes.OutOfRange, "Is not greater then '{0}'.", start);
                 }
 
-                return ExecutionContext.Empty;
+                return ExecutionContext<TValue>.Empty;
             });
 
             return (TBase)this;

@@ -11,7 +11,7 @@ namespace MPConditions
         internal ConditionException(string paramName, string message, ExecutionTypes executionTypes)
         {
             ParamName = paramName;
-            Message = message;
+      //      Message = message;
            // ExecutionTypes = executionTypes;
         }
 
@@ -22,12 +22,7 @@ namespace MPConditions
         }
 
 
-        public string Message
-        {
-            get;
-            private set;
-        }
-
+      
         //public ExecutionTypes ExecutionTypes
         //{
         //    get;

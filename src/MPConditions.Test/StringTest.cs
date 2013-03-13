@@ -67,6 +67,8 @@ namespace MPConditions.Test
         {
             string foo = "5";
 
+            string dfgh = foo.Condition("foo").AsNumber<int>().Between(3, 6).ThrowOrGet();
+
             foo.Condition("foo").AsNumber<int>().Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 

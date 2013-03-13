@@ -69,18 +69,18 @@ namespace MPConditions.Test
         {
             int foo = 5;
 
-            //int result = foo.Condition("foo").Between(3, 6).ThrowOrGet();
+            int result = foo.Condition("foo").Between(3, 6).ThrowOrGet();
+            result.Should().Be(5);
         }
 
         [TestMethod]
         public void ThrowOrGet_Fail()
         {
-            //int foo = 5;
+            int foo = 2;
 
-            //var result = foo.Condition("foo").Between(8, 12).GetResult();
+            Action act = () => { int result = foo.Condition("foo").Between(3, 6).ThrowOrGet(); };
 
-            //result.Should().NotBeNull();
-            //result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
+            act.ShouldThrow<Exception>();
         }
     }
 }

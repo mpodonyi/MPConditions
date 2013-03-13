@@ -5,8 +5,8 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public interface ICondition
+    public interface ICondition<T>
     {
-        ExecutionContext GetResult();
+        ExecutionContext<T> GetResult();
     }
 }

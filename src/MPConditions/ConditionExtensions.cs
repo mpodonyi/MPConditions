@@ -8,21 +8,21 @@ namespace MPConditions
 {
     public static class ConditionExtensions
     {
-        public static bool Pass(this ICondition condition)
+        public static bool Pass<T>(this ICondition<T> condition)
         {
             return condition.GetResult().ExceptionType == ExceptionTypes.None;
         }
 
 
 
-        private static void ThrowInternal(ExecutionContext context)
+        private static void ThrowInternal<T>(ExecutionContext<T> context)
         {
             throw new Exception();
         }
 
-        public static T ThrowOrGet<T>(this ICondition condition)
+        public static T ThrowOrGet<T>(this ICondition<T> condition)
         {
-            ExecutionContext context=condition.GetResult();
+            ExecutionContext<T> context=condition.GetResult();
 
             if(context.ExceptionType==ExceptionTypes.None)
                 return (T)context.VariableValue;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MPConditions.Numeric
 {
-    public class NullableNumberCondition<T> : NumberConditionBase<T, NullableNumberCondition<T>>
+    public class NullableNumberCondition<T> : NumberConditionBase<T, Nullable<T>, NullableNumberCondition<T>>
         where T : struct, IComparable<T>
     {
         public NullableNumberCondition(T? value, string name)

@@ -5,19 +5,19 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<T, AssertT> : ICondition
+    public abstract class ConditionBase<T, AssertT> : ICondition<T>
         where AssertT : ConditionBase<T, AssertT>
     {
         protected T _Value;
         protected string _ArgumentName;
 
-        protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>();
+        protected Queue<Func<ExecutionContext<T>>> ec = new Queue<Func<ExecutionContext<T>>>();
 
 
 
         //private Condition<T> OrCondition;
 
-        internal AssertT MerginQueue(Queue<Func<ExecutionContext>> executionContext)
+        internal AssertT MerginQueue<V>(Queue<Func<ExecutionContext<V>>> executionContext)
         {
             foreach(var item in executionContext)
                 ec.Enqueue(item);
@@ -39,15 +39,15 @@ namespace MPConditions.Common
         {
             get
             {
-                ec.Enqueue(() => ExecutionContext.Or);
+                ec.Enqueue(() => ExecutionContext<T>.Or);
                 return (AssertT)this;
             }
         }
 
 
-        private ExecutionContext GetNextExecutionContext()
+        private ExecutionContext<T> GetNextExecutionContext()
         {
-            Func<ExecutionContext> funcExecContext1 = null;
+            Func<ExecutionContext<T>> funcExecContext1 = null;
 
             if(ec.Count > 0)
             {
@@ -60,11 +60,11 @@ namespace MPConditions.Common
         }
 
 
-        private ExecutionContext GetFinalExecutionContext()
+        private ExecutionContext<T> GetFinalExecutionContext()
         {
-            ExecutionContext savedexeccontext = null;
+            ExecutionContext<T> savedexeccontext = null;
 
-            ExecutionContext execcontext = null;
+            ExecutionContext<T> execcontext = null;
             while((execcontext = GetNextExecutionContext()) != null)
             {
                 if(execcontext.ExecutionType == ExecutionTypes.Or)
@@ -165,11 +165,11 @@ namespace MPConditions.Common
         //        {ExecutionTypes.StartsWith,typeof(ArgumentException) }
         //     };  
 
-        public ExecutionContext GetResult()
+        public ExecutionContext<T> GetResult()
         {
-            ExecutionContext execcontext = GetFinalExecutionContext();
+            ExecutionContext<T> execcontext = GetFinalExecutionContext();
 
-            execcontext = execcontext ?? ExecutionContext.Empty;
+            execcontext = execcontext ?? ExecutionContext<T>.Empty;
             execcontext.SetNameAndValue(_ArgumentName, _Value);
 
             return execcontext;
