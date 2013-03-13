@@ -5,30 +5,34 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<T, AssertT> : ICondition<T>
-        where AssertT : ConditionBase<T, AssertT>
+    public abstract class ConditionBase<T, V, AssertT> : ICondition<V>
+        where AssertT : ConditionBase<T, V, AssertT>
     {
         protected T _Value;
+        protected V _OriginalValue;
         protected string _ArgumentName;
 
-        protected Queue<Func<ExecutionContext<T>>> ec = new Queue<Func<ExecutionContext<T>>>();
+
+
+        protected Queue<Func<ExecutionContext<V>>> ec = new Queue<Func<ExecutionContext<V>>>();
 
 
 
         //private Condition<T> OrCondition;
 
-        internal AssertT MerginQueue<V>(Queue<Func<ExecutionContext<V>>> executionContext)
+        internal AssertT MerginQueue(Queue<Func<ExecutionContext<V>>> executionContext)
         {
             foreach(var item in executionContext)
                 ec.Enqueue(item);
             return (AssertT)this;
         }
-      
 
 
 
-        internal ConditionBase(T value, string name)
+
+        internal ConditionBase(T value, V originalValue, string name)
         {
+            _OriginalValue = originalValue;
             _Value = value;
             _ArgumentName = name;
         }
@@ -39,15 +43,15 @@ namespace MPConditions.Common
         {
             get
             {
-                ec.Enqueue(() => ExecutionContext<T>.Or);
+                ec.Enqueue(() => ExecutionContext<V>.Or);
                 return (AssertT)this;
             }
         }
 
 
-        private ExecutionContext<T> GetNextExecutionContext()
+        private ExecutionContext<V> GetNextExecutionContext()
         {
-            Func<ExecutionContext<T>> funcExecContext1 = null;
+            Func<ExecutionContext<V>> funcExecContext1 = null;
 
             if(ec.Count > 0)
             {
@@ -60,11 +64,11 @@ namespace MPConditions.Common
         }
 
 
-        private ExecutionContext<T> GetFinalExecutionContext()
+        private ExecutionContext<V> GetFinalExecutionContext()
         {
-            ExecutionContext<T> savedexeccontext = null;
+            ExecutionContext<V> savedexeccontext = null;
 
-            ExecutionContext<T> execcontext = null;
+            ExecutionContext<V> execcontext = null;
             while((execcontext = GetNextExecutionContext()) != null)
             {
                 if(execcontext.ExecutionType == ExecutionTypes.Or)
@@ -81,8 +85,8 @@ namespace MPConditions.Common
                             do
                             {
                                 execcontext = GetNextExecutionContext();
-                            } while(execcontext != null && execcontext.ExecutionType ==ExecutionTypes.Or); //fix for ---> X.Or.Or.Y
-                            
+                            } while(execcontext != null && execcontext.ExecutionType == ExecutionTypes.Or); //fix for ---> X.Or.Or.Y
+
                             if(execcontext == null)
                                 break;
                             else if(execcontext.ExecutionType == ExecutionTypes.Error)
@@ -165,18 +169,15 @@ namespace MPConditions.Common
         //        {ExecutionTypes.StartsWith,typeof(ArgumentException) }
         //     };  
 
-        public ExecutionContext<T> GetResult()
+        public ExecutionContext<V> GetResult()
         {
-            ExecutionContext<T> execcontext = GetFinalExecutionContext();
+            ExecutionContext<V> execcontext = GetFinalExecutionContext();
 
-            execcontext = execcontext ?? ExecutionContext<T>.Empty;
-            execcontext.SetNameAndValue(_ArgumentName, _Value);
-
-            return execcontext;
+            return ExecutionContext<V>.CopyFrom(_ArgumentName, _OriginalValue, execcontext);
         }
 
 
-       
+
 
     }
 }

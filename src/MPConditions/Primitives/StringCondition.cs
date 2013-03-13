@@ -8,11 +8,11 @@ using MPConditions.Numeric;
 
 namespace MPConditions.Primitives
 {
-    public class StringCondition : ConditionBase<string, StringCondition>
+    public class StringCondition : ConditionBase<string,string, StringCondition>
     {
 
         public StringCondition(string value, string name)
-            : base(value, name)
+            : base(value,value, name)
         {
         }
 
@@ -35,7 +35,7 @@ namespace MPConditions.Primitives
         //    return this;
         //}
 
-        public NumberCondition<T> AsNumber<T>() where T : struct, IComparable<T>
+        public NumberCondition<T,string> AsNumber<T>() where T : struct, IComparable<T>
         {
             ec.Enqueue(() =>
             {
@@ -66,8 +66,7 @@ namespace MPConditions.Primitives
                 //in case of exception just give default value to next condition because when Throw method executes it will break anyway in the enqued test
             }
 
-            //MP: find better solution reactivate it
-            return new NumberCondition<T>(value, _ArgumentName).MerginQueue(this.ec);
+            return new NumberCondition<T, string>(value, _OriginalValue, _ArgumentName).MerginQueue(this.ec);
         }
 
         public NullableNumberCondition<T> AsNullableNumber<T>() where T : struct, IComparable<T>

@@ -71,6 +71,11 @@ namespace MPConditions.Test
 
             int result = foo.Condition("foo").Between(3, 6).ThrowOrGet();
             result.Should().Be(5);
+
+            string bar = "5";
+
+            string result2 = bar.Condition("bar").AsNumber<int>().Between(3, 6).ThrowOrGet();
+            result2.Should().Be("5");
         }
 
         [TestMethod]

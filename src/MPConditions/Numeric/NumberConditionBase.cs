@@ -9,14 +9,14 @@ namespace MPConditions.Numeric
     //public abstract class NumberConditionBase<TValue, TType, TBase> : ConditionBase<TValue, TBase>
     //  where TType : struct, IComparable<TType>
     //  where TBase : NumberConditionBase<TValue, TType, TBase>
-    public abstract class NumberConditionBase<TOrigin, TValue, TBase> : ConditionBase<TValue, TBase>
+    public abstract class NumberConditionBase<TOrigin, TPassthrough, TValue, TBase> : ConditionBase<TValue, TPassthrough, TBase>
         //where TType : struct, IComparable<TType>
         where TOrigin : struct, IComparable<TOrigin>
-        where TBase : NumberConditionBase<TOrigin, TValue, TBase>
+        where TBase : NumberConditionBase<TOrigin, TPassthrough, TValue, TBase>
     {
 
-        public NumberConditionBase(TValue value, string name)
-            : base(value, name)
+        public NumberConditionBase(TValue value, TPassthrough origValue, string name)
+            : base(value, origValue, name)
         {
         }
 
@@ -68,10 +68,10 @@ namespace MPConditions.Numeric
 
                 if(!((comparer.Compare(_Value, start) > 0) && (comparer.Compare(_Value, end) < 0)))
                 {
-                    return new ExecutionContext<TValue>(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
+                    return new ExecutionContext<TPassthrough>(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
                 }
 
-                return ExecutionContext<TValue>.Empty;
+                return ExecutionContext<TPassthrough>.Empty;
             });
 
             return (TBase)this;
@@ -85,10 +85,10 @@ namespace MPConditions.Numeric
 
                 if(!(comparer.Compare(_Value, start) > 0))
                 {
-                    return new ExecutionContext<TValue>(ExceptionTypes.OutOfRange, "Is not greater then '{0}'.", start);
+                    return new ExecutionContext<TPassthrough>(ExceptionTypes.OutOfRange, "Is not greater then '{0}'.", start);
                 }
 
-                return ExecutionContext<TValue>.Empty;
+                return ExecutionContext<TPassthrough>.Empty;
             });
 
             return (TBase)this;
