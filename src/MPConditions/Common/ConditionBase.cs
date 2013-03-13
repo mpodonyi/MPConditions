@@ -12,13 +12,7 @@ namespace MPConditions.Common
         protected V _OriginalValue;
         protected string _ArgumentName;
 
-
-
         protected Queue<Func<ExecutionContext<V>>> ec = new Queue<Func<ExecutionContext<V>>>();
-
-
-
-        //private Condition<T> OrCondition;
 
         internal AssertT MerginQueue(Queue<Func<ExecutionContext<V>>> executionContext)
         {
@@ -27,17 +21,12 @@ namespace MPConditions.Common
             return (AssertT)this;
         }
 
-
-
-
         internal ConditionBase(T value, V originalValue, string name)
         {
             _OriginalValue = originalValue;
             _Value = value;
             _ArgumentName = name;
         }
-
-
 
         public AssertT Or
         {
@@ -47,7 +36,6 @@ namespace MPConditions.Common
                 return (AssertT)this;
             }
         }
-
 
         private ExecutionContext<V> GetNextExecutionContext()
         {
@@ -171,9 +159,11 @@ namespace MPConditions.Common
 
         public ExecutionContext<V> GetResult()
         {
-            ExecutionContext<V> execcontext = GetFinalExecutionContext();
+            ExecutionContext<V> execcontext = GetFinalExecutionContext() ?? ExecutionContext<V>.Empty;
 
-            return ExecutionContext<V>.CopyFrom(_ArgumentName, _OriginalValue, execcontext);
+            execcontext.SetNameAndValue(_ArgumentName, _OriginalValue);
+
+            return execcontext;
         }
 
 

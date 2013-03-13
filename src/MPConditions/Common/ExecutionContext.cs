@@ -27,30 +27,13 @@ namespace MPConditions.Common
             private set;
         }
 
-        //internal void SetNameAndValue(string variableName, T variableValue)
-        //{
-        //    VariableName = variableName;
-        //    VariableValue = variableValue;
-        //}
-
-        internal static ExecutionContext<T> CopyFrom<V>(string variableName, T variableValue, ExecutionContext<V> copyFrom)
+        internal void SetNameAndValue(string variableName, T variableValue)
         {
-            //MP; work on typeof(T)== typeof(V) optimization
-
-            ExecutionContext<T> retVal=new ExecutionContext<T>();
-            retVal.VariableName = variableName;
-            retVal.VariableValue = variableValue;
-
-            copyFrom = copyFrom ?? ExecutionContext<V>.Empty;
-
-            retVal._Message = copyFrom._Message;
-            retVal.Args = copyFrom.Args;
-            retVal.ExceptionType = copyFrom.ExceptionType;
-            retVal.ExecutionType = copyFrom.ExecutionType;
-            retVal.FailFast = copyFrom.FailFast;
-
-            return retVal;
+            VariableName = variableName;
+            VariableValue = variableValue;
         }
+
+       
 
         public string _Message
         {
@@ -104,5 +87,7 @@ namespace MPConditions.Common
         {
             ExecutionType = ExecutionTypes.Or,
         };
+
+        
     }
 }

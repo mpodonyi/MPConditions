@@ -13,8 +13,6 @@ namespace MPConditions
             return condition.GetResult().ExceptionType == ExceptionTypes.None;
         }
 
-
-
         private static void ThrowInternal<T>(ExecutionContext<T> context)
         {
             throw new Exception();

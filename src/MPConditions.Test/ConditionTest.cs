@@ -37,10 +37,7 @@ namespace MPConditions.Test
                 testContextInstance = value;
             }
         }
-
-
-
-
+        
 
         #region Additional test attributes
         //
