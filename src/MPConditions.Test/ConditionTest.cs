@@ -62,6 +62,35 @@ namespace MPConditions.Test
         #endregion
 
         [TestMethod]
+        [TestCategory("Condition")]
+        public void Pass_Success()
+        {
+            int foo = 5;
+
+            bool result = foo.Condition("foo").Between(3, 6).Pass();
+            result.Should().BeTrue();
+
+            string bar = "5";
+
+            bool result2 = bar.Condition("bar").AsNumber<int>().Between(3, 6).Pass();
+            result2.Should().BeTrue();
+        }
+
+        [TestMethod]
+        [TestCategory("Condition")]
+        public void Pass_Fail()
+        {
+            int foo = 2;
+
+            bool result = foo.Condition("foo").Between(3, 6).Pass();
+
+            result.Should().BeFalse();
+        }
+
+
+
+        [TestMethod]
+        [TestCategory("Condition")]
         public void ThrowOrGet_Success()
         {
             int foo = 5;
@@ -76,6 +105,7 @@ namespace MPConditions.Test
         }
 
         [TestMethod]
+        [TestCategory("Condition")]
         public void ThrowOrGet_Fail()
         {
             int foo = 2;
