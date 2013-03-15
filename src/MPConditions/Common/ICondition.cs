@@ -7,6 +7,6 @@ namespace MPConditions.Common
 {
     public interface ICondition<T>
     {
-        ExecutionContext<T> GetResult();
+        ExecutionContext GetResult();
     }
 }

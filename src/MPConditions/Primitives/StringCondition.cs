@@ -46,13 +46,13 @@ namespace MPConditions.Primitives
                 }
                 catch
                 {
-                    return new ExecutionContext<string>(ExceptionTypes.WrongType, "issue")
+                    return new ExecutionContext(ExceptionTypes.WrongType, "issue")
                     {
                         FailFast = true// string.Format("Type can not be translates to '{0}'", predicate),
                     };
                 }
 
-                return ExecutionContext<string>.Empty;
+                return ExecutionContext.Empty;
             });
 
             T value = default(T);
@@ -105,10 +105,10 @@ namespace MPConditions.Primitives
             {
                 if(!_Value.StartsWith(predicate))
                 {
-                    return new ExecutionContext<string>(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
+                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
                 }
 
-                return ExecutionContext<string>.Empty;
+                return ExecutionContext.Empty;
             });
 
             return this;

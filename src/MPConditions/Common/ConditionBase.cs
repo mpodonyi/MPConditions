@@ -12,9 +12,9 @@ namespace MPConditions.Common
         protected V _OriginalValue;
         protected string _ArgumentName;
 
-        protected Queue<Func<ExecutionContext<V>>> ec = new Queue<Func<ExecutionContext<V>>>();
+        protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>();
 
-        internal AssertT MerginQueue(Queue<Func<ExecutionContext<V>>> executionContext)
+        internal AssertT MerginQueue(Queue<Func<ExecutionContext>> executionContext)
         {
             foreach(var item in executionContext)
                 ec.Enqueue(item);
@@ -32,14 +32,14 @@ namespace MPConditions.Common
         {
             get
             {
-                ec.Enqueue(() => ExecutionContext<V>.Or);
+                ec.Enqueue(() => ExecutionContext.Or);
                 return (AssertT)this;
             }
         }
 
-        private ExecutionContext<V> GetNextExecutionContext()
+        private ExecutionContext GetNextExecutionContext()
         {
-            Func<ExecutionContext<V>> funcExecContext1 = null;
+            Func<ExecutionContext> funcExecContext1 = null;
 
             if(ec.Count > 0)
             {
@@ -52,11 +52,11 @@ namespace MPConditions.Common
         }
 
 
-        private ExecutionContext<V> GetFinalExecutionContext()
+        private ExecutionContext GetFinalExecutionContext()
         {
-            ExecutionContext<V> savedexeccontext = null;
+            ExecutionContext savedexeccontext = null;
 
-            ExecutionContext<V> execcontext = null;
+            ExecutionContext execcontext = null;
             while((execcontext = GetNextExecutionContext()) != null)
             {
                 if(execcontext.ExecutionType == ExecutionTypes.Or)
@@ -157,9 +157,9 @@ namespace MPConditions.Common
         //        {ExecutionTypes.StartsWith,typeof(ArgumentException) }
         //     };  
 
-        public ExecutionContext<V> GetResult()
+        public ExecutionContext GetResult()
         {
-            ExecutionContext<V> execcontext = GetFinalExecutionContext() ?? ExecutionContext<V>.Empty;
+            ExecutionContext execcontext = GetFinalExecutionContext() ?? ExecutionContext.Empty;
 
             execcontext.SetNameAndValue(_ArgumentName, _OriginalValue);
 

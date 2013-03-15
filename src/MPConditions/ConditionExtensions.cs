@@ -13,14 +13,14 @@ namespace MPConditions
             return condition.GetResult().ExceptionType == ExceptionTypes.None;
         }
 
-        private static void ThrowInternal<T>(ExecutionContext<T> context)
+        private static void ThrowInternal(ExecutionContext context)
         {
             throw new Exception();
         }
 
         public static T ThrowOrGet<T>(this ICondition<T> condition)
         {
-            ExecutionContext<T> context=condition.GetResult();
+            ExecutionContext context=condition.GetResult();
 
             if(context.ExceptionType==ExceptionTypes.None)
                 return (T)context.VariableValue;
