@@ -5,6 +5,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using MPConditions;
 using MPConditions.DefaultExtensions;
+using MPConditions.Common;
+using MPConditions.Numeric;
+using MPConditions.Primitives;
+using MPConditions.ThrowExtensions;
+
 
 namespace MPConditions.Test
 {
@@ -91,7 +96,6 @@ namespace MPConditions.Test
             int? foo = 5;
 
             foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
-            
         }
 
         [TestMethod]
@@ -109,7 +113,7 @@ namespace MPConditions.Test
             result = foo.Condition("foo").Between(8, 12).GetResult();
 
             result.Should().NotBeNull();
-            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
+            result.ExceptionType.Should().Be(ExceptionTypes.Null);
         }
 
        

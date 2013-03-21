@@ -11,5 +11,6 @@ namespace MPConditions
         OutOfRange,
         StartsWith,
         WrongType,
+        Null
     }
 }

@@ -13,15 +13,20 @@ namespace MPConditions.DefaultExtensions
         {
             condition.Push(() =>
             {
-                var comparer = new UniversalNumberComparer();
-
-
-                if(!((comparer.Compare(condition.Subject, start) > 0) && (comparer.Compare(condition.Subject, end) < 0)))
+                if(!condition.Subject.HasValue)
+                    return new ExecutionContext(ExceptionTypes.Null, "Is 'null'.");
+                else
                 {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
-                }
+                    var comparer = new UniversalNumberComparer();
 
-                return ExecutionContext.Empty;
+
+                    if(!((comparer.Compare(condition.Subject, start) > 0) && (comparer.Compare(condition.Subject, end) < 0)))
+                    {
+                        return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
+                    }
+
+                    return ExecutionContext.Empty;
+                }
             });
 
             return condition;
@@ -31,14 +36,19 @@ namespace MPConditions.DefaultExtensions
         {
             condition.Push(() =>
             {
-                var comparer = new UniversalNumberComparer();
-
-                if(!(comparer.Compare(condition.Subject, start) > 0))
+                if(!condition.Subject.HasValue)
+                    return new ExecutionContext(ExceptionTypes.Null, "Is 'null'.");
+                else
                 {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not greater then '{0}'.", start);
-                }
+                    var comparer = new UniversalNumberComparer();
 
-                return ExecutionContext.Empty;
+                    if(!(comparer.Compare(condition.Subject, start) > 0))
+                    {
+                        return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not greater then '{0}'.", start);
+                    }
+
+                    return ExecutionContext.Empty;
+                }
             });
 
             return condition;

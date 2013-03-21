@@ -5,7 +5,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using MPConditions;
 using MPConditions.DefaultExtensions;
+using MPConditions.Common;
+using MPConditions.Numeric;
+using MPConditions.Primitives;
 using MPConditions.ThrowExtensions;
+
 
 namespace MPConditions.Test
 {

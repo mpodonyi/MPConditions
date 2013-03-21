@@ -6,11 +6,13 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    public class NumberCondition<T, TPassthrough> : ConditionBase<T, TPassthrough, NumberCondition<T, TPassthrough>>, INumberCondition<T, TPassthrough>
-       where T : struct, IComparable<T>
+    public class NumberCondition<T, TPassthrough,TBase> : ConditionBase<T?, TPassthrough, TBase>
+        , INumberCondition<T, TPassthrough>
+        where T : struct, IComparable<T>
+        where TBase : NumberCondition<T, TPassthrough, TBase>
     {
 
-        public NumberCondition(T value, TPassthrough origValue, string name)
+        public NumberCondition(T? value, TPassthrough origValue, string name)
             : base(value, origValue, name)
         {
         }
@@ -19,7 +21,7 @@ namespace MPConditions.Numeric
 
         public T Subject
         {
-            get { return this._Value; }
+            get { return this._Value.Value; }
         }
 
         public void Push(Func<Common.ExecutionContext> action)
@@ -27,19 +29,26 @@ namespace MPConditions.Numeric
             ec.Enqueue(action);
         }
 
-
-
-
         #endregion
     }
 
-    public class NumberCondition<T> : NumberCondition<T,T>
+    public class NumberCondition<T, TPassthrough> : NumberCondition<T, TPassthrough, NumberCondition<T, TPassthrough>>
       where T : struct, IComparable<T>
     {
 
-        public NumberCondition(T value, string name)
-            : base(value,value, name)
+        public NumberCondition(T value, TPassthrough origValue, string name)
+            : base(value, origValue, name)
         {
         }
     }
+
+    //public class NumberCondition<T> : NumberCondition<T, T, NumberCondition<T>>
+    //  where T : struct, IComparable<T>
+    //{
+
+    //    public NumberCondition(T value, string name)
+    //        : base(value,value, name)
+    //    {
+    //    }
+    //}
 }
