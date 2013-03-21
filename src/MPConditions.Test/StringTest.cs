@@ -3,7 +3,8 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using MPConditions.Common;
+using MPConditions;
+using MPConditions.DefaultExtensions;
 using System.Linq;
 
 namespace MPConditions.Test
@@ -79,6 +80,42 @@ namespace MPConditions.Test
 
             result.Should().NotBeNull();
             result.ExceptionType.Should().Be(ExceptionTypes.WrongType);
+        }
+
+        [TestMethod]
+        public void String_AsNullableNumber_Success()
+        {
+            string foo = "5";
+
+            foo.Condition("foo").AsNumber<int>().Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
+        }
+
+        [TestMethod]
+        public void String_AsNullableNumber_Fail()
+        {
+            string foo = "xxx";
+
+            var result = foo.Condition("foo").AsNumber<int>().Or.Between(3, 6).GetResult();
+
+            result.Should().NotBeNull();
+            result.ExceptionType.Should().Be(ExceptionTypes.WrongType);
+        }
+
+
+        [TestMethod]
+        public void String_StartsWith_Success()
+        {
+            string foo = "Mike was here";
+
+            foo.Condition("foo").StartsWith("Mike").GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
+        }
+
+        [TestMethod]
+        public void String_StartsWith_Fail()
+        {
+            string foo = "Mike was here";
+
+            foo.Condition("foo").StartsWith("Mikee").GetResult().ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
         }
 
         

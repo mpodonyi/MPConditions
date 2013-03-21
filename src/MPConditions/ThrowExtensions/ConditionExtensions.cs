@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using MPConditions.Common;
 
-namespace MPConditions
+namespace MPConditions.ThrowExtensions
 {
     public static class ConditionExtensions
     {
-        public static bool Pass<T>(this ICondition<T> condition)
-        {
-            return condition.GetResult().ExceptionType == ExceptionTypes.None;
-        }
-
         private static void ThrowInternal(ExecutionContext context)
         {
             throw new Exception();

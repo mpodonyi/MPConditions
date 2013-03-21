@@ -70,12 +70,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ConditionBase.cs" />
-    <Compile Include="Common\ExceptionTypes.cs" />
+    <Compile Include="ExceptionTypes.cs" />
     <Compile Include="Common\ExecutionContext.cs" />
     <Compile Include="Common\ExecutionTypes.cs" />
     <Compile Include="Common\ICondition.cs" />
-    <Compile Include="ConditionException.cs" />
-    <Compile Include="ConditionExtensions.cs" />
+    <Compile Include="Numeric\INumberCondition.cs" />
+    <Compile Include="Numeric\INullableNumberCondition.cs" />
+    <Compile Include="Primitives\IStringCondition.cs" />
+    <Compile Include="ThrowExtensions\ConditionException.cs" />
+    <Compile Include="DefaultExtensions\ConditionExtensions.cs" />
+    <Compile Include="DefaultExtensions\NullableNumberExtensions.cs" />
+    <Compile Include="DefaultExtensions\NumberExtensions.cs" />
+    <Compile Include="DefaultExtensions\StringExtensions.cs" />
+    <Compile Include="ThrowExtensions\ConditionExtensions.cs" />
     <Compile Include="NumericConditionsExtensions.cs" />
     <Compile Include="Numeric\NullableNumberCondition.cs" />
     <Compile Include="Numeric\NumberCondition.cs" />

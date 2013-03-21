@@ -8,7 +8,7 @@ using MPConditions.Numeric;
 
 namespace MPConditions.Primitives
 {
-    public class StringCondition : ConditionBase<string,string, StringCondition>
+    public class StringCondition : ConditionBase<string,string, StringCondition>, IStringCondition
     {
 
         public StringCondition(string value, string name)
@@ -69,51 +69,52 @@ namespace MPConditions.Primitives
             return new NumberCondition<T, string>(value, _OriginalValue, _ArgumentName).MerginQueue(this.ec);
         }
 
-        public NullableNumberCondition<T> AsNullableNumber<T>() where T : struct, IComparable<T>
-        {
-            //ec.Enqueue(() =>
-            //{
-            //    try
-            //    {
-            //        Convert.ChangeType(_Value, typeof(T), null);
+        //public NullableNumberCondition<T> AsNullableNumber<T>() where T : struct, IComparable<T>
+        //{
+        //    //ec.Enqueue(() =>
+        //    //{
+        //    //    try
+        //    //    {
+        //    //        Convert.ChangeType(_Value, typeof(T), null);
 
-            //    }
-            //    catch
-            //    {
-            //        return new ExecutionContext
-            //        {
-            //            ExecutionType = ExecutionTypes.WrongType,
-            //            Message = "issue",// string.Format("Type can not be translates to '{0}'", predicate),
-            //        };
-            //    }
+        //    //    }
+        //    //    catch
+        //    //    {
+        //    //        return new ExecutionContext
+        //    //        {
+        //    //            ExecutionType = ExecutionTypes.WrongType,
+        //    //            Message = "issue",// string.Format("Type can not be translates to '{0}'", predicate),
+        //    //        };
+        //    //    }
 
-            //    return ExecutionContext.Empty;
-            //});
+        //    //    return ExecutionContext.Empty;
+        //    //});
 
-            T value = (T)Convert.ChangeType(_Value, typeof(T), null);
-            return new NullableNumberCondition<T>(value, _ArgumentName);
-        }
+        //    T value = (T)Convert.ChangeType(_Value, typeof(T), null);
+        //    return new NullableNumberCondition<T>(value, _ArgumentName);
+        //}
 
        
         
 
 
 
-        public StringCondition StartsWith(string predicate)
+       
+
+
+
+        #region IStringCondition Members
+
+        public string Subject
         {
-            ec.Enqueue(() =>
-            {
-                if(!_Value.StartsWith(predicate))
-                {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
-                }
-
-                return ExecutionContext.Empty;
-            });
-
-            return this;
+            get { return this._Value; }
         }
 
+        public void Push(Func<ExecutionContext> action)
+        {
+            ec.Enqueue(action);
+        }
 
+        #endregion
     }
 }

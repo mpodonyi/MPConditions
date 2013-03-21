@@ -3,7 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
-using MPConditions.Common;
+using MPConditions;
+using MPConditions.DefaultExtensions;
+using MPConditions.ThrowExtensions;
 
 namespace MPConditions.Test
 {

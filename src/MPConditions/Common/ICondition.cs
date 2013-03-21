@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public interface ICondition<T>
+    public interface ICondition<T> //MP: try to get rid of T causes errors in ThrowOrGet
     {
         ExecutionContext GetResult();
     }

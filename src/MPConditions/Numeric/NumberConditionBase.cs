@@ -57,40 +57,42 @@ namespace MPConditions.Numeric
         //    return (TBase)this;
         //}
 
-        public TBase Between(object start, object end) //MP: set an argument invalid exception when null values here
-        {
-            ec.Enqueue(() =>
-            {
-                var comparer = new UniversalNumberComparer();
+        //public TBase Between(object start, object end) //MP: set an argument invalid exception when null values here
+        //{
+        //    int? hh = null;
+
+        //    ec.Enqueue(() =>
+        //    {
+        //        var comparer = new UniversalNumberComparer();
 
 
-                if(!((comparer.Compare(_Value, start) > 0) && (comparer.Compare(_Value, end) < 0)))
-                {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
-                }
+        //        if(!((comparer.Compare(_Value, start) > 0) && (comparer.Compare(_Value, end) < 0)))
+        //        {
+        //            return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
+        //        }
 
-                return ExecutionContext.Empty;
-            });
+        //        return ExecutionContext.Empty;
+        //    });
 
-            return (TBase)this;
-        }
+        //    return (TBase)this;
+        //}
 
-        public TBase Greater(object start)
-        {
-            ec.Enqueue(() =>
-            {
-                var comparer = new UniversalNumberComparer();
+        //public TBase Greater(object start)
+        //{
+        //    ec.Enqueue(() =>
+        //    {
+        //        var comparer = new UniversalNumberComparer();
 
-                if(!(comparer.Compare(_Value, start) > 0))
-                {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not greater then '{0}'.", start);
-                }
+        //        if(!(comparer.Compare(_Value, start) > 0))
+        //        {
+        //            return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not greater then '{0}'.", start);
+        //        }
 
-                return ExecutionContext.Empty;
-            });
+        //        return ExecutionContext.Empty;
+        //    });
 
-            return (TBase)this;
-        }
+        //    return (TBase)this;
+        //}
 
 
     }

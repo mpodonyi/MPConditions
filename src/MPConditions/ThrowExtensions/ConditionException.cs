@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using MPConditions.Common;
 
-namespace MPConditions
+namespace MPConditions.ThrowExtensions
 {
     public class ConditionException : Exception
     {
