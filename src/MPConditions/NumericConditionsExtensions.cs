@@ -112,7 +112,7 @@ namespace MPConditions
         {
             return new NumberCondition<decimal,decimal>(value,value, name);
         }
-        public static NullableNumberCondition<decimal,decimal?> Condition(this decimal? value, string name)
+        public static INullableNumberCondition<decimal,decimal?> Condition(this decimal? value, string name)
         {
             return new NullableNumberCondition<decimal,decimal?>(value,value, name);
         }

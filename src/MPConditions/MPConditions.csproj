@@ -79,7 +79,6 @@
     <Compile Include="Primitives\IStringCondition.cs" />
     <Compile Include="ThrowExtensions\ConditionException.cs" />
     <Compile Include="DefaultExtensions\ConditionExtensions.cs" />
-    <Compile Include="DefaultExtensions\NullableNumberExtensions.cs" />
     <Compile Include="DefaultExtensions\NumberExtensions.cs" />
     <Compile Include="DefaultExtensions\StringExtensions.cs" />
     <Compile Include="ThrowExtensions\ConditionExtensions.cs" />

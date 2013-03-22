@@ -8,7 +8,7 @@ using MPConditions.Numeric;
 
 namespace MPConditions.Primitives
 {
-    public class StringCondition : ConditionBase<string,string>, IStringCondition
+    internal class StringCondition : ConditionBase<string,string>, IStringCondition
     {
 
         public StringCondition(string value, string name)
