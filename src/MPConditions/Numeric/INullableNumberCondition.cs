@@ -6,13 +6,22 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    public interface INullableNumberCondition<T, TPassthrough> : INumberCondition<T?, TPassthrough>
+    public interface INullableNumberCondition<T, TPassthrough> : ICondition<TPassthrough>, IConditionInternal
          where T : struct, IComparable<T>
     {
-        //T? Subject { get; }
+        T? Subject { get; }
 
         //void Push(Func<ExecutionContext> action);
 
-        new INullableNumberCondition<T, TPassthrough> Or { get; }
+         INullableNumberCondition<T, TPassthrough> Or { get; }
     }
+
+
+    //public interface INumberCondition<T, TPassthrough> 
+    //    where T : struct, IComparable<T>
+    //{
+    //    T Subject { get; }
+
+    //    INumberCondition<T, TPassthrough> Or { get; }
+    //}
 }
