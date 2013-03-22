@@ -38,6 +38,7 @@ namespace MPConditions.Numeric
         #endregion
     }
 
+
     //public class NumberCondition<T, TPassthrough> : NumberCondition<T, TPassthrough>
     //  where T : struct, IComparable<T>
     //{

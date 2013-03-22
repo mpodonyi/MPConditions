@@ -66,7 +66,7 @@ namespace MPConditions.Primitives
                 //in case of exception just give default value to next condition because when Throw method executes it will break anyway in the enqued test
             }
 
-            var retVal=new NumberCondition<T, string>(value, _OriginalValue, _ArgumentName);
+            var retVal=new NumberCondition<T,string>(value, OriginalValue, _ArgumentName);
             retVal.MerginQueue(this.ec);
 
             return retVal;

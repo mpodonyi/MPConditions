@@ -18,7 +18,7 @@ namespace MPConditions.ThrowExtensions
             ExecutionContext context=condition.GetResult();
 
             if(context.ExceptionType==ExceptionTypes.None)
-                return (T)context.VariableValue;
+                return (T)condition.OriginalValue;
 
             ThrowInternal(context);
             return default(T);

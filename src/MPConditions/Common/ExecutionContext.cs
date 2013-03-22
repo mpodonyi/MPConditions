@@ -15,23 +15,23 @@ namespace MPConditions.Common
             }
         }
 
-        public string VariableName
-        {
-            get;
-            private set;
-        }
+        //public string VariableName
+        //{
+        //    get;
+        //    private set;
+        //}
 
-        public object VariableValue
-        {
-            get;
-            private set;
-        }
+        //public object VariableValue
+        //{
+        //    get;
+        //    private set;
+        //}
 
-        internal void SetNameAndValue(string variableName, object variableValue)
-        {
-            VariableName = variableName;
-            VariableValue = variableValue;
-        }
+        //internal void SetNameAndValue(string variableName, object variableValue)
+        //{
+        //    VariableName = variableName;
+        //    VariableValue = variableValue;
+        //}
 
        
 

@@ -5,11 +5,11 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<T, V> : ICondition<V>
-        //where AssertT : ConditionBase<T, V>
+    public abstract class ConditionBase<TValue, TOriginalValue> : ICondition<TOriginalValue>
+    //where AssertT : ConditionBase<T, V>
     {
-        protected T _Value;
-        protected V _OriginalValue;
+        protected TValue _Value;
+        public TOriginalValue OriginalValue { get; private set; }
         protected string _ArgumentName;
 
         protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>();
@@ -18,17 +18,17 @@ namespace MPConditions.Common
         {
             foreach(var item in executionContext)
                 ec.Enqueue(item);
-           // return (AssertT)this;
+            // return (AssertT)this;
         }
 
-        internal ConditionBase(T value, V originalValue, string name)
+        internal ConditionBase(TValue value, TOriginalValue originalValue, string name)
         {
-            _OriginalValue = originalValue;
+            OriginalValue = originalValue;
             _Value = value;
             _ArgumentName = name;
         }
 
-        public ConditionBase<T, V> Or
+        public ConditionBase<TValue, TOriginalValue> Or
         {
             get
             {
@@ -166,7 +166,7 @@ namespace MPConditions.Common
         {
             ExecutionContext execcontext = GetFinalExecutionContext() ?? ExecutionContext.Empty;
 
-            execcontext.SetNameAndValue(_ArgumentName, _OriginalValue);
+            //execcontext.SetNameAndValue(_ArgumentName, _OriginalValue);
 
             return execcontext;
         }

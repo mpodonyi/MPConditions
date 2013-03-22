@@ -87,7 +87,6 @@
     <Compile Include="Numeric\NullableNumberCondition.cs" />
     <Compile Include="Numeric\NumberCondition.cs" />
     <Compile Include="Numeric\UniversalNumberComparer.cs" />
-    <Compile Include="Common\OrConstraint.cs" />
     <Compile Include="Primitives\StringCondition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringConditionsExtensions.cs" />
