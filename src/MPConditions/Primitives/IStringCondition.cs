@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MPConditions.Common;
+using MPConditions.Numeric;
 
 namespace MPConditions.Primitives
 {
@@ -10,6 +11,8 @@ namespace MPConditions.Primitives
     {
         string Subject { get; }
 
-        void Push(Func<ExecutionContext> action);
+        IStringCondition Or { get; }
+
+        INumberCondition<T, string> AsNumber<T>() where T : struct, IComparable<T>;
     }
 }

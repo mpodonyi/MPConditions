@@ -55,7 +55,7 @@ namespace MPConditions.DefaultExtensions
 
         public static INumberCondition<T, TBase> Between<T, TBase>(this INumberCondition<T, TBase> condition, T start, T end) where T : struct, IComparable<T>
         {
-            int? hh = null;
+            //int? hh = null;
 
             condition.Push(() =>
             {

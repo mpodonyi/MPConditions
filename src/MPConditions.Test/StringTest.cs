@@ -122,6 +122,17 @@ namespace MPConditions.Test
             foo.Condition("foo").StartsWith("Mikee").GetResult().ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
         }
 
+        [TestMethod]
+        public void Atworks()
+        {
+            string foo = "55";
+
+            var sss=foo.Condition("foo").StartsWith("6").Or.AsNumber<int>().Between(56,58).GetResult();
+                
+                
+           //     .ExceptionType.Should().NotBe(ExceptionTypes.None);
+        }
+
         
 
         

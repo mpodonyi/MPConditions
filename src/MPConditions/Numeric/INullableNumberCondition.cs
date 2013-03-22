@@ -12,5 +12,7 @@ namespace MPConditions.Numeric
         //T? Subject { get; }
 
         //void Push(Func<ExecutionContext> action);
+
+        new INullableNumberCondition<T, TPassthrough> Or { get; }
     }
 }

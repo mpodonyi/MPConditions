@@ -47,6 +47,19 @@ namespace MPConditions.Numeric
             get { return this._Value; }
         }
 
+        //MP: how does this look like in the fluent interface
+
+        public new INullableNumberCondition<T, TPassthrough> Or
+        {
+            get { return base.Or as INullableNumberCondition<T,TPassthrough>; }
+        }
+
+
+        INumberCondition<T?, TPassthrough> INumberCondition<T?, TPassthrough>.Or
+        {
+            get { return base.Or as INumberCondition<T?,TPassthrough>; }
+        }
+
         #endregion
     }
 

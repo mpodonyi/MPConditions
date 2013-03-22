@@ -35,7 +35,7 @@ namespace MPConditions.Primitives
         //    return this;
         //}
 
-        public NumberCondition<T,string> AsNumber<T>() where T : struct, IComparable<T>
+        public INumberCondition<T,string> AsNumber<T>() where T : struct, IComparable<T>
         {
             ec.Enqueue(() =>
             {
@@ -110,9 +110,10 @@ namespace MPConditions.Primitives
             get { return this._Value; }
         }
 
-        public void Push(Func<ExecutionContext> action)
+
+        public new IStringCondition Or
         {
-            ec.Enqueue(action);
+            get { return base.Or; }
         }
 
         #endregion

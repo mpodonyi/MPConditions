@@ -37,6 +37,11 @@ namespace MPConditions.Common
             }
         }
 
+        public void Push(Func<Common.ExecutionContext> action)
+        {
+            ec.Enqueue(action);
+        }
+
         private ExecutionContext GetNextExecutionContext()
         {
             Func<ExecutionContext> funcExecContext1 = null;

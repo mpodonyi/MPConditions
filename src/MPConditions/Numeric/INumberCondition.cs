@@ -11,6 +11,6 @@ namespace MPConditions.Numeric
     {
         T Subject { get; }
 
-        void Push(Func<ExecutionContext> action);
+        INumberCondition<T, TPassthrough> Or { get;}
     }
 }

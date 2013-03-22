@@ -24,9 +24,10 @@ namespace MPConditions.Numeric
             get { return this._Value.Value; }
         }
 
-        public void Push(Func<Common.ExecutionContext> action)
+
+        public new INumberCondition<T, TPassthrough> Or
         {
-            ec.Enqueue(action);
+            get { return base.Or; }
         }
 
         #endregion
