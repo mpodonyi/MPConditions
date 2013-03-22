@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<TValue, TOriginalValue> : ICondition<TOriginalValue>
+    public abstract class ConditionBase<TValue, TOriginalValue> : ICondition<TOriginalValue>, IConditionInternal
     //where AssertT : ConditionBase<T, V>
     {
         protected TValue _Value;

@@ -11,6 +11,11 @@ namespace MPConditions.Common
 
         ExecutionContext GetResult();
 
+        //void Push(Func<ExecutionContext> action);  //MP: maybe move to internal interface
+    }
+
+    public interface IConditionInternal //MP: try to get rid of T causes errors in ThrowOrGet
+    {
         void Push(Func<ExecutionContext> action);  //MP: maybe move to internal interface
     }
 }

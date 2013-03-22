@@ -6,7 +6,7 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    public interface INumberCondition<T, TPassthrough> : ICondition<TPassthrough>
+    public interface INumberCondition<T, TPassthrough> : ICondition<TPassthrough>, IConditionInternal
         //where T : struct, IComparable<T>
     {
         T Subject { get; }
