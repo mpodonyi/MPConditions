@@ -12,7 +12,7 @@ namespace MPConditions.Common
         protected V _OriginalValue;
         protected string _ArgumentName;
 
-        protected Queue<ExecutionContext> ec = new Queue<ExecutionContext>();
+        protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>();
 
         internal AssertT MerginQueue(Queue<Func<ExecutionContext>> executionContext)
         {
@@ -149,11 +149,6 @@ namespace MPConditions.Common
             }
 
             return savedexeccontext;
-        }
-
-        public void Push1(ExecutionContext context)
-        { 
-        
         }
 
         //private IDictionary<ExecutionTypes, Type> ExceptionMapping = new Dictionary<ExecutionTypes, Type>(5)

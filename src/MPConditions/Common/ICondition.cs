@@ -8,7 +8,5 @@ namespace MPConditions.Common
     public interface ICondition<T> //MP: try to get rid of T causes errors in ThrowOrGet
     {
         ExecutionContext GetResult();
-
-        void Push1(ExecutionContext context);
     }
 }
