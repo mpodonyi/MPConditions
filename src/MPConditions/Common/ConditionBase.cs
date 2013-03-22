@@ -5,8 +5,8 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<T, V, AssertT> : ICondition<V>
-        where AssertT : ConditionBase<T, V, AssertT>
+    public abstract class ConditionBase<T, V> : ICondition<V>
+        //where AssertT : ConditionBase<T, V>
     {
         protected T _Value;
         protected V _OriginalValue;
@@ -14,11 +14,11 @@ namespace MPConditions.Common
 
         protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>();
 
-        internal AssertT MerginQueue(Queue<Func<ExecutionContext>> executionContext)
+        internal void MerginQueue(Queue<Func<ExecutionContext>> executionContext)
         {
             foreach(var item in executionContext)
                 ec.Enqueue(item);
-            return (AssertT)this;
+           // return (AssertT)this;
         }
 
         internal ConditionBase(T value, V originalValue, string name)
@@ -28,12 +28,12 @@ namespace MPConditions.Common
             _ArgumentName = name;
         }
 
-        public AssertT Or
+        public ConditionBase<T, V> Or
         {
             get
             {
                 ec.Enqueue(() => ExecutionContext.Or);
-                return (AssertT)this;
+                return this;
             }
         }
 
