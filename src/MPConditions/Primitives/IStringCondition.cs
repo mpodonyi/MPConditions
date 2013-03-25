@@ -13,6 +13,6 @@ namespace MPConditions.Primitives
 
         IStringCondition Or { get; }
 
-        INumberCondition<T, string> AsNumber<T>() where T : struct, IComparable<T>; //MP: define as extension method
+      //  INumberCondition<T, string> AsNumber<T>() where T : struct, IComparable<T>; //MP: define as extension method
     }
 }

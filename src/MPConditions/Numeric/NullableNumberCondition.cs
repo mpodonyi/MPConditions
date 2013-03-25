@@ -13,21 +13,25 @@ namespace MPConditions.Numeric
         public NullableNumberCondition(T? value, TPassthrough origValue, string name)
             : base(value, origValue, name)
         {
+        }
 
+        public NullableNumberCondition(T? value, ConditionBase<TPassthrough, TPassthrough> mother)
+            : base(value, mother)
+        {
         }
 
         #region INumberCondition<T?,TPassthrough> Members
 
-        public  T? Subject
+        public new T? Subject
         {
             get { return this._Value; }
         }
 
-      
 
-        public  INullableNumberCondition<T, TPassthrough> Or
+
+        public new INullableNumberCondition<T, TPassthrough> Or
         {
-            get { return base.Or as INullableNumberCondition<T,TPassthrough>; }
+            get { return base.Or as INullableNumberCondition<T, TPassthrough>; }
         }
 
 
@@ -39,12 +43,12 @@ namespace MPConditions.Numeric
         #endregion
     }
 
-    
 
 
 
 
-   
+
+
 
 
 }

@@ -65,6 +65,7 @@ namespace MPConditions.Test
         #endregion
 
         [TestMethod]
+        [TestCategory("String")]
         public void String_AsNumber_Success()
         {
             string foo = "5";
@@ -73,37 +74,56 @@ namespace MPConditions.Test
         }
 
         [TestMethod]
+        [TestCategory("String")]
         public void String_AsNumber_Fail()
         {
             string foo = "xxx";
 
-            var result = foo.Condition("foo").AsNumber<int>().Or.Between(3, 6).GetResult();
+            var result = foo.Condition("foo").AsNumber<int>().Between(3, 6).GetResult();
 
             result.Should().NotBeNull();
             result.ExceptionType.Should().Be(ExceptionTypes.WrongType);
+            
+            string foo2 = "7";
+
+            var result2 = foo2.Condition("foo").AsNumber<int>().Between(3, 6).GetResult();
+
+            result2.Should().NotBeNull();
+            result2.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
         }
 
         [TestMethod]
+        [TestCategory("String")]
         public void String_AsNullableNumber_Success()
         {
             string foo = "5";
 
-            foo.Condition("foo").AsNumber<int>().Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
+            foo.Condition("foo").AsNullableNumber<int>().GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
+
+            foo = null;
+
+            foo.Condition("foo").AsNullableNumber<int>().GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
+
+            foo = string.Empty;
+
+            foo.Condition("foo").AsNullableNumber<int>().GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
         [TestMethod]
+        [TestCategory("String")]
         public void String_AsNullableNumber_Fail()
         {
-            string foo = "xxx";
+            string foo = "bar";
 
-            var result = foo.Condition("foo").AsNumber<int>().Or.Between(3, 6).GetResult();
+            foo.Condition("foo").AsNullableNumber<int>().GetResult().ExceptionType.Should().Be(ExceptionTypes.WrongType);
 
-            result.Should().NotBeNull();
-            result.ExceptionType.Should().Be(ExceptionTypes.WrongType);
+            foo = string.Empty;
+
+            foo.Condition("foo").AsNullableNumber<int>(false).GetResult().ExceptionType.Should().Be(ExceptionTypes.WrongType);
         }
 
-
         [TestMethod]
+        [TestCategory("String")]
         public void String_StartsWith_Success()
         {
             string foo = "Mike was here";
@@ -112,6 +132,7 @@ namespace MPConditions.Test
         }
 
         [TestMethod]
+        [TestCategory("String")]
         public void String_StartsWith_Fail()
         {
             string foo = "Mike was here";
@@ -120,6 +141,7 @@ namespace MPConditions.Test
         }
 
         [TestMethod]
+        [TestCategory("String")]
         public void Atworks()
         {
             string foo = "55";

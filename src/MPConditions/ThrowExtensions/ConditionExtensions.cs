@@ -13,6 +13,9 @@ namespace MPConditions.ThrowExtensions
             throw new Exception();
         }
 
+
+
+
         public static T ThrowOrGet<T>(this ICondition<T> condition)
         {
             ExecutionContext context=condition.GetResult();

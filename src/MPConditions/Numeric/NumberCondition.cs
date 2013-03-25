@@ -6,10 +6,10 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    internal class NumberCondition<T, TPassthrough> : ConditionBase<T?, TPassthrough >
+    internal class NumberCondition<T, TPassthrough> : ConditionBase<T?, TPassthrough>
         , INumberCondition<T, TPassthrough>
         where T : struct, IComparable<T>
-        //where TBase : NumberCondition<T, TPassthrough, >
+    //where TBase : NumberCondition<T, TPassthrough, >
     {
 
         protected NumberCondition(T? value, TPassthrough origValue, string name)
@@ -17,8 +17,18 @@ namespace MPConditions.Numeric
         {
         }
 
+        protected NumberCondition(T? value, ConditionBase<TPassthrough, TPassthrough> mother)
+            : base(value, mother)
+        {
+        }
+
         public NumberCondition(T value, TPassthrough origValue, string name)
             : base(value, origValue, name)
+        {
+        }
+
+        public NumberCondition(T value, ConditionBase<TPassthrough, TPassthrough> mother)
+            : base(value, mother)
         {
         }
 
@@ -43,7 +53,7 @@ namespace MPConditions.Numeric
     //  where T : struct, IComparable<T>
     //{
 
-        
+
     //}
 
     //public class NumberCondition<T> : NumberCondition<T, T, NumberCondition<T>>

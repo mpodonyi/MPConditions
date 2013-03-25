@@ -12,21 +12,23 @@ namespace MPConditions.Common
         public TOriginalValue OriginalValue { get; private set; }
         protected string _ArgumentName;
 
-        protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>();
+        protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>(3);
 
-        internal void MerginQueue(Queue<Func<ExecutionContext>> executionContext)
-        {
-            foreach(var item in executionContext)
-                ec.Enqueue(item);
-            // return (AssertT)this;
-        }
-
-        internal ConditionBase(TValue value, TOriginalValue originalValue, string name)
+        protected ConditionBase(TValue value, TOriginalValue originalValue, string name)
         {
             OriginalValue = originalValue;
             _Value = value;
             _ArgumentName = name;
         }
+
+        protected ConditionBase(TValue value, ConditionBase<TOriginalValue, TOriginalValue> previousCondition)
+        {
+            OriginalValue = previousCondition.OriginalValue;
+            _Value = value;
+            _ArgumentName = previousCondition._ArgumentName;
+            ec = new Queue<Func<ExecutionContext>>(previousCondition.ec);
+        }
+
 
         public ConditionBase<TValue, TOriginalValue> Or
         {
@@ -50,7 +52,7 @@ namespace MPConditions.Common
             {
                 funcExecContext1 = ec.Dequeue();
 
-                return funcExecContext1();
+                return funcExecContext1() ?? ExecutionContext.Empty;
             }
 
             return null;

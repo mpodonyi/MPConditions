@@ -18,7 +18,7 @@ namespace MPConditions.DefaultExtensions
                 return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
             }
 
-            return ExecutionContext.Empty;
+            return null;
         }
 
         //public static V Between<V, T, TBase>(this V condition, T start, T end) where T : struct, IComparable<T>
