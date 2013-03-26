@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>MPConditions</id>
+        <version>0.1.0.0</version>
+        <title />
+        <authors>Mike Podonyi</authors>
+        <owners>Mike Podonyi</owners>
+        <projectUrl>http://github.com/mpodonyi/MPConditions</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A fluent validation library.</description>
+        <summary>A fluent validation library.</summary>
+        <tags>pre condition validation fluent argument checking</tags>
+    </metadata>
+    <files>
+        <file src="MPConditions\bin\Release\MPConditions.dll" target="lib\portable-net4+sl4+wp7+win8\MPConditions.dll" />
+    </files>
+</package>
