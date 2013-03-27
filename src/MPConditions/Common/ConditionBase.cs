@@ -12,7 +12,7 @@ namespace MPConditions.Common
         public TOriginalValue OriginalValue { get; private set; }
         protected string _ArgumentName;
 
-        protected Queue<Func<ExecutionContext>> ec = new Queue<Func<ExecutionContext>>(3);
+        protected Queue<Func<ValidationInfo>> ec = new Queue<Func<ValidationInfo>>(3);
 
         protected ConditionBase(TValue value, TOriginalValue originalValue, string name)
         {
@@ -26,7 +26,7 @@ namespace MPConditions.Common
             OriginalValue = previousCondition.OriginalValue;
             _Value = value;
             _ArgumentName = previousCondition._ArgumentName;
-            ec = new Queue<Func<ExecutionContext>>(previousCondition.ec);
+            ec = new Queue<Func<ValidationInfo>>(previousCondition.ec);
         }
 
 
@@ -34,36 +34,36 @@ namespace MPConditions.Common
         {
             get
             {
-                ec.Enqueue(() => ExecutionContext.Or);
+                ec.Enqueue(() => ValidationInfo.Or);
                 return this;
             }
         }
 
-        public void Push(Func<Common.ExecutionContext> action)
+        public void Push(Func<Common.ValidationInfo> action)
         {
             ec.Enqueue(action);
         }
 
-        private ExecutionContext GetNextExecutionContext()
+        private ValidationInfo GetNextExecutionContext()
         {
-            Func<ExecutionContext> funcExecContext1 = null;
+            Func<ValidationInfo> funcExecContext1 = null;
 
             if(ec.Count > 0)
             {
                 funcExecContext1 = ec.Dequeue();
 
-                return funcExecContext1() ?? ExecutionContext.Empty;
+                return funcExecContext1() ?? ValidationInfo.Empty;
             }
 
             return null;
         }
 
 
-        private ExecutionContext GetFinalExecutionContext()
+        private ValidationInfo GetFinalExecutionContext()
         {
-            ExecutionContext savedexeccontext = null;
+            ValidationInfo savedexeccontext = null;
 
-            ExecutionContext execcontext = null;
+            ValidationInfo execcontext = null;
             while((execcontext = GetNextExecutionContext()) != null)
             {
                 if(execcontext.ExecutionType == ExecutionTypes.Or)
@@ -164,9 +164,9 @@ namespace MPConditions.Common
         //        {ExecutionTypes.StartsWith,typeof(ArgumentException) }
         //     };  
 
-        public ExecutionContext GetResult()
+        public ValidationInfo GetResult()
         {
-            ExecutionContext execcontext = GetFinalExecutionContext() ?? ExecutionContext.Empty;
+            ValidationInfo execcontext = GetFinalExecutionContext() ?? ValidationInfo.Empty;
 
             //execcontext.SetNameAndValue(_ArgumentName, _OriginalValue);
 

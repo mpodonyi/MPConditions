@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public class ExecutionContext
+    public class ValidationInfo
     {
         public string Message
         {
@@ -65,11 +65,11 @@ namespace MPConditions.Common
             set;
         }
 
-        private ExecutionContext()
+        private ValidationInfo()
         {
         }
 
-        internal ExecutionContext(ExceptionTypes exceptionType, string message, params object[] args)
+        internal ValidationInfo(ExceptionTypes exceptionType, string message, params object[] args)
         {
             _Message = message;
             ExceptionType = exceptionType;
@@ -77,13 +77,13 @@ namespace MPConditions.Common
             ExecutionType = ExecutionTypes.Error;
         }
 
-        internal static ExecutionContext Empty = new ExecutionContext
+        internal static ValidationInfo Empty = new ValidationInfo
         {
             ExecutionType = ExecutionTypes.None,
             ExceptionType = ExceptionTypes.None,
         };
 
-        internal static ExecutionContext Or = new ExecutionContext
+        internal static ValidationInfo Or = new ValidationInfo
         {
             ExecutionType = ExecutionTypes.Or,
         };

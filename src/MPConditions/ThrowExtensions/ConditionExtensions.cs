@@ -8,7 +8,7 @@ namespace MPConditions.ThrowExtensions
 {
     public static class ConditionExtensions
     {
-        private static void ThrowInternal(ExecutionContext context)
+        private static void ThrowInternal(ValidationInfo context)
         {
             throw new Exception();
         }
@@ -18,7 +18,7 @@ namespace MPConditions.ThrowExtensions
 
         public static T ThrowOrGet<T>(this ICondition<T> condition)
         {
-            ExecutionContext context=condition.GetResult();
+            ValidationInfo context=condition.GetResult();
 
             if(context.ExceptionType==ExceptionTypes.None)
                 return (T)condition.OriginalValue;

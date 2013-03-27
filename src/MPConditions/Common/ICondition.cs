@@ -9,13 +9,13 @@ namespace MPConditions.Common
     {
         TOriginalValue OriginalValue { get; }
 
-        ExecutionContext GetResult();
+        ValidationInfo GetResult();
 
         //void Push(Func<ExecutionContext> action);  //MP: maybe move to internal interface
     }
 
     public interface IConditionInternal //MP: try to get rid of T causes errors in ThrowOrGet
     {
-        void Push(Func<ExecutionContext> action);  //MP: maybe move to internal interface
+        void Push(Func<ValidationInfo> action);  //MP: maybe move to internal interface
     }
 }

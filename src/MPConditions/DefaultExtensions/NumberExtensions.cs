@@ -9,13 +9,13 @@ namespace MPConditions.DefaultExtensions
 {
     public static class NumberExtensions
     {
-        private static ExecutionContext BetweenHelper<T>(T subject, T start, T end) where T : struct, IComparable<T>
+        private static ValidationInfo BetweenHelper<T>(T subject, T start, T end) where T : struct, IComparable<T>
         {
             var comparer = new UniversalNumberComparer();
 
             if(!((comparer.Compare(subject, start) > 0) && (comparer.Compare(subject, end) < 0)))
             {
-                return new ExecutionContext(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
+                return new ValidationInfo(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
             }
 
             return null;
@@ -56,7 +56,7 @@ namespace MPConditions.DefaultExtensions
             condition.Push(() =>
             {
                 if(!condition.Subject.HasValue)
-                    return new ExecutionContext(ExceptionTypes.Null, "Is 'null'.");
+                    return new ValidationInfo(ExceptionTypes.Null, "Is 'null'.");
                 else
                     return BetweenHelper(condition.Subject.Value, start, end);
             });

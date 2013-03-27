@@ -16,7 +16,7 @@ namespace MPConditions.DefaultExtensions
             {
                 if(!condition.Subject.StartsWith(predicate))
                 {
-                    return new ExecutionContext(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
                 }
 
                 return null;
@@ -36,7 +36,7 @@ namespace MPConditions.DefaultExtensions
                 }
                 catch
                 {
-                    return new ExecutionContext(ExceptionTypes.WrongType, "issue")
+                    return new ValidationInfo(ExceptionTypes.WrongType, "issue")
                     {
                         FailFast = true// string.Format("Type can not be translates to '{0}'", predicate),
                     };
@@ -72,7 +72,7 @@ namespace MPConditions.DefaultExtensions
                     {
                         return emptyAsNull
                             ? null
-                            : new ExecutionContext(ExceptionTypes.WrongType, "issue")
+                            : new ValidationInfo(ExceptionTypes.WrongType, "issue")
                                             {
                                                 FailFast = true// string.Format("Type can not be translates to '{0}'", predicate),
                                             };
@@ -82,7 +82,7 @@ namespace MPConditions.DefaultExtensions
                 }
                 catch
                 {
-                    return new ExecutionContext(ExceptionTypes.WrongType, "issue")
+                    return new ValidationInfo(ExceptionTypes.WrongType, "issue")
                     {
                         FailFast = true// string.Format("Type can not be translates to '{0}'", predicate),
                     };
