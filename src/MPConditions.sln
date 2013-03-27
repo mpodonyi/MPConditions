@@ -12,9 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A64379
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuspec", "Nuspec", "{1E9E090E-CD27-4602-88A5-F6EBEAE14380}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nuspec", "Nuspec", "{2CF1282F-DE01-46C2-B6EC-DE31FEBD8986}"
 	ProjectSection(SolutionItems) = preProject
-		MPConditions.nuspec = MPConditions.nuspec
+		pack.bat = pack.bat
+		push.bat = push.bat
 	EndProjectSection
 EndProject
 Global

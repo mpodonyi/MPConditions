@@ -1,0 +1,1 @@
+.nuget\nuget.exe pack MPConditions\MPConditions.csproj -Build -OutputDirectory ..\OutPackages -Prop Configuration=Release
