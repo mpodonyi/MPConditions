@@ -8,6 +8,14 @@ namespace MPConditions
 {
     public static class NumericConditionsExtensions
     {
+        /// <summary>
+        /// Returns an <see cref="T:MPConditions.Numeric.INumberCondition`2"/> object that can be used to start validating the current <see cref="T:System.SByte"/> <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The value under test.</param>
+        /// <param name="name">The name of the value under test.</param>
+        /// <returns>
+        /// An <see cref="T:MPConditions.Numeric.INumberCondition`2"/> object.
+        /// </returns>
         public static INumberCondition<sbyte,sbyte> Condition(this sbyte value, string name)
         {
             return new NumberCondition<sbyte, sbyte>(value,value, name);
@@ -16,7 +24,6 @@ namespace MPConditions
         {
             return new NullableNumberCondition<sbyte,sbyte?>(value,value, name);
         }
-
 
         public static INumberCondition<byte,byte> Condition(this byte value, string name)
         {
