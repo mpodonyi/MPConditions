@@ -7,7 +7,7 @@ using MPConditions.Numeric;
 
 namespace MPConditions.Primitives
 {
-    public interface IStringCondition : ICondition<string>, IConditionInternal
+    public interface IStringCondition : ICondition, IConditionInternal
     {
         string Subject { get; }
 

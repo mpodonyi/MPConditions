@@ -8,7 +8,7 @@ namespace MPConditions.DefaultExtensions
 {
     public static class ConditionExtensions
     {
-        public static bool Pass<T>(this ICondition<T> condition)
+        public static bool Pass(this ICondition condition)
         {
             return condition.GetResult().ExceptionType == ExceptionTypes.None;
         }

@@ -11,10 +11,10 @@ namespace MPConditions.Numeric
     /// </summary>
     /// <typeparam name="T">The numeric type under validation.</typeparam>
     /// <typeparam name="TPassthrough">The type of the original value.</typeparam>
-    public interface INumberCondition<T, TPassthrough> : ICondition<TPassthrough>, IConditionInternal
+    public interface INumberCondition<T, TPassthrough> : ICondition, IConditionInternal
         where T : struct, IComparable<T>
     {
-        T Subject { get; }
+         T Subject { get; }
 
         INumberCondition<T, TPassthrough> Or { get;}
     }

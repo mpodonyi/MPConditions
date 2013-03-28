@@ -6,17 +6,19 @@ using System.Text;
 namespace MPConditions.Common
 {
     
-    public interface ICondition<TOriginalValue> //MP: try to get rid of T causes errors in ThrowOrGet
+    public interface ICondition//<TSubject>
     {
-        TOriginalValue OriginalValue { get; }
+        //TSubject Subject { get; }
+
+        string SubjectName { get; }
+
+        object OriginalSubject { get; }
 
         ValidationInfo GetResult();
-
-        //void Push(Func<ExecutionContext> action);  //MP: maybe move to internal interface
     }
 
-    public interface IConditionInternal //MP: try to get rid of T causes errors in ThrowOrGet
+    public interface IConditionInternal 
     {
-        void Push(Func<ValidationInfo> action);  //MP: maybe move to internal interface
+        void Push(Func<ValidationInfo> action);  
     }
 }

@@ -5,27 +5,27 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    internal abstract class ConditionBase<TValue, TOriginalValue> : ICondition<TOriginalValue>, IConditionInternal
+    internal abstract class ConditionBase<TValue, TOriginalValue> : ICondition, IConditionInternal
     //where AssertT : ConditionBase<T, V>
     {
         protected TValue _Value;
-        public TOriginalValue OriginalValue { get; private set; }
-        protected string _ArgumentName;
+        public object OriginalSubject { get; private set; }
+        public string SubjectName { get; private set; }
 
         protected Queue<Func<ValidationInfo>> ec = new Queue<Func<ValidationInfo>>(3);
 
         protected ConditionBase(TValue value, TOriginalValue originalValue, string name)
         {
-            OriginalValue = originalValue;
+            OriginalSubject = originalValue;
             _Value = value;
-            _ArgumentName = name;
+            SubjectName = name;
         }
 
         protected ConditionBase(TValue value, ConditionBase<TOriginalValue, TOriginalValue> previousCondition)
         {
-            OriginalValue = previousCondition.OriginalValue;
+            OriginalSubject = previousCondition.OriginalSubject;
             _Value = value;
-            _ArgumentName = previousCondition._ArgumentName;
+            SubjectName = previousCondition.SubjectName;
             ec = new Queue<Func<ValidationInfo>>(previousCondition.ec);
         }
 

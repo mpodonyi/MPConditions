@@ -6,10 +6,10 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    public interface INullableNumberCondition<T, TPassthrough> : ICondition<TPassthrough>, IConditionInternal
+    public interface INullableNumberCondition<T, TPassthrough> : ICondition, IConditionInternal
          where T : struct, IComparable<T>
     {
-        T? Subject { get; }
+         T? Subject { get; }
 
         //void Push(Func<ExecutionContext> action);
 

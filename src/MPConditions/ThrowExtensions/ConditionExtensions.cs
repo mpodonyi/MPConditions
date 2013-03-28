@@ -16,16 +16,16 @@ namespace MPConditions.ThrowExtensions
 
 
 
-        public static T ThrowOrGet<T>(this ICondition<T> condition)
-        {
-            ValidationInfo context=condition.GetResult();
+        //public static T ThrowOrGet<T>(this ICondition<T> condition)
+        //{
+        //    ValidationInfo context=condition.GetResult();
 
-            if(context.ExceptionType==ExceptionTypes.None)
-                return (T)condition.OriginalValue;
+        //    if(context.ExceptionType==ExceptionTypes.None)
+        //        return (T)condition.OriginalSubject;
 
-            ThrowInternal(context);
-            return default(T);
-        }
+        //    ThrowInternal(context);
+        //    return default(T);
+        //}
 
 
 
