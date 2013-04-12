@@ -8,7 +8,7 @@ namespace MPConditions.ThrowExtensions
 {
     public class ConditionException : Exception
     {
-        internal ConditionException(string paramName, string message, ExecutionTypes executionTypes)
+        internal ConditionException(string paramName, string message)
         {
             ParamName = paramName;
       //      Message = message;
@@ -20,14 +20,5 @@ namespace MPConditions.ThrowExtensions
             get;
             private set;
         }
-
-
-      
-        //public ExecutionTypes ExecutionTypes
-        //{
-        //    get;
-        //    private set;
-        //}
-
     }
 }

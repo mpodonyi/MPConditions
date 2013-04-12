@@ -163,14 +163,11 @@ namespace MPConditions.Common
         //        {ExecutionTypes.OutOfRange,typeof(ArgumentOutOfRangeException) },
         //        {ExecutionTypes.StartsWith,typeof(ArgumentException) }
         //     };  
-
+        private ValidationInfo _ValidationResultCache = null;
         public ValidationInfo GetResult()
         {
-            ValidationInfo execcontext = GetFinalExecutionContext() ?? ValidationInfo.Empty;
-
+            return _ValidationResultCache = _ValidationResultCache ?? GetFinalExecutionContext() ?? ValidationInfo.Empty;
             //execcontext.SetNameAndValue(_ArgumentName, _OriginalValue);
-
-            return execcontext;
         }
 
 

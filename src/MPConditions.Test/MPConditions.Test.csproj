@@ -58,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConditionTest.cs" />
+    <Compile Include="ThrowTest.cs" />
     <Compile Include="StringTest.cs" />
     <Compile Include="NumericTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

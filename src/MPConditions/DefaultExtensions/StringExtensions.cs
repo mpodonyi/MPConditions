@@ -107,5 +107,27 @@ namespace MPConditions.DefaultExtensions
         }
 
 
+
+        /// <summary>
+        /// Validates that Subject under test is not null.
+        /// </summary>
+        /// <param name="condition">The condition.</param>
+        /// <returns></returns>
+        public static IStringCondition NotNull(this IStringCondition condition)
+        {
+            condition.Push(() =>
+            {
+                if(condition.Subject == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.Null, "Value can not be [null]");
+                }
+
+                return null;
+            });
+
+            return condition;
+        }
+
+
     }
 }
