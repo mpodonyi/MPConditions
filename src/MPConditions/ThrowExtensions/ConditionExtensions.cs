@@ -105,7 +105,7 @@ namespace MPConditions.ThrowExtensions
         //    return default(T);
         //}
 
-        public static void Throw(this ICondition condition, bool logException = false)
+        public static void Throw(this ICondition condition)
         {
             ValidationInfo execcontext = condition.GetResult();
 
@@ -115,7 +115,7 @@ namespace MPConditions.ThrowExtensions
             throw ExceptionBuilder(execcontext, ExceptionClassTypes.Argument, condition.SubjectName);
         }
 
-        public static void ThrowConditionException(this ICondition condition, bool logException = false)
+        public static void ThrowEx(this ICondition condition)
         {
             ValidationInfo execcontext = condition.GetResult();
 

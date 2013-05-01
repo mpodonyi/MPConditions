@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -11,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MPConditions")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © Mike Podonyi 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
@@ -29,3 +30,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("0.1.1.0")]
 //[assembly: AssemblyFileVersion("0.1.1.0")]
 [assembly: AssemblyInformationalVersion("0.1.1-alpha")]
+
+[assembly: CLSCompliant(true)]
+
+

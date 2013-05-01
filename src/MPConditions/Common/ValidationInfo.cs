@@ -35,10 +35,10 @@ namespace MPConditions.Common
 
        
 
-        public string _Message
+        private string _Message
         {
             get;
-            private set;
+            set;
         }
 
         public object[] Args
