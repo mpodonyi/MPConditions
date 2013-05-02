@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MPConditions.Common.ConditionBase&lt;TValue, TOriginalValue&gt;">
+    <Position X="13.5" Y="2" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAABAAAACAAAAAgAAEAAAgAEAAACAACAA=</HashCode>
+      <FileName>Common\ConditionBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MPConditions.Numeric.NumberCondition&lt;T, TPassthrough&gt;">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Numeric\NumberCondition.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MPConditions.Primitives.StringCondition">
+    <Position X="17.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Primitives\StringCondition.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MPConditions.Numeric.NullableNumberCondition&lt;T, TPassthrough&gt;">
+    <Position X="9" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Numeric\NullableNumberCondition.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MPConditions.DefaultExtensions.ConditionExtensions">
+    <Position X="1.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DefaultExtensions\ConditionExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MPConditions.DefaultExtensions.NumberExtensions">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>DefaultExtensions\NumberExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MPConditions.DefaultExtensions.StringExtensions">
+    <Position X="4.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAABAAAAAAAAAAAgAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>DefaultExtensions\StringExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MPConditions.Common.ICondition">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAAA=</HashCode>
+      <FileName>Common\ICondition.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MPConditions.Common.IConditionInternal">
+    <Position X="5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Common\ICondition.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MPConditions.Numeric.INullableNumberCondition&lt;T, TPassthrough&gt;">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Numeric\INullableNumberCondition.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MPConditions.Numeric.INumberCondition&lt;T, TPassthrough&gt;">
+    <Position X="3.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Numeric\INumberCondition.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MPConditions.Primitives.IStringCondition">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Primitives\IStringCondition.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
