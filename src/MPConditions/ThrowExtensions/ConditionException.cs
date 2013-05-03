@@ -40,37 +40,46 @@ namespace MPConditions.ThrowExtensions
         }
 
 
-        public ConditionException(ExceptionTypes exceptionType)
-        {
-            if(exceptionType == ExceptionTypes.None)
-                throw new ArgumentException("Exceptiontype can not be None", "exceptionType");
-            ExceptionType = exceptionType;
-        }
+        //public ConditionException(ExceptionTypes exceptionType)
+        //{
+        //    if(exceptionType == ExceptionTypes.None)
+        //        throw new ArgumentException("Exceptiontype can not be None", "exceptionType");
+        //    ExceptionType = exceptionType;
+        //}
 
-        public ConditionException(ExceptionTypes exceptionType, System.Exception inner)
-            : base(null, inner)
-        {
-            if(exceptionType == ExceptionTypes.None)
-                throw new ArgumentException("Exceptiontype can not be None", "exceptionType");
-            ExceptionType = exceptionType;
-        }
+        //public ConditionException(ExceptionTypes exceptionType, System.Exception inner)
+        //    : base(null, inner)
+        //{
+        //    if(exceptionType == ExceptionTypes.None)
+        //        throw new ArgumentException("Exceptiontype can not be None", "exceptionType");
+        //    ExceptionType = exceptionType;
+        //}
 
-        public ConditionException(ExceptionTypes exceptionType, string subjectName)
+        //public ConditionException(ExceptionTypes exceptionType, string subjectName)
+        //{
+        //    if(exceptionType == ExceptionTypes.None)
+        //        throw new ArgumentException("Exceptiontype can not be None", "exceptionType");
+        //    SubjectName = subjectName;
+        //    ExceptionType = exceptionType;
+
+        //}
+
+        //public ConditionException(ExceptionTypes exceptionType, string subjectName, System.Exception inner)
+        //    : base(null, inner)
+        //{
+        //    if(exceptionType == ExceptionTypes.None)
+        //        throw new ArgumentException("Exceptiontype can not be None", "exceptionType");
+        //    SubjectName = subjectName;
+        //    ExceptionType = exceptionType;
+        //}
+
+        internal protected ConditionException(ExceptionTypes exceptionType, string subjectName, object subjectValue, string resourceKey, object[] args)
         {
-            if(exceptionType == ExceptionTypes.None)
-                throw new ArgumentException("Exceptiontype can not be None", "exceptionType");
+            ExceptionType = exceptionType;
             SubjectName = subjectName;
-            ExceptionType = exceptionType;
-
-        }
-
-        public ConditionException(ExceptionTypes exceptionType, string subjectName, System.Exception inner)
-            : base(null, inner)
-        {
-            if(exceptionType == ExceptionTypes.None)
-                throw new ArgumentException("Exceptiontype can not be None", "exceptionType");
-            SubjectName = subjectName;
-            ExceptionType = exceptionType;
+            SubjectValue = subjectValue;
+            ResourceKey = resourceKey;
+            Args = args;
         }
 
         // A constructor is needed for serialization when an 
@@ -85,7 +94,9 @@ namespace MPConditions.ThrowExtensions
             {
                 return messageExplicit
                     ? base.Message + GetSubjectName()
-                    : ExceptionMessageProvider.Current.GetExceptionMessage(ExceptionType, SubjectName);
+                    : ExceptionType != ExceptionTypes.None
+                        ? ExceptionMessageProvider.Current.GetExceptionMessage(ExceptionType, SubjectName, SubjectValue, ResourceKey, Args)
+                        : base.Message;
             }
         }
 
@@ -99,6 +110,15 @@ namespace MPConditions.ThrowExtensions
             get;
             private set;
         }
+
+        public object SubjectValue
+        {
+            get;
+            private set;
+        }
+
+        private string ResourceKey;
+        private object[] Args;
 
         public ExceptionTypes ExceptionType
         {

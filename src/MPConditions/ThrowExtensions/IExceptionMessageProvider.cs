@@ -7,6 +7,6 @@ namespace MPConditions.ThrowExtensions
 {
     public interface IExceptionMessageProvider
     {
-        string GetExceptionMessage(ExceptionTypes exceptionType, string paramName);
+        string GetExceptionMessage(ExceptionTypes exceptionType, string subjectName, object subjectValue, string resourceKey, object[] args);
     }
 }

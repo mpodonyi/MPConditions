@@ -7,12 +7,10 @@ namespace MPConditions.Common
 {
     public class ValidationInfo
     {
-        public string Message
+        public string ResourceKey
         {
-            get
-            {
-                return string.Format(_Message, Args);
-            }
+            private set;
+            get;
         }
 
         //public string VariableName
@@ -32,14 +30,6 @@ namespace MPConditions.Common
         //    VariableName = variableName;
         //    VariableValue = variableValue;
         //}
-
-       
-
-        private string _Message
-        {
-            get;
-            set;
-        }
 
         public object[] Args
         {
@@ -69,9 +59,16 @@ namespace MPConditions.Common
         {
         }
 
-        internal ValidationInfo(ExceptionTypes exceptionType, string message, params object[] args)
+        internal ValidationInfo(ExceptionTypes exceptionType, string resourceKey, params object[] args)
         {
-            _Message = message;
+            ResourceKey = resourceKey;
+            ExceptionType = exceptionType;
+            Args = args;
+            ExecutionType = ExecutionTypes.Error;
+        }
+
+        internal ValidationInfo(ExceptionTypes exceptionType, params object[] args)
+        {
             ExceptionType = exceptionType;
             Args = args;
             ExecutionType = ExecutionTypes.Error;

@@ -7,18 +7,9 @@ namespace MPConditions.ThrowExtensions
 {
     public class DefaultConditionExceptionProvider : IExceptionProvider
     {
-        public Exception GetException(ExceptionTypes exceptionType, string message, string paramName)
+        public Exception GetException(ExceptionTypes exceptionType, string subjectName, object subjectValue, string resourceKey, object[] args)
         {
-            switch(exceptionType)
-            {
-                case ExceptionTypes.OutOfRange:
-                case ExceptionTypes.Null:
-                case ExceptionTypes.StartsWith:
-                case ExceptionTypes.WrongType:
-                    return new ConditionException(message, paramName);
-            }
-
-            return null;
+            return new ConditionException(exceptionType, subjectName, subjectValue, resourceKey, args);
         }
     }
 }
