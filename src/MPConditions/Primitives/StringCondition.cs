@@ -8,11 +8,11 @@ using MPConditions.Numeric;
 
 namespace MPConditions.Primitives
 {
-    internal class StringCondition : ConditionBase<string,string>, IStringCondition
+    public class StringCondition : ConditionBase<string, string>
     {
 
-        public StringCondition(string value, string name)
-            : base(value,value, name)
+        internal StringCondition(string value, string name)
+            : base(value, name)
         {
         }
 
@@ -35,7 +35,7 @@ namespace MPConditions.Primitives
         //    return this;
         //}
 
-        
+
 
         //public NullableNumberCondition<T> AsNullableNumber<T>() where T : struct, IComparable<T>
         //{
@@ -62,28 +62,20 @@ namespace MPConditions.Primitives
         //    return new NullableNumberCondition<T>(value, _ArgumentName);
         //}
 
-       
-        
 
 
 
-       
 
 
 
-        #region IStringCondition Members
-
-        public string Subject
+        public  StringCondition Or
         {
-            get { return this._Value; }
+
+            get
+            {
+                ((ICondition)this).Push(() => ValidationInfo.Or);
+                return this;
+            }
         }
-
-
-        public new IStringCondition Or
-        {
-            get { return base.Or as IStringCondition; }
-        }
-
-        #endregion
     }
 }

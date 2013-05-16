@@ -5,41 +5,41 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    internal abstract class ConditionBase<TValue, TOriginalValue> : ICondition, IConditionInternal
+    public abstract class ConditionBase<TValue, TOriginalValue> : ICondition<TValue>
     //where AssertT : ConditionBase<T, V>
     {
-        protected TValue _Value;
-        public object OriginalSubject { get; private set; }
-        public string SubjectName { get; private set; }
 
-        protected Queue<Func<ValidationInfo>> ec = new Queue<Func<ValidationInfo>>(3);
 
-        protected ConditionBase(TValue value, TOriginalValue originalValue, string name)
+        private TValue _Subject;
+        TValue ICondition<TValue>.Subject
         {
-            OriginalSubject = originalValue;
-            _Value = value;
-            SubjectName = name;
+            get { return _Subject; }
         }
 
-        protected ConditionBase(TValue value, ConditionBase<TOriginalValue, TOriginalValue> previousCondition)
+        private object _OriginalSubject;
+        object ICondition.OriginalSubject { get { return _OriginalSubject; } }
+
+        private string _SubjectName;
+        public string SubjectName { get { return _SubjectName; } }
+
+        private Queue<Func<ValidationInfo>> ec = new Queue<Func<ValidationInfo>>(3);
+
+        internal ConditionBase(TValue value, string subjectName)
         {
-            OriginalSubject = previousCondition.OriginalSubject;
-            _Value = value;
-            SubjectName = previousCondition.SubjectName;
+            _OriginalSubject = value;
+            _Subject = value;
+            _SubjectName = subjectName;
+        }
+
+        internal ConditionBase(TValue value, ConditionBase<TOriginalValue, TOriginalValue> previousCondition)
+        {
+            _OriginalSubject = previousCondition._Subject;
+            _Subject = value;
+            _SubjectName = previousCondition._SubjectName;
             ec = new Queue<Func<ValidationInfo>>(previousCondition.ec);
         }
 
-
-        public ConditionBase<TValue, TOriginalValue> Or
-        {
-            get
-            {
-                ec.Enqueue(() => ValidationInfo.Or);
-                return this;
-            }
-        }
-
-        public void Push(Func<Common.ValidationInfo> action)
+        void ICondition.Push(Func<Common.ValidationInfo> action)
         {
             ec.Enqueue(action);
         }
@@ -169,6 +169,7 @@ namespace MPConditions.Common
             return _ValidationResultCache = _ValidationResultCache ?? GetFinalExecutionContext() ?? ValidationInfo.Empty;
             //execcontext.SetNameAndValue(_ArgumentName, _OriginalValue);
         }
+
 
 
 

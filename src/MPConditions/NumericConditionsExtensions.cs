@@ -17,117 +17,117 @@ namespace MPConditions
         /// An <see cref="T:MPConditions.Numeric.INumberCondition`2"/> object.
         /// </returns>
         [CLSCompliant(false)]
-        public static INumberCondition<sbyte, sbyte> Condition(this sbyte value, string name)
+        public static NumberCondition<sbyte, sbyte> Condition(this sbyte value, string name)
         {
-            return new NumberCondition<sbyte, sbyte>(value, value, name);
+            return new NumberCondition<sbyte, sbyte>(value, name);
         }
         [CLSCompliant(false)]
-        public static INullableNumberCondition<sbyte, sbyte?> Condition(this sbyte? value, string name)
+        public static NullableNumberCondition<sbyte, sbyte?> Condition(this sbyte? value, string name)
         {
-            return new NullableNumberCondition<sbyte, sbyte?>(value, value, name);
+            return new NullableNumberCondition<sbyte, sbyte?>(value, name);
         }
 
-        public static INumberCondition<byte, byte> Condition(this byte value, string name)
+        public static NumberCondition<byte, byte> Condition(this byte value, string name)
         {
-            return new NumberCondition<byte, byte>(value, value, name);
+            return new NumberCondition<byte, byte>(value, name);
         }
-        public static INullableNumberCondition<byte, byte?> Condition(this byte? value, string name)
+        public static NullableNumberCondition<byte, byte?> Condition(this byte? value, string name)
         {
-            return new NullableNumberCondition<byte, byte?>(value, value, name);
-        }
-
-
-        public static INumberCondition<short, short> Condition(this short value, string name)
-        {
-            return new NumberCondition<short, short>(value, value, name);
-        }
-        public static INullableNumberCondition<short, short?> Condition(this short? value, string name)
-        {
-            return new NullableNumberCondition<short, short?>(value, value, name);
+            return new NullableNumberCondition<byte, byte?>(value, name);
         }
 
-        [CLSCompliant(false)]
-        public static INumberCondition<ushort, ushort> Condition(this ushort value, string name)
+
+        public static NumberCondition<short, short> Condition(this short value, string name)
         {
-            return new NumberCondition<ushort, ushort>(value, value, name);
+            return new NumberCondition<short, short>(value, name);
+        }
+        public static NullableNumberCondition<short, short?> Condition(this short? value, string name)
+        {
+            return new NullableNumberCondition<short, short?>(value, name);
         }
 
         [CLSCompliant(false)]
-        public static INullableNumberCondition<ushort, ushort?> Condition(this ushort? value, string name)
+        public static NumberCondition<ushort, ushort> Condition(this ushort value, string name)
         {
-            return new NullableNumberCondition<ushort, ushort?>(value, value, name);
-        }
-
-
-        public static INumberCondition<int, int> Condition(this int value, string name)
-        {
-            return new NumberCondition<int, int>(value, value, name);
-        }
-        public static INullableNumberCondition<int, int?> Condition(this int? value, string name)
-        {
-            return new NullableNumberCondition<int, int?>(value, value, name);
+            return new NumberCondition<ushort, ushort>(value, name);
         }
 
         [CLSCompliant(false)]
-        public static INumberCondition<uint, uint> Condition(this uint value, string name)
+        public static NullableNumberCondition<ushort, ushort?> Condition(this ushort? value, string name)
         {
-            return new NumberCondition<uint, uint>(value, value, name);
-        }
-        [CLSCompliant(false)]
-        public static INullableNumberCondition<uint, uint?> Condition(this uint? value, string name)
-        {
-            return new NullableNumberCondition<uint, uint?>(value, value, name);
+            return new NullableNumberCondition<ushort, ushort?>(value, name);
         }
 
 
-        public static INumberCondition<long, long> Condition(this long value, string name)
+        public static NumberCondition<int, int> Condition(this int value, string name)
         {
-            return new NumberCondition<long, long>(value, value, name);
+            return new NumberCondition<int, int>(value, name);
         }
-        public static INullableNumberCondition<long, long?> Condition(this long? value, string name)
+        public static NullableNumberCondition<int, int?> Condition(this int? value, string name)
         {
-            return new NullableNumberCondition<long, long?>(value, value, name);
+            return new NullableNumberCondition<int, int?>(value, name);
         }
 
         [CLSCompliant(false)]
-        public static INumberCondition<ulong, ulong> Condition(this ulong value, string name)
+        public static NumberCondition<uint, uint> Condition(this uint value, string name)
         {
-            return new NumberCondition<ulong, ulong>(value, value, name);
+            return new NumberCondition<uint, uint>(value, name);
         }
         [CLSCompliant(false)]
-        public static INullableNumberCondition<ulong, ulong?> Condition(this ulong? value, string name)
+        public static NullableNumberCondition<uint, uint?> Condition(this uint? value, string name)
         {
-            return new NullableNumberCondition<ulong, ulong?>(value, value, name);
+            return new NullableNumberCondition<uint, uint?>(value, name);
         }
 
 
-        public static INumberCondition<float, float> Condition(this float value, string name)
+        public static NumberCondition<long, long> Condition(this long value, string name)
         {
-            return new NumberCondition<float, float>(value, value, name);
+            return new NumberCondition<long, long>(value, name);
         }
-        public static INullableNumberCondition<float, float?> Condition(this float? value, string name)
+        public static NullableNumberCondition<long, long?> Condition(this long? value, string name)
         {
-            return new NullableNumberCondition<float, float?>(value, value, name);
+            return new NullableNumberCondition<long, long?>(value, name);
+        }
+
+        [CLSCompliant(false)]
+        public static NumberCondition<ulong, ulong> Condition(this ulong value, string name)
+        {
+            return new NumberCondition<ulong, ulong>(value, name);
+        }
+        [CLSCompliant(false)]
+        public static NullableNumberCondition<ulong, ulong?> Condition(this ulong? value, string name)
+        {
+            return new NullableNumberCondition<ulong, ulong?>(value, name);
         }
 
 
-        public static INumberCondition<double, double> Condition(this double value, string name)
+        public static NumberCondition<float, float> Condition(this float value, string name)
         {
-            return new NumberCondition<double, double>(value, value, name);
+            return new NumberCondition<float, float>(value, name);
         }
-        public static INullableNumberCondition<double, double?> Condition(this double? value, string name)
+        public static NullableNumberCondition<float, float?> Condition(this float? value, string name)
         {
-            return new NullableNumberCondition<double, double?>(value, value, name);
+            return new NullableNumberCondition<float, float?>(value, name);
         }
 
 
-        public static INumberCondition<decimal, decimal> Condition(this decimal value, string name)
+        public static NumberCondition<double, double> Condition(this double value, string name)
         {
-            return new NumberCondition<decimal, decimal>(value, value, name);
+            return new NumberCondition<double, double>(value, name);
         }
-        public static INullableNumberCondition<decimal, decimal?> Condition(this decimal? value, string name)
+        public static NullableNumberCondition<double, double?> Condition(this double? value, string name)
         {
-            return new NullableNumberCondition<decimal, decimal?>(value, value, name);
+            return new NullableNumberCondition<double, double?>(value, name);
+        }
+
+
+        public static NumberCondition<decimal, decimal> Condition(this decimal value, string name)
+        {
+            return new NumberCondition<decimal, decimal>(value, name);
+        }
+        public static NullableNumberCondition<decimal, decimal?> Condition(this decimal? value, string name)
+        {
+            return new NullableNumberCondition<decimal, decimal?>(value, name);
         }
 
     }

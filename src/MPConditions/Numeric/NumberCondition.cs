@@ -6,46 +6,47 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    internal class NumberCondition<T, TPassthrough> : ConditionBase<T?, TPassthrough>
-        , INumberCondition<T, TPassthrough>
+    public class NumberCondition<T, TPassthrough> : ConditionBase<T, TPassthrough>
         where T : struct, IComparable<T>
     //where TBase : NumberCondition<T, TPassthrough, >
     {
 
-        protected NumberCondition(T? value, TPassthrough origValue, string name)
-            : base(value, origValue, name)
+        //internal NumberCondition(T? value, TPassthrough origValue, string name)
+        //    : base(value, origValue, name)
+        //{
+        //}
+
+        //internal NumberCondition(T? value, ConditionBase<TPassthrough, TPassthrough> mother)
+        //    : base(value, mother)
+        //{
+        //}
+
+        internal NumberCondition(T value, string name)
+            : base(value, name)
         {
         }
 
-        protected NumberCondition(T? value, ConditionBase<TPassthrough, TPassthrough> mother)
+        internal NumberCondition(T value, ConditionBase<TPassthrough, TPassthrough> mother)
             : base(value, mother)
         {
         }
 
-        public NumberCondition(T value, TPassthrough origValue, string name)
-            : base(value, origValue, name)
+
+       
+
+
+
+        public  NumberCondition<T, TPassthrough> Or
         {
+
+            get
+            {
+                ((ICondition)this).Push(() => ValidationInfo.Or);
+                return this;
+            }
         }
 
-        public NumberCondition(T value, ConditionBase<TPassthrough, TPassthrough> mother)
-            : base(value, mother)
-        {
-        }
-
-        #region INumberCondition<T> Members
-
-        public T Subject
-        {
-            get { return this._Value.Value; }
-        }
-
-
-        public new INumberCondition<T, TPassthrough> Or
-        {
-            get { return base.Or as INumberCondition<T, TPassthrough>; }
-        }
-
-        #endregion
+       
     }
 
 

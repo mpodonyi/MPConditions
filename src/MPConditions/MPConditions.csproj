@@ -80,9 +80,6 @@
     <Compile Include="Common\ValidationInfo.cs" />
     <Compile Include="Common\ExecutionTypes.cs" />
     <Compile Include="Common\ICondition.cs" />
-    <Compile Include="Numeric\INumberCondition.cs" />
-    <Compile Include="Numeric\INullableNumberCondition.cs" />
-    <Compile Include="Primitives\IStringCondition.cs" />
     <Compile Include="ThrowExtensions\ConditionException.cs" />
     <Compile Include="DefaultExtensions\ConditionExtensions.cs" />
     <Compile Include="DefaultExtensions\NumberExtensions.cs" />

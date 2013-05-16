@@ -6,32 +6,27 @@ using MPConditions.Common;
 
 namespace MPConditions.Numeric
 {
-    internal class NullableNumberCondition<T, TPassthrough> : NumberCondition<T, TPassthrough>
-        , INullableNumberCondition<T, TPassthrough>
+    public class NullableNumberCondition<T, TPassthrough> : ConditionBase<T?, TPassthrough>
         where T : struct, IComparable<T>
     {
-        public NullableNumberCondition(T? value, TPassthrough origValue, string name)
-            : base(value, origValue, name)
+        internal NullableNumberCondition(T? value, string name)
+            : base(value, name)
         {
         }
 
-        public NullableNumberCondition(T? value, ConditionBase<TPassthrough, TPassthrough> mother)
+        internal NullableNumberCondition(T? value, ConditionBase<TPassthrough, TPassthrough> mother)
             : base(value, mother)
         {
         }
 
-        #region INumberCondition<T?,TPassthrough> Members
 
-        public new T? Subject
+        public NullableNumberCondition<T, TPassthrough> Or
         {
-            get { return this._Value; }
-        }
-
-
-
-        public new INullableNumberCondition<T, TPassthrough> Or
-        {
-            get { return base.Or as INullableNumberCondition<T, TPassthrough>; }
+            get
+            {
+                ((ICondition)this).Push(() => ValidationInfo.Or);
+                return this;
+            }
         }
 
 
@@ -40,7 +35,7 @@ namespace MPConditions.Numeric
         //    get { return base.Or as INumberCondition<T?,TPassthrough>; }
         //}
 
-        #endregion
+
     }
 
 

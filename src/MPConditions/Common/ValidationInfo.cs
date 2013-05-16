@@ -59,7 +59,7 @@ namespace MPConditions.Common
         {
         }
 
-        internal ValidationInfo(ExceptionTypes exceptionType, string resourceKey, params object[] args)
+        public ValidationInfo(ExceptionTypes exceptionType, string resourceKey, params object[] args)
         {
             ResourceKey = resourceKey;
             ExceptionType = exceptionType;
@@ -67,7 +67,7 @@ namespace MPConditions.Common
             ExecutionType = ExecutionTypes.Error;
         }
 
-        internal ValidationInfo(ExceptionTypes exceptionType, params object[] args)
+        public ValidationInfo(ExceptionTypes exceptionType, params object[] args)
         {
             ExceptionType = exceptionType;
             Args = args;

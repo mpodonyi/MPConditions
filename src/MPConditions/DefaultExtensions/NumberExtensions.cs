@@ -41,24 +41,26 @@ namespace MPConditions.DefaultExtensions
         //    return condition;
         //}
 
-        public static INumberCondition<T, TBase> Between<T, TBase>(this INumberCondition<T, TBase> condition, T start, T end) where T : struct, IComparable<T>
+        public static NumberCondition<T, TBase> Between<T, TBase>(this NumberCondition<T, TBase> condition, T start, T end) where T : struct, IComparable<T>
         {
-            condition.Push(() =>
+            ICondition<T> cond = condition as ICondition<T>;
+            cond.Push(() =>
             {
-                return BetweenHelper(condition.Subject, start, end);
+                return BetweenHelper(cond.Subject, start, end);
             });
 
             return condition;
         }
 
-        public static INullableNumberCondition<T, TBase> Between<T, TBase>(this INullableNumberCondition<T, TBase> condition, T start, T end) where T : struct, IComparable<T>
+        public static NullableNumberCondition<T, TBase> Between<T, TBase>(this NullableNumberCondition<T, TBase> condition, T start, T end) where T : struct, IComparable<T>
         {
-            condition.Push(() =>
+            ICondition<T?> cond = condition as ICondition<T?>;
+            cond.Push(() =>
             {
-                if(!condition.Subject.HasValue)
+                if(!cond.Subject.HasValue)
                     return new ValidationInfo(ExceptionTypes.Null, "Is 'null'.");
                 else
-                    return BetweenHelper(condition.Subject.Value, start, end);
+                    return BetweenHelper(cond.Subject.Value, start, end);
             });
 
             return condition;

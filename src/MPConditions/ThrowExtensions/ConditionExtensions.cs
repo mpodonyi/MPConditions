@@ -39,7 +39,7 @@ namespace MPConditions.ThrowExtensions
             throw ExceptionProvider.ConditionExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubject, execcontext.ResourceKey, execcontext.Args);
         }
 
-        public static ICondition Log(this ICondition condition, bool logAll = false)
+        public static T Log<T>(this T condition, bool logAll = false) where T:ICondition
         {
             ValidationInfo execcontext = condition.GetResult();
 

@@ -10,11 +10,12 @@ namespace MPConditions.DefaultExtensions
 {
     public static class StringExtensions
     {
-        public static IStringCondition StartsWith(this IStringCondition condition, string predicate)
+        public static StringCondition StartsWith(this StringCondition condition, string predicate)
         {
-            condition.Push(() =>
+            ICondition<string> cond = condition as ICondition<string>;
+            cond.Push(() =>
             {
-                if(!condition.Subject.StartsWith(predicate))
+                if(!cond.Subject.StartsWith(predicate))
                 {
                     return new ValidationInfo(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
                 }
@@ -25,13 +26,14 @@ namespace MPConditions.DefaultExtensions
             return condition;
         }
 
-        public static INumberCondition<T, string> AsNumber<T>(this IStringCondition condition) where T : struct, IComparable<T>
+        public static NumberCondition<T, string> AsNumber<T>(this StringCondition condition) where T : struct, IComparable<T>
         {
-            condition.Push(() =>
+            ICondition<string> cond = condition as ICondition<string>;
+            cond.Push(() =>
             {
                 try
                 {
-                    Convert.ChangeType(condition.Subject, typeof(T), null);
+                    Convert.ChangeType(cond.Subject, typeof(T), null);
 
                 }
                 catch
@@ -49,7 +51,7 @@ namespace MPConditions.DefaultExtensions
 
             try
             {
-                value = (T)Convert.ChangeType(condition.Subject, typeof(T), null);
+                value = (T)Convert.ChangeType(cond.Subject, typeof(T), null);
             }
             catch
             {
@@ -59,16 +61,17 @@ namespace MPConditions.DefaultExtensions
             return new NumberCondition<T, string>(value, condition as StringCondition);
         }
 
-        public static INullableNumberCondition<T, string> AsNullableNumber<T>(this IStringCondition condition, bool emptyAsNull = true) where T : struct, IComparable<T>
+        public static NullableNumberCondition<T, string> AsNullableNumber<T>(this StringCondition condition, bool emptyAsNull = true) where T : struct, IComparable<T>
         {
-            condition.Push(() =>
+            ICondition<string> cond = condition as ICondition<string>;
+            cond.Push(() =>
             {
                 try
                 {
-                    if(condition.Subject == null)
+                    if(cond.Subject == null)
                         return null;
 
-                    if(condition.Subject == string.Empty)
+                    if(cond.Subject == string.Empty)
                     {
                         return emptyAsNull
                             ? null
@@ -78,7 +81,7 @@ namespace MPConditions.DefaultExtensions
                                             };
                     }
 
-                    Convert.ChangeType(condition.Subject, typeof(T), null);
+                    Convert.ChangeType(cond.Subject, typeof(T), null);
                 }
                 catch
                 {
@@ -95,9 +98,9 @@ namespace MPConditions.DefaultExtensions
 
             try
             {
-                value = string.IsNullOrEmpty(condition.Subject)
+                value = string.IsNullOrEmpty(cond.Subject)
                     ? (T?)null
-                    : (T)Convert.ChangeType(condition.Subject, typeof(T), null);
+                    : (T)Convert.ChangeType(cond.Subject, typeof(T), null);
             }
             catch
             {
@@ -113,11 +116,12 @@ namespace MPConditions.DefaultExtensions
         /// </summary>
         /// <param name="condition">The condition.</param>
         /// <returns></returns>
-        public static IStringCondition NotNull(this IStringCondition condition)
+        public static StringCondition NotNull(this StringCondition condition)
         {
-            condition.Push(() =>
+            ICondition<string> cond = condition as ICondition<string>;
+            cond.Push(() =>
             {
-                if(condition.Subject == null)
+                if(cond.Subject == null)
                 {
                     return new ValidationInfo(ExceptionTypes.Null, "Value can not be [null]");
                 }
