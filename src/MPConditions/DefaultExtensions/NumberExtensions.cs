@@ -41,9 +41,9 @@ namespace MPConditions.DefaultExtensions
         //    return condition;
         //}
 
-        public static NumberCondition<T, TBase> Between<T, TBase>(this NumberCondition<T, TBase> condition, T start, T end) where T : struct, IComparable<T>
+        public static NumberCondition<T> Between<T>(this NumberCondition<T> condition, T start, T end) where T : struct, IComparable<T>
         {
-            ICondition<T> cond = condition as ICondition<T>;
+            ICondition<T> cond = condition;
             cond.Push(() =>
             {
                 return BetweenHelper(cond.Subject, start, end);
@@ -52,9 +52,9 @@ namespace MPConditions.DefaultExtensions
             return condition;
         }
 
-        public static NullableNumberCondition<T, TBase> Between<T, TBase>(this NullableNumberCondition<T, TBase> condition, T start, T end) where T : struct, IComparable<T>
+        public static NullableNumberCondition<T> Between<T>(this NullableNumberCondition<T> condition, T start, T end) where T : struct, IComparable<T>
         {
-            ICondition<T?> cond = condition as ICondition<T?>;
+            ICondition<T?> cond = condition;
             cond.Push(() =>
             {
                 if(!cond.Subject.HasValue)

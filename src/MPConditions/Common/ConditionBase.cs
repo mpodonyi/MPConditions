@@ -5,13 +5,11 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<TValue, TOriginalValue> : ICondition<TValue>
-    //where AssertT : ConditionBase<T, V>
+    public abstract class ConditionBase<TValue> : ICondition<TValue>
     {
 
-
         private TValue _Subject;
-        TValue ICondition<TValue>.Subject
+        public TValue Subject
         {
             get { return _Subject; }
         }
@@ -31,16 +29,21 @@ namespace MPConditions.Common
             _SubjectName = subjectName;
         }
 
-        internal ConditionBase(TValue value, ConditionBase<TOriginalValue, TOriginalValue> previousCondition)
+        internal ConditionBase(TValue value, string subjectName, object originalSubject)
         {
-            _OriginalSubject = previousCondition._Subject;
             _Subject = value;
-            _SubjectName = previousCondition._SubjectName;
+            _OriginalSubject = originalSubject;
+            _SubjectName = subjectName;
+        }
+
+        internal void MergeIn<TOldValue>(ConditionBase<TOldValue> previousCondition)
+        {
             ec = new Queue<Func<ValidationInfo>>(previousCondition.ec);
         }
 
         void ICondition.Push(Func<Common.ValidationInfo> action)
         {
+            _ValidationResultCache = null;
             ec.Enqueue(action);
         }
 
@@ -157,17 +160,11 @@ namespace MPConditions.Common
 
             return savedexeccontext;
         }
-
-        //private IDictionary<ExecutionTypes, Type> ExceptionMapping = new Dictionary<ExecutionTypes, Type>(5)
-        //    {
-        //        {ExecutionTypes.OutOfRange,typeof(ArgumentOutOfRangeException) },
-        //        {ExecutionTypes.StartsWith,typeof(ArgumentException) }
-        //     };  
+        
         private ValidationInfo _ValidationResultCache = null;
         public ValidationInfo GetResult()
         {
             return _ValidationResultCache = _ValidationResultCache ?? GetFinalExecutionContext() ?? ValidationInfo.Empty;
-            //execcontext.SetNameAndValue(_ArgumentName, _OriginalValue);
         }
 
 

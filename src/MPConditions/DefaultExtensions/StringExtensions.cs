@@ -12,7 +12,7 @@ namespace MPConditions.DefaultExtensions
     {
         public static StringCondition StartsWith(this StringCondition condition, string predicate)
         {
-            ICondition<string> cond = condition as ICondition<string>;
+            ICondition<string> cond = condition;
             cond.Push(() =>
             {
                 if(!cond.Subject.StartsWith(predicate))
@@ -26,15 +26,14 @@ namespace MPConditions.DefaultExtensions
             return condition;
         }
 
-        public static NumberCondition<T, string> AsNumber<T>(this StringCondition condition) where T : struct, IComparable<T>
+        public static NumberCondition<T> AsNumber<T>(this StringCondition condition) where T : struct, IComparable<T>
         {
-            ICondition<string> cond = condition as ICondition<string>;
+            ICondition<string> cond = condition;
             cond.Push(() =>
             {
                 try
                 {
                     Convert.ChangeType(cond.Subject, typeof(T), null);
-
                 }
                 catch
                 {
@@ -58,12 +57,14 @@ namespace MPConditions.DefaultExtensions
                 //in case of exception just give default value to next condition because when Throw method executes it will break anyway in the enqued test
             }
 
-            return new NumberCondition<T, string>(value, condition as StringCondition);
+            var retVal = new NumberCondition<T>(value, condition.SubjectName, condition.Subject);
+            retVal.MergeIn(condition);
+            return retVal;
         }
 
-        public static NullableNumberCondition<T, string> AsNullableNumber<T>(this StringCondition condition, bool emptyAsNull = true) where T : struct, IComparable<T>
+        public static NullableNumberCondition<T> AsNullableNumber<T>(this StringCondition condition, bool emptyAsNull = true) where T : struct, IComparable<T>
         {
-            ICondition<string> cond = condition as ICondition<string>;
+            ICondition<string> cond = condition ;
             cond.Push(() =>
             {
                 try
@@ -106,7 +107,9 @@ namespace MPConditions.DefaultExtensions
             {
             }
 
-            return new NullableNumberCondition<T, string>(value, condition as StringCondition);
+            var retVal = new NullableNumberCondition<T>(value, condition.SubjectName, condition.Subject);
+            retVal.MergeIn(condition);
+            return retVal;
         }
 
 
@@ -118,7 +121,7 @@ namespace MPConditions.DefaultExtensions
         /// <returns></returns>
         public static StringCondition NotNull(this StringCondition condition)
         {
-            ICondition<string> cond = condition as ICondition<string>;
+            ICondition<string> cond = condition;
             cond.Push(() =>
             {
                 if(cond.Subject == null)
