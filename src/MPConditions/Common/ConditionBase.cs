@@ -8,36 +8,33 @@ namespace MPConditions.Common
     public abstract class ConditionBase<TValue> : ICondition<TValue>
     {
 
-        private TValue _Subject;
-        public TValue Subject
+        
+        public TValue SubjectValue
         {
-            get { return _Subject; }
+            get;
+            private set;
         }
 
-        private object _OriginalSubject;
-        object ICondition.OriginalSubject { get { return _OriginalSubject; } }
-
-        private string _SubjectName;
-        public string SubjectName { get { return _SubjectName; } }
+        private object _OriginalSubjectValue;
+        object ICondition.OriginalSubjectValue { get { return _OriginalSubjectValue; } }
+        
+        public string SubjectName
+        {
+            get;
+            private set;
+        }
 
         private Queue<Func<ValidationInfo>> ec = new Queue<Func<ValidationInfo>>(3);
 
-        internal ConditionBase(TValue value, string subjectName)
+        internal ConditionBase(TValue subjectValue, string subjectName)
         {
-            _OriginalSubject = value;
-            _Subject = value;
-            _SubjectName = subjectName;
-        }
-
-        internal ConditionBase(TValue value, string subjectName, object originalSubject)
-        {
-            _Subject = value;
-            _OriginalSubject = originalSubject;
-            _SubjectName = subjectName;
+            SubjectValue = subjectValue;
+            SubjectName = subjectName;
         }
 
         internal void MergeIn<TOldValue>(ConditionBase<TOldValue> previousCondition)
         {
+            _OriginalSubjectValue = previousCondition.SubjectValue;
             ec = new Queue<Func<ValidationInfo>>(previousCondition.ec);
         }
 
@@ -166,10 +163,5 @@ namespace MPConditions.Common
         {
             return _ValidationResultCache = _ValidationResultCache ?? GetFinalExecutionContext() ?? ValidationInfo.Empty;
         }
-
-
-
-
-
     }
 }

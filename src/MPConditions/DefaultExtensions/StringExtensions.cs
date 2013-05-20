@@ -15,9 +15,9 @@ namespace MPConditions.DefaultExtensions
             ICondition<string> cond = condition;
             cond.Push(() =>
             {
-                if(!cond.Subject.StartsWith(predicate))
+                if(!cond.SubjectValue.StartsWith(predicate))
                 {
-                    return new ValidationInfo(ExceptionTypes.OutOfRange, "Starts not with '{0}'", predicate);
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, predicate);
                 }
 
                 return null;
@@ -33,7 +33,7 @@ namespace MPConditions.DefaultExtensions
             {
                 try
                 {
-                    Convert.ChangeType(cond.Subject, typeof(T), null);
+                    Convert.ChangeType(cond.SubjectValue, typeof(T), null);
                 }
                 catch
                 {
@@ -50,14 +50,14 @@ namespace MPConditions.DefaultExtensions
 
             try
             {
-                value = (T)Convert.ChangeType(cond.Subject, typeof(T), null);
+                value = (T)Convert.ChangeType(cond.SubjectValue, typeof(T), null);
             }
             catch
             {
                 //in case of exception just give default value to next condition because when Throw method executes it will break anyway in the enqued test
             }
 
-            var retVal = new NumberCondition<T>(value, condition.SubjectName, condition.Subject);
+            var retVal = new NumberCondition<T>(value, condition.SubjectName);
             retVal.MergeIn(condition);
             return retVal;
         }
@@ -69,20 +69,20 @@ namespace MPConditions.DefaultExtensions
             {
                 try
                 {
-                    if(cond.Subject == null)
+                    if(cond.SubjectValue == null)
                         return null;
 
-                    if(cond.Subject == string.Empty)
+                    if(cond.SubjectValue == string.Empty)
                     {
                         return emptyAsNull
                             ? null
-                            : new ValidationInfo(ExceptionTypes.WrongType, "issue")
+                            : new ValidationInfo(ExceptionTypes.WrongType, typeof(T))
                                             {
                                                 FailFast = true// string.Format("Type can not be translates to '{0}'", predicate),
                                             };
                     }
 
-                    Convert.ChangeType(cond.Subject, typeof(T), null);
+                    Convert.ChangeType(cond.SubjectValue, typeof(T), null);
                 }
                 catch
                 {
@@ -99,15 +99,15 @@ namespace MPConditions.DefaultExtensions
 
             try
             {
-                value = string.IsNullOrEmpty(cond.Subject)
+                value = string.IsNullOrEmpty(cond.SubjectValue)
                     ? (T?)null
-                    : (T)Convert.ChangeType(cond.Subject, typeof(T), null);
+                    : (T)Convert.ChangeType(cond.SubjectValue, typeof(T), null);
             }
             catch
             {
             }
 
-            var retVal = new NullableNumberCondition<T>(value, condition.SubjectName, condition.Subject);
+            var retVal = new NullableNumberCondition<T>(value, condition.SubjectName);
             retVal.MergeIn(condition);
             return retVal;
         }
@@ -124,7 +124,7 @@ namespace MPConditions.DefaultExtensions
             ICondition<string> cond = condition;
             cond.Push(() =>
             {
-                if(cond.Subject == null)
+                if(cond.SubjectValue == null)
                 {
                     return new ValidationInfo(ExceptionTypes.Null, "Value can not be [null]");
                 }

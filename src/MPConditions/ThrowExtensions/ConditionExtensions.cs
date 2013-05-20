@@ -8,17 +8,6 @@ namespace MPConditions.ThrowExtensions
 {
     public static class ConditionExtensions
     {
-        //public static T ThrowOrGet<T>(this ICondition<T> condition)
-        //{
-        //    ValidationInfo context=condition.GetResult();
-
-        //    if(context.ExceptionType==ExceptionTypes.None)
-        //        return (T)condition.OriginalSubject;
-
-        //    ThrowInternal(context);
-        //    return default(T);
-        //}
-
         public static void Throw(this ICondition condition)
         {
             ValidationInfo execcontext = condition.GetResult();
@@ -26,7 +15,7 @@ namespace MPConditions.ThrowExtensions
             if(execcontext.ExceptionType == ExceptionTypes.None)
                 return;
 
-            throw ExceptionProvider.ArgumentExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubject, execcontext.ResourceKey, execcontext.Args);
+            throw ExceptionProvider.ArgumentExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
         }
 
         public static void ThrowEx(this ICondition condition)
@@ -36,10 +25,10 @@ namespace MPConditions.ThrowExtensions
             if(execcontext.ExceptionType == ExceptionTypes.None)
                 return;
 
-            throw ExceptionProvider.ConditionExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubject, execcontext.ResourceKey, execcontext.Args);
+            throw ExceptionProvider.ConditionExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
         }
 
-        public static T Log<T>(this T condition, bool logAll = false) where T:ICondition
+        public static T Log<T>(this T condition, bool logAll = false) where T : ICondition
         {
             ValidationInfo execcontext = condition.GetResult();
 

@@ -8,14 +8,14 @@ namespace MPConditions.Common
 
     public interface ICondition<TSubject>: ICondition
     {
-        TSubject Subject {get;}
+        TSubject SubjectValue {get;}
     }
     
     public interface ICondition
     {
         string SubjectName { get; }
 
-        object OriginalSubject { get; }
+        object OriginalSubjectValue { get; }
 
         ValidationInfo GetResult();
 

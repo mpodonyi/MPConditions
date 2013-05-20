@@ -69,7 +69,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="ClassDiagram.cd" />
     <None Include="MPConditions.nuspec">
       <SubType>Designer</SubType>
     </None>

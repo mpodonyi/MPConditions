@@ -15,7 +15,7 @@ namespace MPConditions.DefaultExtensions
 
             if(!((comparer.Compare(subject, start) > 0) && (comparer.Compare(subject, end) < 0)))
             {
-                return new ValidationInfo(ExceptionTypes.OutOfRange, "Is not between '{0}' and '{1}'.", start, end);
+                return new ValidationInfo(ExceptionTypes.OutOfRange, start, end);
             }
 
             return null;
@@ -46,7 +46,7 @@ namespace MPConditions.DefaultExtensions
             ICondition<T> cond = condition;
             cond.Push(() =>
             {
-                return BetweenHelper(cond.Subject, start, end);
+                return BetweenHelper(cond.SubjectValue, start, end);
             });
 
             return condition;
@@ -57,10 +57,10 @@ namespace MPConditions.DefaultExtensions
             ICondition<T?> cond = condition;
             cond.Push(() =>
             {
-                if(!cond.Subject.HasValue)
-                    return new ValidationInfo(ExceptionTypes.Null, "Is 'null'.");
+                if(!cond.SubjectValue.HasValue)
+                    return new ValidationInfo(ExceptionTypes.Null);
                 else
-                    return BetweenHelper(cond.Subject.Value, start, end);
+                    return BetweenHelper(cond.SubjectValue.Value, start, end);
             });
 
             return condition;
