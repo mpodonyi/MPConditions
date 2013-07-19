@@ -48,7 +48,7 @@ namespace MPConditions.ThrowExtensions
             {
                 if(object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MPConditions.Resource", typeof(DefaultExceptionMessageProvider).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MPConditions.Resources.ExceptionResources", typeof(DefaultExceptionMessageProvider).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

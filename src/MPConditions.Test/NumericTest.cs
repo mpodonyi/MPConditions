@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using MPConditions;
 using MPConditions.DefaultExtensions;
 using MPConditions.ThrowExtensions;
+using Xunit;
 
 
 namespace MPConditions.Test
@@ -13,7 +13,6 @@ namespace MPConditions.Test
     /// <summary>
     /// Summary description for NumericTest
     /// </summary>
-    [TestClass]
     public class NumericTest
     {
         public NumericTest()
@@ -23,51 +22,8 @@ namespace MPConditions.Test
             //
         }
 
-        private TestContext testContextInstance;
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-
-
-
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
-
-        [TestMethod]
+         [Fact]
         public void Int_Between_Success()
         {
             int foo = 5;
@@ -75,7 +31,7 @@ namespace MPConditions.Test
             foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
-        [TestMethod]
+         [Fact]
         public void Int_Between_Fail()
         {
             int foo = 5;
@@ -87,7 +43,7 @@ namespace MPConditions.Test
         }
 
 
-        [TestMethod]
+         [Fact]
         public void Int_Nullable_Between_Success()
         {
             int? foo = 5;
@@ -95,7 +51,7 @@ namespace MPConditions.Test
             foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
-        [TestMethod]
+         [Fact]
         public void Int_Nullable_Between_Fail()
         {
             int? foo = 5;

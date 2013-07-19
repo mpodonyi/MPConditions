@@ -41,13 +41,13 @@ namespace MPConditions.Common
         {
         }
 
-        public ValidationInfo(ExceptionTypes exceptionType, string resourceKey, params object[] args)
-        {
-            ResourceKey = resourceKey;
-            ExceptionType = exceptionType;
-            Args = args;
-            ExecutionType = ExecutionTypes.Error;
-        }
+        //public ValidationInfo(ExceptionTypes exceptionType, string resourceKey, params object[] args)
+        //{
+        //    ResourceKey = resourceKey;
+        //    ExceptionType = exceptionType;
+        //    Args = args;
+        //    ExecutionType = ExecutionTypes.Error;
+        //}
 
         public ValidationInfo(ExceptionTypes exceptionType, params object[] args)
         {

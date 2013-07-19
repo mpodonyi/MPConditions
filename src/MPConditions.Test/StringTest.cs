@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using MPConditions;
 using MPConditions.DefaultExtensions;
 using MPConditions.ThrowExtensions;
 using System.Linq;
+using Xunit;
 
 namespace MPConditions.Test
 {
     /// <summary>
     /// Summary description for NumericTest
     /// </summary>
-    [TestClass]
+
     public class StringTest
     {
         public StringTest()
@@ -23,49 +23,8 @@ namespace MPConditions.Test
             //
         }
 
-        private TestContext testContextInstance;
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
-
-
-        #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
-        // public static void MyClassInitialize(TestContext testContext) { }
-        //
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
-        #endregion
-
-        [TestMethod]
-        [TestCategory("String")]
+        [Fact]
         public void String_AsNumber_Success()
         {
             string foo = "5";
@@ -73,8 +32,7 @@ namespace MPConditions.Test
             foo.Condition("foo").AsNumber<int>().Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
-        [TestMethod]
-        [TestCategory("String")]
+        [Fact]
         public void String_AsNumber_Fail()
         {
             string foo = "xxx";
@@ -83,7 +41,7 @@ namespace MPConditions.Test
 
             result.Should().NotBeNull();
             result.ExceptionType.Should().Be(ExceptionTypes.WrongType);
-            
+
             string foo2 = "7";
 
             var result2 = foo2.Condition("foo").AsNumber<int>().Between(3, 6).GetResult();
@@ -92,8 +50,7 @@ namespace MPConditions.Test
             result2.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
         }
 
-        [TestMethod]
-        [TestCategory("String")]
+        [Fact]
         public void String_AsNullableNumber_Success()
         {
             string foo = "5";
@@ -109,8 +66,7 @@ namespace MPConditions.Test
             foo.Condition("foo").AsNullableNumber<int>().GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
-        [TestMethod]
-        [TestCategory("String")]
+        [Fact]
         public void String_AsNullableNumber_Fail()
         {
             string foo = "bar";
@@ -122,8 +78,7 @@ namespace MPConditions.Test
             foo.Condition("foo").AsNullableNumber<int>(false).GetResult().ExceptionType.Should().Be(ExceptionTypes.WrongType);
         }
 
-        [TestMethod]
-        [TestCategory("String")]
+        [Fact]
         public void String_StartsWith_Success()
         {
             string foo = "Mike was here";
@@ -131,8 +86,7 @@ namespace MPConditions.Test
             foo.Condition("foo").StartsWith("Mike").GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
-        [TestMethod]
-        [TestCategory("String")]
+        [Fact]
         public void String_StartsWith_Fail()
         {
             string foo = "Mike was here";
@@ -140,26 +94,25 @@ namespace MPConditions.Test
             foo.Condition("foo").StartsWith("Mikee").GetResult().ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
         }
 
-        [TestMethod]
-        [TestCategory("String")]
+        [Fact]
         public void Atworks()
         {
             string foo = "55";
 
-            var sss=foo.Condition("foo").StartsWith("6").Or.AsNumber<int>().Between(56,58).GetResult();
-                
-                
-           //     .ExceptionType.Should().NotBe(ExceptionTypes.None);
+            var sss = foo.Condition("foo").StartsWith("6").Or.AsNumber<int>().Between(56, 58).GetResult();
+
+
+            //     .ExceptionType.Should().NotBe(ExceptionTypes.None);
         }
 
-        
-
-        
-
-       
 
 
-     
+
+
+
+
+
+
 
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MPConditions.Numeric;
 using FluentAssertions;
+using Xunit;
 
 namespace MPConditions.Test
 {
-    [TestClass]
+    
     public class UniversalNumberComparerTest
     {
         private const int LeftLessThanRight = -1;
@@ -30,7 +30,7 @@ namespace MPConditions.Test
 
         private const object Null= null;
 
-        [TestMethod]
+        [Fact]
         public void ByteCompare()
         {
             var unc = new UniversalNumberComparer();
@@ -66,7 +66,7 @@ namespace MPConditions.Test
 
         }
 
-        [TestMethod]
+        [Fact]
         public void ByteCompare2()
         {
             double d;
@@ -94,7 +94,7 @@ namespace MPConditions.Test
         }
 
 
-        [TestMethod]
+        [Fact]
         public void ByteCompare3()
         {
             double? i=null;
