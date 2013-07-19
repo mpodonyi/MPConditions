@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<TValue> : ICondition<TValue>
+    public abstract class ConditionBase<TValue> : ICondition<TValue>, IFluentInterface
     {
 
         

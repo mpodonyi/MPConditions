@@ -5,13 +5,12 @@ using System.Text;
 
 namespace MPConditions.Common
 {
-
-    public interface ICondition<TSubject>: ICondition
+    public interface ICondition<TSubject> : ICondition, IFluentInterface
     {
         TSubject SubjectValue {get;}
     }
-    
-    public interface ICondition
+
+    public interface ICondition: IFluentInterface
     {
         string SubjectName { get; }
 
