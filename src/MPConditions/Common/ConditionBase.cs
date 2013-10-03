@@ -12,7 +12,7 @@ namespace MPConditions.Common
             private set;
         }
 
-        protected TValue SubjectValue
+        public TValue SubjectValue
         {
             get;
             private set;

@@ -1,7 +1,5 @@
-﻿using System;
-using MPConditions.Common;
+﻿using MPConditions.Common;
 using MPConditions.Exceptions;
-using MPConditions.Primitives;
 
 namespace MPConditions
 {
@@ -30,7 +28,7 @@ namespace MPConditions
 
         //--------------
 
-        public static V Throw<T,V>(this ConditionBase<T, V> condition) 
+        public static V Throw<T, V>(this ConditionBase<T, V> condition)
         {
             ValidationInfo execcontext = condition.GetResult();
 
@@ -40,7 +38,7 @@ namespace MPConditions
             throw ExceptionProvider.ArgumentExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
         }
 
-        public static V ThrowEx<T,V>(this ConditionBase<T, V> condition) 
+        public static V ThrowEx<T, V>(this ConditionBase<T, V> condition)
         {
             ValidationInfo execcontext = condition.GetResult();
 
@@ -49,6 +47,6 @@ namespace MPConditions
 
             throw ExceptionProvider.ConditionExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
         }
-       
+
     }
 }
