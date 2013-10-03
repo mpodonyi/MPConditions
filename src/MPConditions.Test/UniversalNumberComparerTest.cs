@@ -1,5 +1,4 @@
 ﻿using System;
-using MPConditions.Numeric;
 using FluentAssertions;
 using Xunit;
 
@@ -33,7 +32,7 @@ namespace MPConditions.Test
         [Fact]
         public void ByteCompare()
         {
-            var unc = new UniversalNumberComparer();
+            var unc = new MPConditions.Numeric.UniversalNumberComparer();
 
             //weird
             unc.Compare(Byte, Null).Should().Be(LeftGreaterThanRight);

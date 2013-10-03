@@ -1,11 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using FluentAssertions;
-using MPConditions;
-using MPConditions.DefaultExtensions;
-using MPConditions.ThrowExtensions;
-using System.Linq;
+﻿using FluentAssertions;
+
 using Xunit;
 
 namespace MPConditions.Test

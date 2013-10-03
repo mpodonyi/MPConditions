@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MPConditions.Common
 {
-    public interface ICondition<TSubject> : ICondition, IFluentInterface
+    public interface ICondition<TOriginal> : ICondition, IFluentInterface
     {
-        TSubject SubjectValue {get;}
+        TOriginal OriginalSubjectValue { get; }
+        string SubjectName { get; }
+        //TSubject SubjectValue {get;}
     }
 
-    public interface ICondition: IFluentInterface
+    public interface ICondition : IFluentInterface
     {
-        string SubjectName { get; }
+        //    string SubjectName { get; }
 
-        object OriginalSubjectValue { get; }
+        //    object OriginalSubjectValue { get; }
 
         ValidationInfo GetResult();
 
-        void Push(Func<ValidationInfo> action);  
+        //    void Push(Func<ValidationInfo> action);  
     }
 }

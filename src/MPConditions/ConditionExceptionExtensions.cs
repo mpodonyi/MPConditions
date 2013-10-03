@@ -1,48 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MPConditions.Common;
+using MPConditions.Exceptions;
 
-namespace MPConditions.ThrowExtensions
+namespace MPConditions
 {
-    public static class ConditionExtensions
+    public static class ConditionExceptionExtensions
     {
-        public static void Throw(this ICondition condition)
+        public static TOriginal Throw<T, TOriginal>(this T condition) where T : ICondition<TOriginal> 
         {
             ValidationInfo execcontext = condition.GetResult();
 
             if(execcontext.ExceptionType == ExceptionTypes.None)
-                return;
+                return condition.OriginalSubjectValue;
 
             throw ExceptionProvider.ArgumentExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
         }
 
-        public static void ThrowEx(this ICondition condition)
+        public static TOriginal ThrowEx<T, TOriginal>(this T condition) where T : ICondition<TOriginal> 
         {
             ValidationInfo execcontext = condition.GetResult();
 
             if(execcontext.ExceptionType == ExceptionTypes.None)
-                return;
+                return condition.OriginalSubjectValue;
 
             throw ExceptionProvider.ConditionExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
         }
-
-        public static T Log<T>(this T condition, bool logAll = false) where T : ICondition
-        {
-            ValidationInfo execcontext = condition.GetResult();
-
-            //if(execcontext.ExceptionType == ExceptionTypes.None)
-            //    return;
-
-            return condition;
-        }
-
-        public static void Handle(this ICondition condition)
-        {
-            throw new NotImplementedException();
-        }
-
-
+       
     }
 }

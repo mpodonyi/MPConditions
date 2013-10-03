@@ -1,44 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<TValue> : ICondition<TValue>, IFluentInterface
+    public abstract class ConditionBase<TValue, TOriginal> : ICondition<TOriginal>, IFluentInterface
     {
-
-        
-        public TValue SubjectValue
-        {
-            get;
-            private set;
-        }
-
-        private object _OriginalSubjectValue;
-        object ICondition.OriginalSubjectValue { get { return _OriginalSubjectValue; } }
-        
         public string SubjectName
         {
             get;
             private set;
         }
 
+        protected TValue SubjectValue
+        {
+            get;
+            private set;
+        }
+
+        public TOriginal OriginalSubjectValue
+        {
+            get;
+            set;
+        }
+
+
+
         private Queue<Func<ValidationInfo>> ec = new Queue<Func<ValidationInfo>>(3);
 
-        internal ConditionBase(TValue subjectValue, string subjectName)
+        protected ConditionBase(TValue subjectValue, object originalValue, string subjectName)
         {
             SubjectValue = subjectValue;
             SubjectName = subjectName;
+            OriginalSubjectValue = (TOriginal)originalValue;
         }
 
-        internal void MergeIn<TOldValue>(ConditionBase<TOldValue> previousCondition)
+        internal void MergeIn<WhatEver>(ConditionBase<WhatEver, TOriginal> previousCondition)
         {
-            _OriginalSubjectValue = previousCondition.SubjectValue;
+            OriginalSubjectValue = previousCondition.OriginalSubjectValue;
             ec = new Queue<Func<ValidationInfo>>(previousCondition.ec);
         }
 
-        void ICondition.Push(Func<Common.ValidationInfo> action)
+        protected void Push(Func<Common.ValidationInfo> action)
         {
             _ValidationResultCache = null;
             ec.Enqueue(action);
@@ -157,11 +160,17 @@ namespace MPConditions.Common
 
             return savedexeccontext;
         }
-        
+
         private ValidationInfo _ValidationResultCache = null;
         public ValidationInfo GetResult()
         {
             return _ValidationResultCache = _ValidationResultCache ?? GetFinalExecutionContext() ?? ValidationInfo.Empty;
         }
+
+
+
+
+
+
     }
 }

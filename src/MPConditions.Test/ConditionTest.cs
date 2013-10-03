@@ -1,10 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using FluentAssertions;
-using MPConditions;
-using MPConditions.DefaultExtensions;
-using MPConditions.ThrowExtensions;
+﻿using FluentAssertions;
+
 using Xunit;
 
 
@@ -13,7 +8,7 @@ namespace MPConditions.Test
     /// <summary>
     /// Summary description for NumericTest
     /// </summary>
-     
+
     public class ConditionTest
     {
         public ConditionTest()
@@ -24,7 +19,7 @@ namespace MPConditions.Test
         }
 
 
-         [Fact]
+        [Fact]
         public void Pass_Success()
         {
             int foo = 5;
@@ -38,8 +33,8 @@ namespace MPConditions.Test
             result2.Should().BeTrue();
         }
 
-         [Fact]
-         public void Pass_Fail()
+        [Fact]
+        public void Pass_Fail()
         {
             int foo = 2;
 

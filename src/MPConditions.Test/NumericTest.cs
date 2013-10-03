@@ -1,10 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using FluentAssertions;
-using MPConditions;
-using MPConditions.DefaultExtensions;
-using MPConditions.ThrowExtensions;
+﻿using FluentAssertions;
+
 using Xunit;
 
 
@@ -23,7 +18,7 @@ namespace MPConditions.Test
         }
 
 
-         [Fact]
+        [Fact]
         public void Int_Between_Success()
         {
             int foo = 5;
@@ -31,7 +26,7 @@ namespace MPConditions.Test
             foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
-         [Fact]
+        [Fact]
         public void Int_Between_Fail()
         {
             int foo = 5;
@@ -43,7 +38,7 @@ namespace MPConditions.Test
         }
 
 
-         [Fact]
+        [Fact]
         public void Int_Nullable_Between_Success()
         {
             int? foo = 5;
@@ -51,7 +46,7 @@ namespace MPConditions.Test
             foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
         }
 
-         [Fact]
+        [Fact]
         public void Int_Nullable_Between_Fail()
         {
             int? foo = 5;
@@ -69,10 +64,10 @@ namespace MPConditions.Test
             result.ExceptionType.Should().Be(ExceptionTypes.Null);
         }
 
-       
 
 
-     
+
+
 
     }
 }

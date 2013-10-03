@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using FluentAssertions;
-using MPConditions;
-using MPConditions.DefaultExtensions;
-using MPConditions.ThrowExtensions;
-using System.Linq;
+
 using Xunit;
 
 namespace MPConditions.Test
 {
-    
+
     public class ThrowTest
     {
         public ThrowTest()
@@ -20,7 +15,7 @@ namespace MPConditions.Test
             //
         }
 
-      
+
         [Fact]
         public void Throw_ThrowsArgumentNullException_Success()
         {
