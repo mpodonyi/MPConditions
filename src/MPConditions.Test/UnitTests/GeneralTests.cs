@@ -26,6 +26,14 @@ namespace MPConditions.Test.UnitTests
             result2.Should().BeTrue();
         }
 
+        [Fact]
+        public void Log_Success()
+        {
+            int foo = 5;
+
+            foo.Condition("foo").Between(3, 6).Log();
+        }
+
 
         [Fact]
         public void ThrowReturnsElement_Success()

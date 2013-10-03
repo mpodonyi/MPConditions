@@ -4,7 +4,7 @@ using MPConditions.Numeric;
 
 namespace MPConditions.Primitives
 {
-    public class NumberCondition<T, V> : ConditionBase<T, V>, IFluentInterface
+    public class NumberCondition<T, V> : ConditionBase<T, V>,  IFluentInterface
         where T : struct, IComparable<T>
     {
         protected bool IsNull = false;

@@ -3,7 +3,7 @@ using MPConditions.Common;
 
 namespace MPConditions.Primitives
 {
-    public class NullableNumberCondition<T, V> : NumberCondition<T, V>, IFluentInterface
+    public class NullableNumberCondition<T, V> : NumberCondition<T, V>,  IFluentInterface
         where T : struct, IComparable<T>
     {
         internal NullableNumberCondition(T? subjectValue, string subjectName)

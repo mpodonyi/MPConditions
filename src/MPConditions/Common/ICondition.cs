@@ -1,21 +1,24 @@
 ﻿
 namespace MPConditions.Common
 {
-    public interface ICondition<TOriginal> : ICondition, IFluentInterface
-    {
-        TOriginal OriginalSubjectValue { get; }
-        string SubjectName { get; }
-        //TSubject SubjectValue {get;}
-    }
+    //public interface ICondition<TValue, TOriginal> : IFluentInterface
+    //{
+    //    TValue SubjectValue { get; }
+    //    TOriginal OriginalSubjectValue { get; }
+    //    string SubjectName { get; }
+    //    //TSubject SubjectValue {get;}
 
-    public interface ICondition : IFluentInterface
-    {
-        //    string SubjectName { get; }
+    //    ValidationInfo GetResult();
+    //}
 
-        //    object OriginalSubjectValue { get; }
+    //public interface ICondition : IFluentInterface
+    //{
+    //    //    string SubjectName { get; }
 
-        ValidationInfo GetResult();
+    //    //    object OriginalSubjectValue { get; }
 
-        //    void Push(Func<ValidationInfo> action);  
-    }
+        
+
+    //    //    void Push(Func<ValidationInfo> action);  
+    //}
 }

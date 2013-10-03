@@ -5,7 +5,7 @@ namespace MPConditions
 {
     public static class ConditionExtensions
     {
-        public static T Log<T>(this T condition, bool logAll = false) where T : ICondition
+        public static ConditionBase<T, V>  Log<T, V>(this ConditionBase<T, V> condition, bool logAll = false) 
         {
             ValidationInfo execcontext = condition.GetResult();
 
@@ -16,12 +16,12 @@ namespace MPConditions
         }
 
 
-        public static void Handle<T>(this T condition) where T : ICondition
+        public static void Handle<T, V>(this ConditionBase<T, V> condition) 
         {
             throw new NotImplementedException();
         }
 
-        public static bool Pass<T>(this T condition) where T : ICondition
+        public static bool Pass<T,V>(this ConditionBase<T,V> condition) 
         {
             return condition.GetResult().ExceptionType == ExceptionTypes.None;
         }

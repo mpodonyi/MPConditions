@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MPConditions.Common
 {
-    public abstract class ConditionBase<TValue, TOriginal> : ICondition<TOriginal>, IFluentInterface
+    public abstract class ConditionBase<TValue, TOriginal> : IFluentInterface
     {
         public string SubjectName
         {
@@ -21,7 +21,7 @@ namespace MPConditions.Common
         public TOriginal OriginalSubjectValue
         {
             get;
-            set;
+            private set;
         }
 
 

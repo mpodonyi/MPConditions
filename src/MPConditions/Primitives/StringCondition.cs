@@ -3,7 +3,7 @@ using MPConditions.Common;
 
 namespace MPConditions.Primitives
 {
-    public class StringCondition : ConditionBase<string, string>, IFluentInterface
+    public class StringCondition : ConditionBase<string, string>,   IFluentInterface
     {
         internal StringCondition(string subjectValue, string subjectName)
             : base(subjectValue, subjectValue, subjectName)
