@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using MPConditions.Core;
 
 namespace MPConditions.Primitives
 {
-    public class StringCondition : ConditionBase<string, string>,   IFluentInterface
+    public class StringCondition : ReferenceTypeCondition<string, string, StringCondition>
     {
         internal StringCondition(string subjectValue, string subjectName)
             : base(subjectValue, subjectValue, subjectName)
@@ -120,26 +121,170 @@ namespace MPConditions.Primitives
 
 
 
-        /// <summary>
-        /// Validates that Subject under test is not null.
-        /// </summary>
-        /// <param name="condition">The condition.</param>
-        /// <returns></returns>
-        public StringCondition NotNull()
+        ///// <summary>
+        ///// Validates that Subject under test is not null.
+        ///// </summary>
+        ///// <param name="condition">The condition.</param>
+        ///// <returns></returns>
+        //public StringCondition NotNull()
+        //{
+        //    this.Push(() =>
+        //    {
+        //        if(this.SubjectValue == null)
+        //        {
+        //            return new ValidationInfo(ExceptionTypes.Null, "Value can not be [null]");
+        //        }
+
+        //        return null;
+        //    });
+
+        //    return this;
+        //}
+
+
+        #region ImportedFromFluidValidation
+        public StringCondition Be(string expected, string reason = "", params object[] reasonArgs)
         {
-            this.Push(() =>
-            {
-                if(this.SubjectValue == null)
-                {
-                    return new ValidationInfo(ExceptionTypes.Null, "Value can not be [null]");
-                }
-
-                return null;
-            });
-
             return this;
         }
 
+        public StringCondition BeOneOf(params string[] validValues)
+        {
+            return this;
+        }
+
+        public StringCondition BeOneOf(IEnumerable<string> validValues, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition BeEquivalentTo(string expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotBe(string unexpected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition Match(string wildcardPattern, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotMatch(string wildcardPattern, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition MatchEquivalentOf(string wildcardPattern, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotMatchEquivalentOf(string wildcardPattern, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition StartWith(string expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotStartWith(string unexpected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition StartWithEquivalent(string expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotStartWithEquivalentOf(string unexpected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition EndWith(string expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+
+        public StringCondition NotEndWith(string unexpected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition EndWithEquivalent(string expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotEndWithEquivalentOf(string unexpected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition Contain(string expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition ContainEquivalentOf(string expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotContain(string expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotContainEquivalentOf(string unexpected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+
+        public StringCondition BeEmpty(string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotBeEmpty(string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition HaveLength(int expected, string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotBeNullOrEmpty(string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition BeNullOrEmpty(string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition NotBeBlank(string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+
+        public StringCondition BeBlank(string reason = "", params object[] reasonArgs)
+        {
+            return this;
+        }
+        #endregion
 
 
 
