@@ -1,5 +1,5 @@
 ﻿
-namespace MPConditions.Common
+namespace MPConditions.Core
 {
     //public interface ICondition<TValue, TOriginal> : IFluentInterface
     //{

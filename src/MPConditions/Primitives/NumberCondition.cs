@@ -1,5 +1,5 @@
 ﻿using System;
-using MPConditions.Common;
+using MPConditions.Core;
 using MPConditions.Numeric;
 
 namespace MPConditions.Primitives

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace MPConditions.Common
+namespace MPConditions.Core
 {
     public abstract class ConditionBase<TValue, TOriginal> : IFluentInterface
     {
@@ -41,7 +41,7 @@ namespace MPConditions.Common
             ec = new Queue<Func<ValidationInfo>>(previousCondition.ec);
         }
 
-        protected void Push(Func<Common.ValidationInfo> action)
+        protected void Push(Func<Core.ValidationInfo> action)
         {
             _ValidationResultCache = null;
             ec.Enqueue(action);

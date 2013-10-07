@@ -1,4 +1,4 @@
-﻿using MPConditions.Common;
+﻿using MPConditions.Core;
 using MPConditions.Exceptions;
 
 namespace MPConditions

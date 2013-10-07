@@ -77,13 +77,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\ConditionBase.cs" />
+    <Compile Include="Core\ConditionBase.cs" />
     <Compile Include="ConditionExtensions.cs" />
     <Compile Include="ConditionExceptionExtensions.cs" />
     <Compile Include="ExceptionTypes.cs" />
-    <Compile Include="Common\ValidationInfo.cs" />
-    <Compile Include="Common\ExecutionTypes.cs" />
-    <Compile Include="Common\ICondition.cs" />
+    <Compile Include="Core\ValidationInfo.cs" />
+    <Compile Include="Core\ExecutionTypes.cs" />
+    <Compile Include="Core\ICondition.cs" />
     <Compile Include="IFluentInterface.cs" />
     <Compile Include="Exceptions\ConditionException.cs" />
     <Compile Include="NumericConditionsExtensions.cs" />
