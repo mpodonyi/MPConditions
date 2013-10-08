@@ -30,7 +30,7 @@ namespace MPConditions.Primitives
         //    return (NullableNumberCondition<T, V>)base.Between(start, end);
         //}
 
-        public NullableNumberCondition<T, V> NotNull()
+        public NullableNumberCondition<T, V> IsNotNull()
         {
             this.Push(() =>
             {

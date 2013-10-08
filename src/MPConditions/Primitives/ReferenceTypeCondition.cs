@@ -12,7 +12,7 @@ namespace MPConditions.Primitives
 
         }
 
-        public X NotNull()
+        public X IsNotNull()
         {
             this.Push(() =>
             {
@@ -35,5 +35,41 @@ namespace MPConditions.Primitives
                 return (X)this;
             }
         }
+
+
+
+
+
+        //------------
+
+
+
+        public X IsNull()
+        {
+            return (X)this;
+        }
+
+
+        public X IsOfType<L>()
+        {
+            return (X)this;
+        }
+
+        public X IsAssignableTo<L>()
+        {
+            return (X)this;
+        }
+
+        //public X Match(Expression<Func<T, bool>> predicate)
+        //{
+        //    return (X)this;
+        //}
+
+        //public X Match<L>(Expression<Func<L, bool>> predicate, string reason = "", params object[] reasonArgs) where L : T
+        //{
+        //    return (X)this;
+        //}
+
+
     }
 }
