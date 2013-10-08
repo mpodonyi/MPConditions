@@ -11,15 +11,6 @@ namespace MPConditions.Primitives
         {
         }
 
-        public StringCondition Or
-        {
-            get
-            {
-                this.Push(() => ValidationInfo.Or);
-                return this;
-            }
-        }
-
         public StringCondition StartsWith(string predicate)
         {
             this.Push(() =>

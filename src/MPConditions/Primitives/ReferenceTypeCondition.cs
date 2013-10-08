@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MPConditions.Core;
+﻿using MPConditions.Core;
 
 namespace MPConditions.Primitives
 {
     public abstract class ReferenceTypeCondition<T, V, X> : ConditionBase<T, V>
+        where T : class
         where X : ReferenceTypeCondition<T, V, X>
     {
         protected ReferenceTypeCondition(T subjectValue, V originalValue, string subjectName)
@@ -28,6 +25,15 @@ namespace MPConditions.Primitives
             });
 
             return (X)this;
+        }
+
+        public X Or
+        {
+            get
+            {
+                this.Push(() => ValidationInfo.Or);
+                return (X)this;
+            }
         }
     }
 }
