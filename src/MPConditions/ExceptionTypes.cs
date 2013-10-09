@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MPConditions
 {
     public enum ExceptionTypes
@@ -11,6 +7,7 @@ namespace MPConditions
         OutOfRange,
         StartsWith,
         WrongType,
-        Null
+        Null,
+        WrongMatch
     }
 }

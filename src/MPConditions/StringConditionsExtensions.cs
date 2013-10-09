@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MPConditions;
-using MPConditions.Primitives;
+﻿using MPConditions.Primitives;
 
 namespace MPConditions
 {
     public static class StringConditionsExtensions
     {
-        public static StringCondition Condition(this string value, string name)
+        public static StringCondition Condition(this string value, string name = null)
         {
             return new StringCondition(value, name);
         }

@@ -12,12 +12,12 @@ namespace MPConditions.Test.UnitTests
         {
             int foo = 5;
 
-            bool result = foo.Condition("foo").Between(3, 6).Pass();
+            bool result = foo.Condition().Between(3, 6).Pass();
             result.Should().BeTrue();
 
             string bar = "5";
 
-            bool result2 = bar.Condition("bar").AsNumber<int>().Between(3, 6).Pass();
+            bool result2 = bar.Condition().AsNumber<int>().Between(3, 6).Pass();
             result2.Should().BeTrue();
         }
 
@@ -26,7 +26,7 @@ namespace MPConditions.Test.UnitTests
         {
             int foo = 5;
 
-            foo.Condition("foo").Between(3, 6).Log();
+            foo.Condition().Between(3, 6).Log();
         }
 
 
@@ -35,7 +35,7 @@ namespace MPConditions.Test.UnitTests
         {
             int foo = 5;
 
-            int result = foo.Condition("foo").Between(3, 6).Throw();
+            int result = foo.Condition().Between(3, 6).Throw();
             result.Should().Be(5);
         }
     }

@@ -146,6 +146,26 @@ namespace MPConditions.Primitives
         #region ImportedFromFluidValidation
         public StringCondition Is(string expected)
         {
+            this.Push(() =>
+            {
+                if(expected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(expected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.Null, expected);
+                }
+
+                if(!this.SubjectValue.Equals(expected,StringComparison.CurrentCulture))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
@@ -161,6 +181,26 @@ namespace MPConditions.Primitives
 
         public StringCondition IsEquivalentTo(string expected)
         {
+            this.Push(() =>
+            {
+                if(expected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(expected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.Null, expected);
+                }
+
+                if(!this.SubjectValue.Equals(expected, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
@@ -169,83 +209,78 @@ namespace MPConditions.Primitives
             return this;
         }
 
-        public StringCondition Match(string wildcardPattern)
+        public StringCondition Matches(string wildcardPattern)
         {
             return this;
         }
 
-        public StringCondition MatchNot(string wildcardPattern)
+        public StringCondition MatchesNot(string wildcardPattern)
         {
             return this;
         }
 
-        public StringCondition MatchEquivalentOf(string wildcardPattern)
+        public StringCondition MatchesEquivalentOf(string wildcardPattern)
         {
             return this;
         }
 
-        public StringCondition MatchNotEquivalentOf(string wildcardPattern)
+        public StringCondition MatchesNotEquivalentOf(string wildcardPattern)
         {
             return this;
         }
 
-        public StringCondition StartWith(string expected)
+        public StringCondition StartsNotWith(string unexpected)
         {
             return this;
         }
 
-        public StringCondition StartNotWith(string unexpected)
+        public StringCondition StartsWithEquivalent(string expected)
         {
             return this;
         }
 
-        public StringCondition StartWithEquivalent(string expected)
+        public StringCondition StartsNotWithEquivalentOf(string unexpected)
         {
             return this;
         }
 
-        public StringCondition StartNotWithEquivalentOf(string unexpected)
-        {
-            return this;
-        }
-
-        public StringCondition EndWith(string expected)
+        public StringCondition EndsWith(string expected)
         {
             return this;
         }
 
 
-        public StringCondition EndNotWith(string unexpected)
+        public StringCondition EndsNotWith(string unexpected)
         {
             return this;
         }
 
-        public StringCondition EndWithEquivalent(string expected)
+        public StringCondition EndsWithEquivalent(string expected)
         {
             return this;
         }
 
-        public StringCondition EndNotWithEquivalentOf(string unexpected)
+        public StringCondition EndsNotWithEquivalentOf(string unexpected)
         {
             return this;
         }
 
-        public StringCondition Contain(string expected)
+        public StringCondition Contains(string expected)
         {
             return this;
         }
 
-        public StringCondition ContainEquivalentOf(string expected)
+        public StringCondition ContainsEquivalentOf(string expected)
         {
             return this;
         }
 
-        public StringCondition ContainNot(string expected)
+        public StringCondition ContainsNot(string expected)
         {
             return this;
         }
 
-        public StringCondition ContainNotEquivalentOf(string unexpected)
+        public StringCondition ContainsNotEquivalentOf(string unexpected)
         {
             return this;
         }
@@ -278,11 +313,41 @@ namespace MPConditions.Primitives
 
         public StringCondition IsNotBlank()
         {
+            this.Push(() =>
+            {
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange);
+                }
+
+                if(string.IsNullOrEmpty(this.SubjectValue.Trim()))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition IsBlank()
         {
+            this.Push(() =>
+            {
+                if(this.SubjectValue == null)
+                {
+                    return null;
+                }
+
+                if(string.IsNullOrEmpty(this.SubjectValue.Trim()))
+                {
+                    return null;
+                }
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange);
+            });
+
             return this;
         }
         #endregion
