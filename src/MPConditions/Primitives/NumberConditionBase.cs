@@ -6,9 +6,9 @@ using MPConditions.Core;
 
 namespace MPConditions.Primitives
 {
-    public abstract class NumberConditionBase<T, V, X> : ConditionBase<T?, V>
-        where T : struct, IComparable<T>
-        where X : NumberConditionBase<T, V, X>
+    public abstract class NumberConditionBase<TSubject, TOriginalSubject, TCondition> : ConditionBase<TSubject?, TOriginalSubject>
+        where TSubject : struct, IComparable<TSubject>
+        where TCondition : NumberConditionBase<TSubject, TOriginalSubject, TCondition>
     {
 
         //internal NumberCondition(T subjectValue, string subjectName)
@@ -21,26 +21,26 @@ namespace MPConditions.Primitives
         //{
         //}
 
-        protected NumberConditionBase(T? subjectValue, string subjectName)
+        protected NumberConditionBase(TSubject? subjectValue, string subjectName)
             : base(subjectValue, subjectValue, subjectName)
         {
         }
 
-        protected NumberConditionBase(T? subjectValue, V originalValue, string subjectName)
+        protected NumberConditionBase(TSubject? subjectValue, TOriginalSubject originalValue, string subjectName)
             : base(subjectValue, originalValue, subjectName)
         {
         }
 
-        public X Or
+        public TCondition Or
         {
             get
             {
                 this.Push(() => ValidationInfo.Or);
-                return (X)this;
+                return (TCondition)this;
             }
         }
 
-        public X Between(T start, T end)
+        public TCondition Between(TSubject start, TSubject end)
         {
             this.Push(() =>
             {
@@ -57,7 +57,7 @@ namespace MPConditions.Primitives
                 return null;
             });
 
-            return (X)this;
+            return (TCondition)this;
         }
 
 

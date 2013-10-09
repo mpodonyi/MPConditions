@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MPConditions.Core
 {
-    public abstract class ConditionBase<TValue, TOriginal> : IFluentInterface
+    public abstract class ConditionBase<TSubject, TOriginalSubject> : IFluentInterface
     {
         public string SubjectName
         {
@@ -12,13 +12,13 @@ namespace MPConditions.Core
             private set;
         }
 
-        public TValue SubjectValue
+        public TSubject SubjectValue
         {
             get;
             private set;
         }
 
-        public TOriginal OriginalSubjectValue
+        public TOriginalSubject OriginalSubjectValue
         {
             get;
             private set;
@@ -28,14 +28,14 @@ namespace MPConditions.Core
 
         private Queue<Func<ValidationInfo>> ec = new Queue<Func<ValidationInfo>>(3);
 
-        protected ConditionBase(TValue subjectValue, object originalValue, string subjectName)
+        protected ConditionBase(TSubject subjectValue, object originalValue, string subjectName)
         {
             SubjectValue = subjectValue;
             SubjectName = subjectName;
-            OriginalSubjectValue = (TOriginal)originalValue;
+            OriginalSubjectValue = (TOriginalSubject)originalValue;
         }
 
-        internal void MergeIn<WhatEver>(ConditionBase<WhatEver, TOriginal> previousCondition)
+        internal void MergeIn<WhatEver>(ConditionBase<WhatEver, TOriginalSubject> previousCondition)
         {
             OriginalSubjectValue = previousCondition.OriginalSubjectValue;
             ec = new Queue<Func<ValidationInfo>>(previousCondition.ec);

@@ -3,15 +3,15 @@ using MPConditions.Core;
 
 namespace MPConditions.Primitives
 {
-    public class NullableNumberCondition<T, V> : NumberConditionBase<T, V, NullableNumberCondition<T, V>>
-        where T : struct, IComparable<T>
+    public class NullableNumberCondition<TSubject, TOriginalSubject> : NumberConditionBase<TSubject, TOriginalSubject, NullableNumberCondition<TSubject, TOriginalSubject>>
+        where TSubject : struct, IComparable<TSubject>
     {
-        internal NullableNumberCondition(T? subjectValue, string subjectName)
+        internal NullableNumberCondition(TSubject? subjectValue, string subjectName)
             : base(subjectValue, subjectName)
         {
         }
 
-        internal NullableNumberCondition(T? subjectValue, V originalValue, string subjectName)
+        internal NullableNumberCondition(TSubject? subjectValue, TOriginalSubject originalValue, string subjectName)
             : base(subjectValue, originalValue, subjectName)
         {
         }
@@ -30,7 +30,7 @@ namespace MPConditions.Primitives
         //    return (NullableNumberCondition<T, V>)base.Between(start, end);
         //}
 
-        public NullableNumberCondition<T, V> IsNotNull()
+        public NullableNumberCondition<TSubject, TOriginalSubject> IsNotNull()
         {
             this.Push(() =>
             {

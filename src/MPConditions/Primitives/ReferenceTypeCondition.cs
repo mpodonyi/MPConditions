@@ -3,17 +3,17 @@ using MPConditions.Core;
 
 namespace MPConditions.Primitives
 {
-    public abstract class ReferenceTypeCondition<T, V, X> : ConditionBase<T, V>
-        where T : class
-        where X : ReferenceTypeCondition<T, V, X>
+    public abstract class ReferenceTypeCondition<TSubject, TOriginalSubject, TCondition> : ConditionBase<TSubject, TOriginalSubject>
+        where TSubject : class
+        where TCondition : ReferenceTypeCondition<TSubject, TOriginalSubject, TCondition>
     {
-        protected ReferenceTypeCondition(T subjectValue, V originalValue, string subjectName)
+        protected ReferenceTypeCondition(TSubject subjectValue, TOriginalSubject originalValue, string subjectName)
             : base(subjectValue, originalValue, subjectName)
         {
 
         }
 
-        public X IsNotNull()
+        public TCondition IsNotNull()
         {
             this.Push(() =>
             {
@@ -25,15 +25,15 @@ namespace MPConditions.Primitives
                 return null;
             });
 
-            return (X)this;
+            return (TCondition)this;
         }
 
-        public X Or
+        public TCondition Or
         {
             get
             {
                 this.Push(() => ValidationInfo.Or);
-                return (X)this;
+                return (TCondition)this;
             }
         }
 
@@ -45,7 +45,7 @@ namespace MPConditions.Primitives
 
 
 
-        public X IsNull()
+        public TCondition IsNull()
         {
             this.Push(() =>
             {
@@ -58,15 +58,15 @@ namespace MPConditions.Primitives
                 return new ValidationInfo(ExceptionTypes.OutOfRange);
             });
 
-            return (X)this;
+            return (TCondition)this;
         }
 
 
-        public X IsOfType<L>()
+        public TCondition IsOfType<T>()
         {
             this.Push(() =>
             {
-                if(this.SubjectValue.GetType() == typeof(L))
+                if(this.SubjectValue.GetType() == typeof(T))
                 {
                     return null;
                 }
@@ -74,14 +74,14 @@ namespace MPConditions.Primitives
                 return new ValidationInfo(ExceptionTypes.WrongType);
             });
 
-            return (X)this;
+            return (TCondition)this;
         }
 
-        public X IsAssignableTo<L>()
+        public TCondition IsAssignableTo<T>()
         {
             this.Push(() =>
             {
-                if(typeof(L).IsAssignableFrom(this.SubjectValue.GetType()))
+                if(typeof(T).IsAssignableFrom(this.SubjectValue.GetType()))
                 {
                     return null;
                 }
@@ -89,29 +89,29 @@ namespace MPConditions.Primitives
                 return new ValidationInfo(ExceptionTypes.WrongType);
             });
 
-            return (X)this;
+            return (TCondition)this;
         }
 
-        public X Match(Func<T, bool> predicate)
+        public TCondition Match(Func<TSubject, bool> predicate)
         {
-            return this.Match<T>(predicate);
+            return this.Match<TSubject>(predicate);
         }
 
-        public X Match<L>(Func<L, bool> predicate) where L : T
+        public TCondition Match<T>(Func<T, bool> predicate) where T : TSubject
         {
             this.Push(() =>
             {
-                if(typeof(L).IsAssignableFrom(this.SubjectValue.GetType()))
+                if(typeof(T).IsAssignableFrom(this.SubjectValue.GetType()))
                 {
                     return null;
                 }
 
-                return predicate((L)this.SubjectValue)
+                return predicate((T)this.SubjectValue)
                     ? null
                     : new ValidationInfo(ExceptionTypes.WrongMatch);
             });
 
-            return (X)this;
+            return (TCondition)this;
         }
 
 
