@@ -15,7 +15,7 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsNotNull().Fail(ExceptionTypes.Null);
+                foo.Condition().IsNotNull().Fail();
             }
         }
 
@@ -25,7 +25,7 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsNull().Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().IsNull().Fail();
             }
             {
                 string foo = null;
@@ -45,7 +45,7 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsOfType<int>().Fail(ExceptionTypes.WrongType);
+                foo.Condition().IsOfType<int>().Fail();
             }
         }
 
@@ -55,7 +55,7 @@ namespace MPConditions.Test.UnitTests
 
         }
 
-        [Fact]
+        [Fact(Skip = "How to test for strings")]
         public void Match()
         {
 
@@ -73,17 +73,17 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsWith("Miko").Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().StartsWith("Miko").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().StartsWith("Miko").Fail(ExceptionTypes.Null);
+                foo.Condition().StartsWith("Miko").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().StartsWith("Miko").Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().StartsWith("Miko").Fail();
             }
         }
 
@@ -108,29 +108,63 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().Is("mike was here").Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().Is("mike was here").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().Is("Mike was hero").Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().Is("Mike was hero").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().Is("Miko").Fail(ExceptionTypes.Null);
+                foo.Condition().Is("Miko").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().Is("Miko").Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().Is("Miko").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().Is("").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().Is(null).Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().Is(null).Success();
             }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void IsOneOf()
         {
+            {
+                string foo = "Mike";
 
+                foo.Condition().IsOneOf(null).Throws();
+            }
+            {
+                string foo = "Mike";
+
+                foo.Condition().IsOneOf("foo", "bar").Fail();
+            }
+            {
+                string foo = "Mike";
+
+                foo.Condition().IsOneOf("foo", "Mike", "bar").Success();
+            }
+            {
+                string foo = "Mike";
+
+                foo.Condition().IsOneOf("foo", "mike", "bar").Fail();
+            }
         }
 
         //[Fact]
@@ -155,25 +189,64 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsEquivalentTo("Mike was hero").Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().IsEquivalentTo("Mike was hero").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().IsEquivalentTo("Miko").Fail(ExceptionTypes.Null);
+                foo.Condition().IsEquivalentTo("Miko").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsEquivalentTo("Miko").Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().IsEquivalentTo("Miko").Fail();
             }
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void IsNot()
         {
+            {
+                string foo = "Mike was here";
 
+                foo.Condition().IsNot("Mike was here").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().IsNot("mike was here").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().IsNot("Mike was hero").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().IsNot("Miko").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().IsNot("Miko").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().IsNot("").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().IsNot(null).Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().IsNot(null).Fail();
+            }
         }
 
         [Fact(Skip = "Inconclusive")]
@@ -304,17 +377,17 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsNotBlank().Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().IsNotBlank().Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsNotBlank().Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().IsNotBlank().Fail();
             }
             {
                 string foo = " ";
 
-                foo.Condition().IsNotBlank().Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().IsNotBlank().Fail();
             }
             {
                 string foo = "Whatever";
@@ -344,7 +417,7 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Whatever";
 
-                foo.Condition().IsBlank().Fail(ExceptionTypes.OutOfRange);
+                foo.Condition().IsBlank().Fail();
             }
         }
     }

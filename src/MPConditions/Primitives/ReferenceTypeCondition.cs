@@ -101,11 +101,6 @@ namespace MPConditions.Primitives
         {
             this.Push(() =>
             {
-                if(typeof(T).IsAssignableFrom(this.SubjectValue.GetType()))
-                {
-                    return null;
-                }
-
                 return predicate((T)this.SubjectValue)
                     ? null
                     : new ValidationInfo(ExceptionTypes.WrongMatch);

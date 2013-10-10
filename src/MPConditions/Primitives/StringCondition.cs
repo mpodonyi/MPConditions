@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MPConditions.Core;
 
 namespace MPConditions.Primitives
@@ -148,22 +149,10 @@ namespace MPConditions.Primitives
         {
             this.Push(() =>
             {
-                if(expected == null)
-                    throw new NullReferenceException("Cannot compare start of string with <null>.");
-                if(expected.Length == 0)
-                    throw new ArgumentException("Cannot compare start of string with empty string.");
+                if(string.Equals(this.SubjectValue,expected,StringComparison.CurrentCulture))
+                    return null;
 
-                if(this.SubjectValue == null)
-                {
-                    return new ValidationInfo(ExceptionTypes.Null, expected);
-                }
-
-                if(!this.SubjectValue.Equals(expected,StringComparison.CurrentCulture))
-                {
-                    return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
-                }
-
-                return null;
+                return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
             });
 
             return this;
@@ -171,11 +160,21 @@ namespace MPConditions.Primitives
 
         public StringCondition IsOneOf(params string[] validValues)
         {
-            return this;
+            return this.IsOneOf((IEnumerable<string>)validValues);
         }
 
         public StringCondition IsOneOf(IEnumerable<string> validValues)
         {
+            this.Push(() =>
+            {
+                if(Enumerable.Contains<string>(validValues, this.SubjectValue))
+                {
+                    return null;
+                }
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange, validValues);
+            });
+
             return this;
         }
 
@@ -206,6 +205,15 @@ namespace MPConditions.Primitives
 
         public StringCondition IsNot(string unexpected)
         {
+
+            this.Push(() =>
+            {
+                if(string.Equals(this.SubjectValue, unexpected, StringComparison.CurrentCulture))
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, unexpected);
+
+                return null;
+            });
+
             return this;
         }
 
