@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MPConditions.Core;
 
 namespace MPConditions.Primitives
@@ -149,7 +150,7 @@ namespace MPConditions.Primitives
         {
             this.Push(() =>
             {
-                if(string.Equals(this.SubjectValue,expected,StringComparison.CurrentCulture))
+                if(string.Equals(this.SubjectValue, expected, StringComparison.CurrentCulture))
                     return null;
 
                 return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
@@ -217,59 +218,244 @@ namespace MPConditions.Primitives
             return this;
         }
 
+        private static bool Match(string subject, string pattern, RegexOptions regexOptions)
+        {
+            if(subject == null && pattern == null)
+                return true;
+
+            if(subject == null || pattern == null)
+                return false;
+
+            string regex = "^" + Regex.Escape(pattern).Replace("\\*", ".*").Replace("\\?", ".") + "$";
+
+            return Regex.IsMatch(subject, regex, regexOptions | RegexOptions.Singleline);
+        }
+
         public StringCondition Matches(string wildcardPattern)
         {
+            this.Push(() =>
+            {
+                if(Match(this.SubjectValue, wildcardPattern, RegexOptions.None))
+                    return null;
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange, wildcardPattern);
+            });
+
             return this;
         }
 
         public StringCondition MatchesNot(string wildcardPattern)
         {
+            this.Push(() =>
+            {
+                if(!Match(this.SubjectValue, wildcardPattern, RegexOptions.None))
+                    return null;
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange, wildcardPattern);
+            });
+
             return this;
         }
 
         public StringCondition MatchesEquivalentOf(string wildcardPattern)
         {
+            this.Push(() =>
+            {
+                if(Match(this.SubjectValue, wildcardPattern, RegexOptions.IgnoreCase))
+                    return null;
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange, wildcardPattern);
+            });
+
             return this;
         }
 
         public StringCondition MatchesNotEquivalentOf(string wildcardPattern)
         {
+            this.Push(() =>
+            {
+                if(!Match(this.SubjectValue, wildcardPattern, RegexOptions.IgnoreCase))
+                    return null;
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange, wildcardPattern);
+            });
+
             return this;
         }
 
         public StringCondition StartsNotWith(string unexpected)
         {
+            this.Push(() =>
+            {
+                if(unexpected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(unexpected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return null;
+                }
+
+                if(this.SubjectValue.StartsWith(unexpected))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, unexpected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition StartsWithEquivalent(string expected)
         {
+            this.Push(() =>
+            {
+                if(expected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(expected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.Null, expected);
+                }
+
+                if(!this.SubjectValue.StartsWith(expected, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition StartsNotWithEquivalentOf(string unexpected)
         {
+            this.Push(() =>
+            {
+                if(unexpected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(unexpected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return null;
+                }
+
+                if(this.SubjectValue.StartsWith(unexpected, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, unexpected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition EndsWith(string expected)
         {
+            this.Push(() =>
+            {
+                if(expected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(expected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.Null, expected);
+                }
+
+                if(!this.SubjectValue.EndsWith(expected))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
 
         public StringCondition EndsNotWith(string unexpected)
         {
+            this.Push(() =>
+            {
+                if(unexpected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(unexpected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return null;
+                }
+
+                if(this.SubjectValue.EndsWith(unexpected))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, unexpected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition EndsWithEquivalent(string expected)
         {
+            this.Push(() =>
+            {
+                if(expected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(expected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.Null, expected);
+                }
+
+                if(!this.SubjectValue.EndsWith(expected, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition EndsNotWithEquivalentOf(string unexpected)
         {
+            this.Push(() =>
+            {
+                if(unexpected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(unexpected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return null;
+                }
+
+                if(this.SubjectValue.EndsWith(unexpected, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, unexpected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
@@ -296,26 +482,91 @@ namespace MPConditions.Primitives
 
         public StringCondition IsEmpty()
         {
+            this.Push(() =>
+            {
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange);
+                }
+
+                if(this.SubjectValue.Length == 0)
+                {
+                    return null;
+                }
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange);
+            });
+
             return this;
         }
 
         public StringCondition IsNotEmpty()
         {
+            this.Push(() =>
+            {
+                if(this.SubjectValue == null)
+                {
+                    return null;
+                }
+
+                if(this.SubjectValue.Length == 0)
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition HasLength(int expected)
         {
+            this.Push(() =>
+            {
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange);
+                }
+
+                if(this.SubjectValue.Length == expected)
+                {
+                    return null;
+                }
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange);
+            });
+
             return this;
         }
 
         public StringCondition IsNotNullOrEmpty()
         {
+            this.Push(() =>
+            {
+                if(!string.IsNullOrEmpty(this.SubjectValue))
+                {
+                    return null;
+                }
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange);
+            });
+
             return this;
         }
 
         public StringCondition IsNullOrEmpty()
         {
+            this.Push(() =>
+            {
+                if(string.IsNullOrEmpty(this.SubjectValue))
+                {
+                    return null;
+                }
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange);
+            });
+
             return this;
         }
 

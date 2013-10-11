@@ -49,17 +49,17 @@ namespace MPConditions.Test.UnitTests
             }
         }
 
-        [Fact(Skip = "How to test for strings")]
+        [Fact(Skip = "How to test for strings (from ReferenceTypeCondition)")]
         public void IsAssignableTo()
         {
 
         }
 
-        [Fact(Skip = "How to test for strings")]
-        public void Match()
-        {
+        //[Fact(Skip = "How to test for strings (from ReferenceTypeCondition)")]
+        //public void Matches()
+        //{
 
-        }
+        //}
 
 
         [Fact]
@@ -69,6 +69,11 @@ namespace MPConditions.Test.UnitTests
                 string foo = "Mike was here";
 
                 foo.Condition().StartsWith("Mike").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsWith("mike").Fail();
             }
             {
                 string foo = "Mike was here";
@@ -84,6 +89,16 @@ namespace MPConditions.Test.UnitTests
                 string foo = "";
 
                 foo.Condition().StartsWith("Miko").Fail();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().StartsWith(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().StartsWith("").Throws();
             }
         }
 
@@ -249,71 +264,453 @@ namespace MPConditions.Test.UnitTests
             }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void Matches()
         {
+            {
+                string foo = "Foo@Bar.Com";
 
+                foo.Condition().Matches("*@*.Com").Success();
+            }
+            {
+                string foo = "Foo@Bar.Com";
+
+                foo.Condition().Matches("*@*.com").Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().Matches(null).Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().Matches("").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().Matches(null).Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().Matches("").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().Matches("*").Success();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void MatchesNot()
         {
+            {
+                string foo = "Foo@Bar.Com";
 
+                foo.Condition().MatchesNot("*@*.Com").Fail();
+            }
+            {
+                string foo = "Foo@Bar.Com";
+
+                foo.Condition().MatchesNot("*@*.com").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().MatchesNot(null).Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().MatchesNot("").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesNot(null).Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesNot("").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesNot("*").Fail();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void MatchesEquivalentOf()
         {
+            {
+                string foo = "Foo@Bar.Com";
+
+                foo.Condition().MatchesEquivalentOf("*@*.Com").Success();
+            }
+            {
+                string foo = "Foo@Bar.Com";
+
+                foo.Condition().MatchesEquivalentOf("*@*.com").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().MatchesEquivalentOf(null).Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().MatchesEquivalentOf("").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesEquivalentOf(null).Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesEquivalentOf("").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesEquivalentOf("*").Success();
+            }
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void MatchesNotEquivalentOf()
         {
+            {
+                string foo = "Foo@Bar.Com";
+
+                foo.Condition().MatchesNotEquivalentOf("*@*.Com").Fail();
+            }
+            {
+                string foo = "Foo@Bar.Com";
+
+                foo.Condition().MatchesNotEquivalentOf("*@*.com").Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().MatchesNotEquivalentOf(null).Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().MatchesNotEquivalentOf("").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesNotEquivalentOf(null).Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesNotEquivalentOf("").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().MatchesNotEquivalentOf("*").Fail();
+            }
 
         }
 
 
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void StartsNotWith()
         {
+            {
+                string foo = "Mike was here";
 
+                foo.Condition().StartsNotWith("Mike").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsNotWith("mike").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsNotWith("Miko").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().StartsNotWith("Miko").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().StartsNotWith("Miko").Success();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().StartsNotWith(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().StartsNotWith("").Throws();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void StartsWithEquivalent()
         {
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsWithEquivalent("Mike").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsWithEquivalent("mike").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsWithEquivalent("Miko").Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().StartsWithEquivalent("Miko").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().StartsWithEquivalent("Miko").Fail();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().StartsWithEquivalent(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().StartsWithEquivalent("").Throws();
+            }
+
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void StartsNotWithEquivalentOf()
         {
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsNotWithEquivalentOf("Mike").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsNotWithEquivalentOf("mike").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().StartsNotWithEquivalentOf("Miko").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().StartsNotWithEquivalentOf("Miko").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().StartsNotWithEquivalentOf("Miko").Success();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().StartsNotWithEquivalentOf(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().StartsNotWithEquivalentOf("").Throws();
+            }
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void EndsWith()
         {
+            {
+                string foo = "Mike was here";
 
+                foo.Condition().EndsWith("here").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsWith("Here").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsWith("hero").Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().EndsWith("hero").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().EndsWith("hero").Fail();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().EndsWith(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().EndsWith("").Throws();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void EndsNotWith()
         {
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsNotWith("here").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsNotWith("Here").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsNotWith("hero").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().EndsNotWith("hero").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().EndsNotWith("hero").Success();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().EndsNotWith(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().EndsNotWith("").Throws();
+            }
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void EndsWithEquivalent()
         {
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsWithEquivalent("here").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsWithEquivalent("Here").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsWithEquivalent("hero").Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().EndsWithEquivalent("hero").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().EndsWithEquivalent("hero").Fail();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().EndsWithEquivalent(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().EndsWithEquivalent("").Throws();
+            }
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void EndsNotWithEquivalentOf()
         {
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsNotWithEquivalentOf("here").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsNotWithEquivalentOf("Here").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().EndsNotWithEquivalentOf("hero").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().EndsNotWithEquivalentOf("hero").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().EndsNotWithEquivalentOf("hero").Success();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().EndsNotWithEquivalentOf(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().EndsNotWithEquivalentOf("").Throws();
+            }
 
         }
 
@@ -341,33 +738,145 @@ namespace MPConditions.Test.UnitTests
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void IsEmpty()
         {
+            {
+                string foo = null;
 
+                foo.Condition().IsEmpty().Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().IsEmpty().Success();
+            }
+            {
+                string foo = " ";
+
+                foo.Condition().IsEmpty().Fail();
+            }
+            {
+                string foo = "Whatever";
+
+                foo.Condition().IsEmpty().Fail();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void IsNotEmpty()
         {
+            {
+                string foo = null;
 
+                foo.Condition().IsNotEmpty().Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().IsNotEmpty().Fail();
+            }
+            {
+                string foo = " ";
+
+                foo.Condition().IsNotEmpty().Success();
+            }
+            {
+                string foo = "Whatever";
+
+                foo.Condition().IsNotEmpty().Success();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void HasLength()
         {
+            {
+                string foo = null;
 
+                foo.Condition().HasLength(8).Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().HasLength(8).Fail();
+            }
+            {
+                string foo = " ";
+
+                foo.Condition().HasLength(8).Fail();
+            }
+            {
+                string foo = "Whatever";
+
+                foo.Condition().HasLength(8).Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().HasLength(0).Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().HasLength(0).Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().HasLength(-5).Fail();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void IsNotNullOrEmpty()
         {
+            {
+                string foo = null;
+
+                foo.Condition().IsNotNullOrEmpty().Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().IsNotNullOrEmpty().Fail();
+            }
+            {
+                string foo = " ";
+
+                foo.Condition().IsNotNullOrEmpty().Success();
+            }
+            {
+                string foo = "Whatever";
+
+                foo.Condition().IsNotNullOrEmpty().Success();
+            }
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void IsNullOrEmpty()
         {
+            {
+                string foo = null;
+
+                foo.Condition().IsNullOrEmpty().Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().IsNullOrEmpty().Success();
+            }
+            {
+                string foo = " ";
+
+                foo.Condition().IsNullOrEmpty().Fail();
+            }
+            {
+                string foo = "Whatever";
+
+                foo.Condition().IsNullOrEmpty().Fail();
+            }
 
         }
 

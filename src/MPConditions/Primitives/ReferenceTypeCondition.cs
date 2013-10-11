@@ -92,12 +92,12 @@ namespace MPConditions.Primitives
             return (TCondition)this;
         }
 
-        public TCondition Match(Func<TSubject, bool> predicate)
+        public TCondition Matches(Func<TSubject, bool> predicate)
         {
-            return this.Match<TSubject>(predicate);
+            return this.Matches<TSubject>(predicate);
         }
 
-        public TCondition Match<T>(Func<T, bool> predicate) where T : TSubject
+        public TCondition Matches<T>(Func<T, bool> predicate) where T : TSubject
         {
             this.Push(() =>
             {
