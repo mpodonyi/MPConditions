@@ -714,27 +714,165 @@ namespace MPConditions.Test.UnitTests
 
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void Contains()
         {
+            {
+                string foo = "Mike was here";
 
+                foo.Condition().Contains("was").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().Contains("Was").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().Contains("wos").Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().Contains("wos").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().Contains("wos").Fail();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().Contains(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().Contains("").Throws();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void ContainsEquivalentOf()
         {
+            {
+                string foo = "Mike was here";
 
+                foo.Condition().ContainsEquivalentOf("was").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().ContainsEquivalentOf("Was").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().ContainsEquivalentOf("wos").Fail();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().ContainsEquivalentOf("wos").Fail();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().ContainsEquivalentOf("wos").Fail();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().ContainsEquivalentOf(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().ContainsEquivalentOf("").Throws();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void ContainsNot()
         {
+            {
+                string foo = "Mike was here";
 
+                foo.Condition().ContainsNot("was").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().ContainsNot("Was").Success();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().ContainsNot("wos").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().ContainsNot("wos").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().ContainsNot("wos").Success();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().ContainsNot(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().ContainsNot("").Throws();
+            }
         }
 
-        [Fact(Skip = "Inconclusive")]
+        [Fact]
         public void ContainsNotEquivalentOf()
         {
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().ContainsNotEquivalentOf("was").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().ContainsNotEquivalentOf("Was").Fail();
+            }
+            {
+                string foo = "Mike was here";
+
+                foo.Condition().ContainsNotEquivalentOf("wos").Success();
+            }
+            {
+                string foo = null;
+
+                foo.Condition().ContainsNotEquivalentOf("wos").Success();
+            }
+            {
+                string foo = "";
+
+                foo.Condition().ContainsNotEquivalentOf("wos").Success();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().ContainsNotEquivalentOf(null).Throws();
+            }
+            {
+                string foo = "foo";
+
+                foo.Condition().ContainsNotEquivalentOf("").Throws();
+            }
+
 
         }
 

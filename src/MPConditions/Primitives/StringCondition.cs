@@ -461,21 +461,101 @@ namespace MPConditions.Primitives
 
         public StringCondition Contains(string expected)
         {
+            this.Push(() =>
+            {
+                if(expected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(expected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.Null, expected);
+                }
+
+                if(!this.SubjectValue.Contains(expected))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition ContainsEquivalentOf(string expected)
         {
+            this.Push(() =>
+            {
+                if(expected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(expected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return new ValidationInfo(ExceptionTypes.Null, expected);
+                }
+
+                if(this.SubjectValue.IndexOf(expected, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                {
+                    return null;
+                }
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange, expected);
+            });
+
             return this;
         }
 
-        public StringCondition ContainsNot(string expected)
+        public StringCondition ContainsNot(string unexpected)
         {
+            this.Push(() =>
+            {
+                if(unexpected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(unexpected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return null;
+                }
+
+                if(this.SubjectValue.Contains(unexpected))
+                {
+                    return new ValidationInfo(ExceptionTypes.OutOfRange, unexpected);
+                }
+
+                return null;
+            });
+
             return this;
         }
 
         public StringCondition ContainsNotEquivalentOf(string unexpected)
         {
+            this.Push(() =>
+            {
+                if(unexpected == null)
+                    throw new NullReferenceException("Cannot compare start of string with <null>.");
+                if(unexpected.Length == 0)
+                    throw new ArgumentException("Cannot compare start of string with empty string.");
+
+                if(this.SubjectValue == null)
+                {
+                    return null;
+                }
+
+                if(!(this.SubjectValue.IndexOf(unexpected, StringComparison.CurrentCultureIgnoreCase) >= 0))
+                {
+                    return null;
+                }
+
+                return new ValidationInfo(ExceptionTypes.OutOfRange, unexpected);
+            });
+
             return this;
         }
 
