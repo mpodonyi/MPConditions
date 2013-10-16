@@ -63,12 +63,11 @@
     <Compile Include="Helper.cs" />
     <Compile Include="ThrowTest.cs" />
     <Compile Include="StringTest.cs" />
-    <Compile Include="NumericTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTests\NullableNumericTests.cs" />
-    <Compile Include="UnitTests\NumericTests.cs" />
-    <Compile Include="UnitTests\GeneralTests.cs" />
-    <Compile Include="UnitTests\StringTests.cs" />
+    <Compile Include="UnitTests\NullableNumericConditionTests.cs" />
+    <Compile Include="UnitTests\NumericConditionTests.cs" />
+    <Compile Include="UnitTests\ConditionBaseExtensionTests.cs" />
+    <Compile Include="UnitTests\StringConditionTests.cs" />
     <Compile Include="UniversalNumberComparerTest.cs" />
   </ItemGroup>
   <ItemGroup>

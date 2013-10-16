@@ -103,7 +103,7 @@ namespace MPConditions.Primitives
             this.Push(() =>
             {
                 if(object.ReferenceEquals(SubjectValue, expected)
-                   // || object.ReferenceEquals(SubjectValue, null) && object.ReferenceEquals(expected, null)
+                    // || object.ReferenceEquals(SubjectValue, null) && object.ReferenceEquals(expected, null)
                     || !object.ReferenceEquals(SubjectValue, null) && !object.ReferenceEquals(expected, null) && SubjectValue.Value.CompareTo(expected.Value) == 0)
                 {
                     return null;
@@ -286,7 +286,7 @@ namespace MPConditions.Primitives
         {
             this.Push(() =>
             {
-                if(!this.SubjectValue.HasValue && !object.ReferenceEquals(validValues,null))
+                if(!this.SubjectValue.HasValue && !object.ReferenceEquals(validValues, null))
                     return new ValidationInfo(ExceptionTypes.Null);
 
                 if(Enumerable.Contains<TSubject>(validValues, this.SubjectValue.Value))

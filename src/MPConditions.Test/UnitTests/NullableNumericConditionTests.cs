@@ -2,7 +2,7 @@
 
 namespace MPConditions.Test.UnitTests
 {
-    public class NullableNumericTests
+    public class NullableNumericConditionTests
     {
 
         [Fact]

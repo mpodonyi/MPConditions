@@ -1,10 +1,8 @@
 ﻿using System;
-using MPConditions.Core;
-using MPConditions.Numeric;
 
 namespace MPConditions.Primitives
 {
-    public class NumberCondition<TSubject, TOriginalSubject> : NumberConditionBase<TSubject, TOriginalSubject, NumberCondition<TSubject, TOriginalSubject> >
+    public class NumberCondition<TSubject, TOriginalSubject> : NumberConditionBase<TSubject, TOriginalSubject, NumberCondition<TSubject, TOriginalSubject>>
        where TSubject : struct, IComparable<TSubject>
     {
 
@@ -18,10 +16,10 @@ namespace MPConditions.Primitives
         {
         }
 
-    
+
 
     }
 
-  
+
 
 }

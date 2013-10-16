@@ -74,17 +74,15 @@
     <None Include="MPConditions.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ConditionBase.cs" />
-    <Compile Include="ConditionExtensions.cs" />
+    <Compile Include="ConditionBaseExtensions.cs" />
     <Compile Include="ConditionExceptionExtensions.cs" />
     <Compile Include="ExceptionTypes.cs" />
     <Compile Include="Core\ValidationInfo.cs" />
     <Compile Include="Core\ExecutionTypes.cs" />
     <Compile Include="Core\ICondition.cs" />
-    <Compile Include="IFluentInterface.cs" />
     <Compile Include="Exceptions\ConditionException.cs" />
     <Compile Include="NumericConditionsExtensions.cs" />
     <Compile Include="Primitives\NumberConditionBase.cs" />

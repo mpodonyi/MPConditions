@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 
 namespace MPConditions.Core
 {
-    public abstract class ConditionBase<TSubject, TOriginalSubject> : IFluentInterface
+    public abstract class ConditionBase<TSubject, TOriginalSubject>
     {
         public string SubjectName
         {
@@ -168,9 +169,36 @@ namespace MPConditions.Core
         }
 
 
+        #region FluentOverrides
 
+        /// <summary>
+        /// Redeclaration that hides the <see cref="object.GetType()"/> method from IntelliSense.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new Type GetType()
+        { return base.GetType(); }
 
+        /// <summary>
+        /// Redeclaration that hides the <see cref="object.GetHashCode()"/> method from IntelliSense.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        { return base.GetHashCode(); }
 
+        /// <summary>
+        /// Redeclaration that hides the <see cref="object.ToString()"/> method from IntelliSense.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override string ToString()
+        { return base.ToString(); }
 
+        /// <summary>
+        /// Redeclaration that hides the <see cref="object.Equals(object)"/> method from IntelliSense.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj)
+        { return base.Equals(obj); }
+
+        #endregion
     }
 }

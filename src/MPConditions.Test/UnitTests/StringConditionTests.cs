@@ -2,7 +2,7 @@
 
 namespace MPConditions.Test.UnitTests
 {
-    public class StringTests
+    public class StringConditionTests
     {
         [Fact]
         public void IsNotNull()
