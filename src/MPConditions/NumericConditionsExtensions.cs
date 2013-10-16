@@ -19,18 +19,18 @@ namespace MPConditions
             return new NumberCondition<sbyte, sbyte>(value, name);
         }
         [CLSCompliant(false)]
-        public static NullableNumberCondition<sbyte, sbyte> Condition(this sbyte? value, string name = null)
+        public static NullableNumberCondition<sbyte, sbyte?> Condition(this sbyte? value, string name = null)
         {
-            return new NullableNumberCondition<sbyte, sbyte>(value, name);
+            return new NullableNumberCondition<sbyte, sbyte?>(value, name);
         }
 
         public static NumberCondition<byte, byte> Condition(this byte value, string name = null)
         {
             return new NumberCondition<byte, byte>(value, name);
         }
-        public static NullableNumberCondition<byte, byte> Condition(this byte? value, string name = null)
+        public static NullableNumberCondition<byte, byte?> Condition(this byte? value, string name = null)
         {
-            return new NullableNumberCondition<byte, byte>(value, name);
+            return new NullableNumberCondition<byte, byte?>(value, name);
         }
 
 
@@ -38,9 +38,9 @@ namespace MPConditions
         {
             return new NumberCondition<short, short>(value, name);
         }
-        public static NullableNumberCondition<short, short> Condition(this short? value, string name = null)
+        public static NullableNumberCondition<short, short?> Condition(this short? value, string name = null)
         {
-            return new NullableNumberCondition<short, short>(value, name);
+            return new NullableNumberCondition<short, short?>(value, name);
         }
 
         [CLSCompliant(false)]
@@ -50,9 +50,9 @@ namespace MPConditions
         }
 
         [CLSCompliant(false)]
-        public static NullableNumberCondition<ushort, ushort> Condition(this ushort? value, string name = null)
+        public static NullableNumberCondition<ushort, ushort?> Condition(this ushort? value, string name = null)
         {
-            return new NullableNumberCondition<ushort, ushort>(value, name);
+            return new NullableNumberCondition<ushort, ushort?>(value, name);
         }
 
 
@@ -60,9 +60,9 @@ namespace MPConditions
         {
             return new NumberCondition<int, int>(value, name);
         }
-        public static NullableNumberCondition<int, int> Condition(this int? value, string name = null)
+        public static NullableNumberCondition<int, int?> Condition(this int? value, string name = null)
         {
-            return new NullableNumberCondition<int, int>(value, name);
+            return new NullableNumberCondition<int, int?>(value, name);
         }
 
         [CLSCompliant(false)]
@@ -71,9 +71,9 @@ namespace MPConditions
             return new NumberCondition<uint, uint>(value, name);
         }
         [CLSCompliant(false)]
-        public static NullableNumberCondition<uint, uint> Condition(this uint? value, string name = null)
+        public static NullableNumberCondition<uint, uint?> Condition(this uint? value, string name = null)
         {
-            return new NullableNumberCondition<uint, uint>(value, name);
+            return new NullableNumberCondition<uint, uint?>(value, name);
         }
 
 
@@ -81,9 +81,9 @@ namespace MPConditions
         {
             return new NumberCondition<long, long>(value, name);
         }
-        public static NullableNumberCondition<long, long> Condition(this long? value, string name = null)
+        public static NullableNumberCondition<long, long?> Condition(this long? value, string name = null)
         {
-            return new NullableNumberCondition<long, long>(value, name);
+            return new NullableNumberCondition<long, long?>(value, name);
         }
 
         [CLSCompliant(false)]
@@ -92,9 +92,9 @@ namespace MPConditions
             return new NumberCondition<ulong, ulong>(value, name);
         }
         [CLSCompliant(false)]
-        public static NullableNumberCondition<ulong, ulong> Condition(this ulong? value, string name = null)
+        public static NullableNumberCondition<ulong, ulong?> Condition(this ulong? value, string name = null)
         {
-            return new NullableNumberCondition<ulong, ulong>(value, name);
+            return new NullableNumberCondition<ulong, ulong?>(value, name);
         }
 
 
@@ -102,9 +102,9 @@ namespace MPConditions
         {
             return new NumberCondition<float, float>(value, name);
         }
-        public static NullableNumberCondition<float, float> Condition(this float? value, string name = null)
+        public static NullableNumberCondition<float, float?> Condition(this float? value, string name = null)
         {
-            return new NullableNumberCondition<float, float>(value, name);
+            return new NullableNumberCondition<float, float?>(value, name);
         }
 
 
@@ -112,9 +112,9 @@ namespace MPConditions
         {
             return new NumberCondition<double, double>(value, name);
         }
-        public static NullableNumberCondition<double, double> Condition(this double? value, string name = null)
+        public static NullableNumberCondition<double, double?> Condition(this double? value, string name = null)
         {
-            return new NullableNumberCondition<double, double>(value, name);
+            return new NullableNumberCondition<double, double?>(value, name);
         }
 
 
@@ -122,9 +122,9 @@ namespace MPConditions
         {
             return new NumberCondition<decimal, decimal>(value, name);
         }
-        public static NullableNumberCondition<decimal, decimal> Condition(this decimal? value, string name = null)
+        public static NullableNumberCondition<decimal, decimal?> Condition(this decimal? value, string name = null)
         {
-            return new NullableNumberCondition<decimal, decimal>(value, name);
+            return new NullableNumberCondition<decimal, decimal?>(value, name);
         }
 
     }

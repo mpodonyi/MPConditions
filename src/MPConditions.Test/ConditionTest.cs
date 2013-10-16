@@ -19,29 +19,29 @@ namespace MPConditions.Test
         }
 
 
-        [Fact]
-        public void Pass_Success()
-        {
-            int foo = 5;
+        //[Fact]
+        //public void Pass_Success()
+        //{
+        //    int foo = 5;
 
-            bool result = foo.Condition("foo").Between(3, 6).Pass();
-            result.Should().BeTrue();
+        //    bool result = foo.Condition("foo").Between(3, 6).Pass();
+        //    result.Should().BeTrue();
 
-            string bar = "5";
+        //    string bar = "5";
 
-            bool result2 = bar.Condition("bar").AsNumber<int>().Between(3, 6).Pass();
-            result2.Should().BeTrue();
-        }
+        //    bool result2 = bar.Condition("bar").AsNumber<int>().Between(3, 6).Pass();
+        //    result2.Should().BeTrue();
+        //}
 
-        [Fact]
-        public void Pass_Fail()
-        {
-            int foo = 2;
+        //[Fact]
+        //public void Pass_Fail()
+        //{
+        //    int foo = 2;
 
-            bool result = foo.Condition("foo").Between(3, 6).Pass();
+        //    bool result = foo.Condition("foo").Between(3, 6).Pass();
 
-            result.Should().BeFalse();
-        }
+        //    result.Should().BeFalse();
+        //}
 
 
 

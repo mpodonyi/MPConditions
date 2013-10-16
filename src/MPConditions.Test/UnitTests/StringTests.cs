@@ -52,6 +52,7 @@ namespace MPConditions.Test.UnitTests
         [Fact(Skip = "How to test for strings (from ReferenceTypeCondition)")]
         public void IsAssignableTo()
         {
+            return;
 
         }
 
@@ -160,6 +161,11 @@ namespace MPConditions.Test.UnitTests
         [Fact]
         public void IsOneOf()
         {
+            {
+                string foo = null;
+
+                foo.Condition().IsOneOf("foo", "bar").Fail();
+            }
             {
                 string foo = "Mike";
 

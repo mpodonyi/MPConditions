@@ -18,51 +18,51 @@ namespace MPConditions.Test
         }
 
 
-        [Fact]
-        public void Int_Between_Success()
-        {
-            int foo = 5;
+        //[Fact]
+        //public void Int_Between_Success()
+        //{
+        //    int foo = 5;
 
-            foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
-        }
+        //    foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
+        //}
 
-        [Fact]
-        public void Int_Between_Fail()
-        {
-            int foo = 5;
+        //[Fact]
+        //public void Int_Between_Fail()
+        //{
+        //    int foo = 5;
 
-            var result = foo.Condition("foo").Between(8, 12).GetResult();
+        //    var result = foo.Condition("foo").Between(8, 12).GetResult();
 
-            result.Should().NotBeNull();
-            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
-        }
+        //    result.Should().NotBeNull();
+        //    result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
+        //}
 
 
-        [Fact]
-        public void Int_Nullable_Between_Success()
-        {
-            int? foo = 5;
+        //[Fact]
+        //public void Int_Nullable_Between_Success()
+        //{
+        //    int? foo = 5;
 
-            foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
-        }
+        //    foo.Condition("foo").Between(3, 6).GetResult().ExceptionType.Should().Be(ExceptionTypes.None);
+        //}
 
-        [Fact]
-        public void Int_Nullable_Between_Fail()
-        {
-            int? foo = 5;
+        //[Fact]
+        //public void Int_Nullable_Between_Fail()
+        //{
+        //    int? foo = 5;
 
-            var result = foo.Condition("foo").Between(8, 12).GetResult();
+        //    var result = foo.Condition("foo").Between(8, 12).GetResult();
 
-            result.Should().NotBeNull();
-            result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
+        //    result.Should().NotBeNull();
+        //    result.ExceptionType.Should().Be(ExceptionTypes.OutOfRange);
 
-            foo = null;
+        //    foo = null;
 
-            result = foo.Condition("foo").Between(8, 12).GetResult();
+        //    result = foo.Condition("foo").Between(8, 12).GetResult();
 
-            result.Should().NotBeNull();
-            result.ExceptionType.Should().Be(ExceptionTypes.Null);
-        }
+        //    result.Should().NotBeNull();
+        //    result.ExceptionType.Should().Be(ExceptionTypes.Null);
+        //}
 
 
 

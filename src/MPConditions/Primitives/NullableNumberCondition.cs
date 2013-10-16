@@ -16,34 +16,36 @@ namespace MPConditions.Primitives
         {
         }
 
-        //public new NullableNumberCondition<T, V> Or
-        //{
-        //    get
-        //    {
-        //        return (NullableNumberCondition<T, V>)base.Or;
-        //    }
-        //}
+        public NullableNumberCondition<TSubject, TOriginalSubject> HasValue()
+        {
+            this.Push(() =>
+           {
+               if(!object.ReferenceEquals(SubjectValue, null))
+               {
+                   return null;
+               }
 
+               return new ValidationInfo(ExceptionTypes.OutOfRange);
+           });
 
-        //public new NullableNumberCondition<T, V> Between(T start, T end)
-        //{
-        //    return (NullableNumberCondition<T, V>)base.Between(start, end);
-        //}
+            return this;
+        }
 
-        public NullableNumberCondition<TSubject, TOriginalSubject> IsNotNull()
+        public NullableNumberCondition<TSubject, TOriginalSubject> HasNoValue()
         {
             this.Push(() =>
             {
-                if(!this.SubjectValue.HasValue)
+                if(object.ReferenceEquals(SubjectValue, null))
                 {
-                    return new ValidationInfo(ExceptionTypes.Null, "Value can not be [null]");
+                    return null;
                 }
 
-                return null;
+                return new ValidationInfo(ExceptionTypes.OutOfRange);
             });
 
             return this;
         }
+
 
 
     }
