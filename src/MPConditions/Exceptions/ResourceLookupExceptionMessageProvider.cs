@@ -2,7 +2,7 @@
 
 namespace MPConditions.Exceptions
 {
-    public class DefaultExceptionMessageProvider : IExceptionMessageProvider
+    public class ResourceLookupExceptionMessageProvider : IExceptionMessageProvider
     {
 
         #region IExceptionMessageProvider Members
@@ -44,7 +44,7 @@ namespace MPConditions.Exceptions
             {
                 if(object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MPConditions.Resources.ExceptionResources", typeof(DefaultExceptionMessageProvider).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MPConditions.Resources.ExceptionResources", typeof(ResourceLookupExceptionMessageProvider).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

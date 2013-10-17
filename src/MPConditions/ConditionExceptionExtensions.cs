@@ -1,52 +1,36 @@
-﻿using MPConditions.Core;
+﻿using System;
+using MPConditions.Core;
 using MPConditions.Exceptions;
 
 namespace MPConditions
 {
     public static class ConditionExceptionExtensions
     {
-        //public static V Throw<T, V>(this NumberCondition<T, V> condition)   where T : struct, IComparable<T>
-        //{
-        //    ValidationInfo execcontext = condition.GetResult();
-
-        //    if(execcontext.ExceptionType == ExceptionTypes.None)
-        //        return condition.OriginalSubjectValue;
-
-        //    throw ExceptionProvider.ArgumentExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
-        //}
-
-        //public static string Throw(this StringCondition condition) 
-        //{
-        //    ValidationInfo execcontext = condition.GetResult();
-
-        //    if(execcontext.ExceptionType == ExceptionTypes.None)
-        //        return condition.OriginalSubjectValue;
-
-        //    throw ExceptionProvider.ArgumentExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
-        //}
+        private static Exception GetArgumentException<TOriginalSubject>(ExceptionTypes exceptionType, string subjectName, TOriginalSubject subjectValue, string resourceKey, object[] args)
+        {
+            return ExceptionProvider.ArgumentExceptionProvider.GetException(exceptionType, subjectName, subjectValue, ExceptionMessageProvider.Current.GetExceptionMessage(exceptionType, subjectName, subjectValue, resourceKey, args));
+        }
 
 
-        //--------------
-
-        public static V Throw<T, V>(this ConditionBase<T, V> condition)
+        public static TOriginalSubject Throw<TSubject, TOriginalSubject>(this ConditionBase<TSubject, TOriginalSubject> condition)
         {
             ValidationInfo execcontext = condition.GetResult();
 
             if(execcontext.ExceptionType == ExceptionTypes.None)
                 return condition.OriginalSubjectValue;
 
-            throw ExceptionProvider.ArgumentExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
+            throw GetArgumentException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
         }
 
-        public static V ThrowEx<T, V>(this ConditionBase<T, V> condition)
-        {
-            ValidationInfo execcontext = condition.GetResult();
+        //public static V ThrowEx<T, V>(this ConditionBase<T, V> condition)
+        //{
+        //    ValidationInfo execcontext = condition.GetResult();
 
-            if(execcontext.ExceptionType == ExceptionTypes.None)
-                return condition.OriginalSubjectValue;
+        //    if(execcontext.ExceptionType == ExceptionTypes.None)
+        //        return condition.OriginalSubjectValue;
 
-            throw ExceptionProvider.ConditionExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
-        }
+        //    throw ExceptionProvider.ConditionExceptionProvider.GetException(execcontext.ExceptionType, condition.SubjectName, condition.OriginalSubjectValue, execcontext.ResourceKey, execcontext.Args);
+        //}
 
     }
 }

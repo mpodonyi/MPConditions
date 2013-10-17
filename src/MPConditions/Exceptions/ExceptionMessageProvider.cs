@@ -1,15 +1,19 @@
 ﻿
+using System;
 namespace MPConditions.Exceptions
 {
     public static class ExceptionMessageProvider
     {
         static ExceptionMessageProvider()
         {
-            Current = new DefaultExceptionMessageProvider();
+            Current = new ResourceLookupExceptionMessageProvider();
         }
 
         public static void SetProvider(IExceptionMessageProvider provider)
         {
+            if(provider == null)
+                throw new ArgumentNullException();
+
             Current = provider;
         }
 

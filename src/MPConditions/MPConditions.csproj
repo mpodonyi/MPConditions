@@ -94,8 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringConditionsExtensions.cs" />
     <Compile Include="Exceptions\DefaultArgumentExceptionProvider.cs" />
-    <Compile Include="Exceptions\DefaultConditionExceptionProvider.cs" />
-    <Compile Include="Exceptions\DefaultExceptionMessageProvider.cs" />
+    <Compile Include="Exceptions\ResourceLookupExceptionMessageProvider.cs" />
     <Compile Include="Exceptions\ExceptionMessageProvider.cs" />
     <Compile Include="Exceptions\ExceptionProvider.cs" />
     <Compile Include="Exceptions\IExceptionMessageProvider.cs" />

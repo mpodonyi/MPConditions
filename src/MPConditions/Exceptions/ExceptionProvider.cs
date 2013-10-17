@@ -1,4 +1,5 @@
 ﻿
+using System;
 namespace MPConditions.Exceptions
 {
     public static class ExceptionProvider
@@ -6,8 +7,9 @@ namespace MPConditions.Exceptions
         static ExceptionProvider()
         {
             ArgumentExceptionProvider = new DefaultArgumentExceptionProvider();
-            ConditionExceptionProvider = new DefaultConditionExceptionProvider();
+            //ConditionExceptionProvider = new DefaultConditionExceptionProvider();
         }
+
 
         public static IExceptionProvider ArgumentExceptionProvider
         {
@@ -15,10 +17,18 @@ namespace MPConditions.Exceptions
             get;
         }
 
-        public static IExceptionProvider ConditionExceptionProvider
+        public static void SetArgumentExceptionProvider(IExceptionProvider argumentExceptionProvider)
         {
-            private set;
-            get;
+            if(argumentExceptionProvider == null)
+                throw new ArgumentNullException("argumentExceptionProvider");
+
+            ArgumentExceptionProvider = argumentExceptionProvider;
         }
+
+        //public static IExceptionProvider ConditionExceptionProvider
+        //{
+        //    private set;
+        //    get;
+        //}
     }
 }
