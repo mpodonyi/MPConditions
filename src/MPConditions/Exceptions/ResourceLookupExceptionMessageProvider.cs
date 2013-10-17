@@ -7,7 +7,7 @@ namespace MPConditions.Exceptions
 
         #region IExceptionMessageProvider Members
 
-        public string GetExceptionMessage(ExceptionTypes exceptionType, string subjectName, object subjectValue, string resourceKey, object[] args)
+        public string GetExceptionMessage<TOriginalSubject>(ExceptionTypes exceptionType, string subjectName, TOriginalSubject subjectValue, string resourceKey, object[] args)
         {
             resourceKey = resourceKey ?? GetExceptionTypeResourceKey(exceptionType);
 

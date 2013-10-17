@@ -3,6 +3,6 @@ namespace MPConditions.Exceptions
 {
     public interface IExceptionMessageProvider
     {
-        string GetExceptionMessage(ExceptionTypes exceptionType, string subjectName, object subjectValue, string resourceKey, object[] args);
+        string GetExceptionMessage<TOriginalSubject>(ExceptionTypes exceptionType, string subjectName, TOriginalSubject subjectValue, string resourceKey, object[] args);
     }
 }

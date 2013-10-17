@@ -8,7 +8,7 @@ namespace MPConditions
     {
         private static Exception GetArgumentException<TOriginalSubject>(ExceptionTypes exceptionType, string subjectName, TOriginalSubject subjectValue, string resourceKey, object[] args)
         {
-            return ExceptionProvider.ArgumentExceptionProvider.GetException(exceptionType, subjectName, subjectValue, ExceptionMessageProvider.Current.GetExceptionMessage(exceptionType, subjectName, subjectValue, resourceKey, args));
+            return ExceptionProvider.ArgumentExceptionProvider.GetException(exceptionType, subjectName, subjectValue, ExceptionMessageProvider.ArgumentExceptionMessageProvider.GetExceptionMessage(exceptionType, subjectName, subjectValue, resourceKey, args));
         }
 
 

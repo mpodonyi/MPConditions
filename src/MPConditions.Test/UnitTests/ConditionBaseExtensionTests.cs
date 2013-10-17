@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Xunit;
-using MPConditions;
 
 
 namespace MPConditions.Test.UnitTests
@@ -21,6 +20,6 @@ namespace MPConditions.Test.UnitTests
                 foo.Condition().IsInRange(6, 10).Pass().Should().BeFalse();
             }
         }
-       
+
     }
 }

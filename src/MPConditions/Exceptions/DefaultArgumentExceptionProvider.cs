@@ -4,7 +4,7 @@ namespace MPConditions.Exceptions
 {
     public class DefaultArgumentExceptionProvider : IExceptionProvider
     {
-        public Exception GetException(ExceptionTypes exceptionType, string subjectName, object subjectValue, string message)
+        public Exception GetException<TOriginalSubject>(ExceptionTypes exceptionType, string subjectName, TOriginalSubject subjectValue, string message)
         {
             switch(exceptionType)
             {

@@ -6,18 +6,18 @@ namespace MPConditions.Exceptions
     {
         static ExceptionMessageProvider()
         {
-            Current = new ResourceLookupExceptionMessageProvider();
+            ArgumentExceptionMessageProvider = new ResourceLookupExceptionMessageProvider();
         }
 
-        public static void SetProvider(IExceptionMessageProvider provider)
+        public static void SetArgumentExceptionMessageProvider(IExceptionMessageProvider argumentExceptionMessageProvider)
         {
-            if(provider == null)
+            if(argumentExceptionMessageProvider == null)
                 throw new ArgumentNullException();
 
-            Current = provider;
+            ArgumentExceptionMessageProvider = argumentExceptionMessageProvider;
         }
 
-        public static IExceptionMessageProvider Current
+        public static IExceptionMessageProvider ArgumentExceptionMessageProvider
         {
             private set;
             get;
