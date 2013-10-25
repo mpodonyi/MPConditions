@@ -4,7 +4,7 @@ namespace MPConditions
 {
     public static class StringConditionsExtensions
     {
-        public static StringCondition Condition(this string value, string name = null)
+        public static StringCondition Cond(this string value, string name = null)
         {
             return new StringCondition(value, name);
         }

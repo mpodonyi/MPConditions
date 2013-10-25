@@ -11,12 +11,12 @@ namespace MPConditions.Test.UnitTests
             {
                 int? foo = 5;
 
-                foo.Condition().HasValue().Success();
+                foo.Cond().HasValue().Success();
             }
             {
                 int? foo = null;
 
-                foo.Condition().HasValue().Fail();
+                foo.Cond().HasValue().Fail();
             }
         }
 
@@ -26,19 +26,19 @@ namespace MPConditions.Test.UnitTests
             {
                 int? foo = 5;
 
-                foo.Condition().HasNoValue().Fail();
+                foo.Cond().HasNoValue().Fail();
             }
             {
                 int? foo = null;
 
-                foo.Condition().HasNoValue().Success();
+                foo.Cond().HasNoValue().Success();
             }
 
 
             {
                 int? foo = null;
 
-                foo.Condition().HasNoValue().Or.IsInRange(5, 6).Success();
+                foo.Cond().HasNoValue().Or.IsInRange(5, 6).Success();
             }
         }
 

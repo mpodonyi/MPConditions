@@ -21,7 +21,7 @@ namespace MPConditions.Test
         {
             string foo = null;
 
-            Action act = () => foo.Condition("foo").IsNotNull().Throw();
+            Action act = () => foo.Cond("foo").IsNotNull().Throw();
 
             act.ShouldThrow<ArgumentNullException>();
         }
@@ -31,7 +31,7 @@ namespace MPConditions.Test
         {
             string foo = "foo";
 
-            Action act = () => foo.Condition("foo").IsNotNull().Throw();
+            Action act = () => foo.Cond("foo").IsNotNull().Throw();
 
             act.ShouldNotThrow();
         }

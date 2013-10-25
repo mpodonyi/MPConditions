@@ -12,25 +12,25 @@ namespace MPConditions.Test.UnitTests
                 int foo = 5;
                 int bar = 5;
 
-                foo.Condition().Is(bar).Success();
+                foo.Cond().Is(bar).Success();
             }
             {
                 int foo = 5;
                 int? bar = 5;
 
-                foo.Condition().Is(bar).Success();
+                foo.Cond().Is(bar).Success();
             }
             {
                 int? foo = 5;
                 int bar = 5;
 
-                foo.Condition().Is(bar).Success();
+                foo.Cond().Is(bar).Success();
             }
             {
                 int? foo = 5;
                 int? bar = 5;
 
-                foo.Condition().Is(bar).Success();
+                foo.Cond().Is(bar).Success();
             }
 
             //---------- 
@@ -38,39 +38,39 @@ namespace MPConditions.Test.UnitTests
                 int foo = 5;
                 int bar = 4;
 
-                foo.Condition().Is(bar).Fail();
+                foo.Cond().Is(bar).Fail();
             }
             {
                 int foo = 5;
                 int? bar = 4;
 
-                foo.Condition().Is(bar).Fail();
+                foo.Cond().Is(bar).Fail();
             }
             {
                 int? foo = 4;
                 int bar = 5;
 
-                foo.Condition().Is(bar).Fail();
+                foo.Cond().Is(bar).Fail();
             }
             //---------- 
             {
                 int foo = 5;
                 int? bar = null;
 
-                foo.Condition().Is(bar).Fail();
+                foo.Cond().Is(bar).Fail();
             }
             {
                 int? foo = null;
                 int bar = 5;
 
-                foo.Condition().Is(bar).Fail();
+                foo.Cond().Is(bar).Fail();
             }
             //----------
             {
                 int? foo = null;
                 int? bar = null;
 
-                foo.Condition().Is(bar).Success();
+                foo.Cond().Is(bar).Success();
             }
         }
 
@@ -81,25 +81,25 @@ namespace MPConditions.Test.UnitTests
                 int foo = 5;
                 int bar = 5;
 
-                foo.Condition().IsNot(bar).Fail();
+                foo.Cond().IsNot(bar).Fail();
             }
             {
                 int foo = 5;
                 int? bar = 5;
 
-                foo.Condition().IsNot(bar).Fail();
+                foo.Cond().IsNot(bar).Fail();
             }
             {
                 int? foo = 5;
                 int bar = 5;
 
-                foo.Condition().IsNot(bar).Fail();
+                foo.Cond().IsNot(bar).Fail();
             }
             {
                 int? foo = 5;
                 int? bar = 5;
 
-                foo.Condition().IsNot(bar).Fail();
+                foo.Cond().IsNot(bar).Fail();
             }
 
             //---------- 
@@ -107,39 +107,39 @@ namespace MPConditions.Test.UnitTests
                 int foo = 5;
                 int bar = 4;
 
-                foo.Condition().IsNot(bar).Success();
+                foo.Cond().IsNot(bar).Success();
             }
             {
                 int foo = 5;
                 int? bar = 4;
 
-                foo.Condition().IsNot(bar).Success();
+                foo.Cond().IsNot(bar).Success();
             }
             {
                 int? foo = 4;
                 int bar = 5;
 
-                foo.Condition().IsNot(bar).Success();
+                foo.Cond().IsNot(bar).Success();
             }
             //---------- 
             {
                 int foo = 5;
                 int? bar = null;
 
-                foo.Condition().IsNot(bar).Success();
+                foo.Cond().IsNot(bar).Success();
             }
             {
                 int? foo = null;
                 int bar = 5;
 
-                foo.Condition().IsNot(bar).Success();
+                foo.Cond().IsNot(bar).Success();
             }
             //----------
             {
                 int? foo = null;
                 int? bar = null;
 
-                foo.Condition().IsNot(bar).Fail();
+                foo.Cond().IsNot(bar).Fail();
             }
         }
 
@@ -149,38 +149,38 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 5;
 
-                foo.Condition().IsPositive().Success();
+                foo.Cond().IsPositive().Success();
             }
             {
                 int foo = -5;
 
-                foo.Condition().IsPositive().Fail();
+                foo.Cond().IsPositive().Fail();
             }
             {
                 int foo = 0;
 
-                foo.Condition().IsPositive().Fail();
+                foo.Cond().IsPositive().Fail();
             }
             //---------
             {
                 int? foo = 5;
 
-                foo.Condition().IsPositive().Success();
+                foo.Cond().IsPositive().Success();
             }
             {
                 int? foo = -5;
 
-                foo.Condition().IsPositive().Fail();
+                foo.Cond().IsPositive().Fail();
             }
             {
                 int? foo = 0;
 
-                foo.Condition().IsPositive().Fail();
+                foo.Cond().IsPositive().Fail();
             }
             {
                 int? foo = null;
 
-                foo.Condition().IsPositive().Fail();
+                foo.Cond().IsPositive().Fail();
             }
         }
 
@@ -190,38 +190,38 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 5;
 
-                foo.Condition().IsNegative().Fail();
+                foo.Cond().IsNegative().Fail();
             }
             {
                 int foo = -5;
 
-                foo.Condition().IsNegative().Success();
+                foo.Cond().IsNegative().Success();
             }
             {
                 int foo = 0;
 
-                foo.Condition().IsNegative().Fail();
+                foo.Cond().IsNegative().Fail();
             }
             //---------
             {
                 int? foo = 5;
 
-                foo.Condition().IsNegative().Fail();
+                foo.Cond().IsNegative().Fail();
             }
             {
                 int? foo = -5;
 
-                foo.Condition().IsNegative().Success();
+                foo.Cond().IsNegative().Success();
             }
             {
                 int? foo = 0;
 
-                foo.Condition().IsNegative().Fail();
+                foo.Cond().IsNegative().Fail();
             }
             {
                 int? foo = null;
 
-                foo.Condition().IsNegative().Fail();
+                foo.Cond().IsNegative().Fail();
             }
         }
 
@@ -231,38 +231,38 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 10;
 
-                foo.Condition().IsLessThan(5).Fail();
+                foo.Cond().IsLessThan(5).Fail();
             }
             {
                 int foo = 5;
 
-                foo.Condition().IsLessThan(5).Fail();
+                foo.Cond().IsLessThan(5).Fail();
             }
             {
                 int foo = 0;
 
-                foo.Condition().IsLessThan(5).Success();
+                foo.Cond().IsLessThan(5).Success();
             }
             //---------
             {
                 int? foo = 10;
 
-                foo.Condition().IsLessThan(5).Fail();
+                foo.Cond().IsLessThan(5).Fail();
             }
             {
                 int? foo = 5;
 
-                foo.Condition().IsLessThan(5).Fail();
+                foo.Cond().IsLessThan(5).Fail();
             }
             {
                 int? foo = 0;
 
-                foo.Condition().IsLessThan(5).Success();
+                foo.Cond().IsLessThan(5).Success();
             }
             {
                 int? foo = null;
 
-                foo.Condition().IsLessThan(5).Fail();
+                foo.Cond().IsLessThan(5).Fail();
             }
         }
 
@@ -272,38 +272,38 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 10;
 
-                foo.Condition().IsLessOrEqualTo(5).Fail();
+                foo.Cond().IsLessOrEqualTo(5).Fail();
             }
             {
                 int foo = 5;
 
-                foo.Condition().IsLessOrEqualTo(5).Success();
+                foo.Cond().IsLessOrEqualTo(5).Success();
             }
             {
                 int foo = 0;
 
-                foo.Condition().IsLessOrEqualTo(5).Success();
+                foo.Cond().IsLessOrEqualTo(5).Success();
             }
             //---------
             {
                 int? foo = 10;
 
-                foo.Condition().IsLessOrEqualTo(5).Fail();
+                foo.Cond().IsLessOrEqualTo(5).Fail();
             }
             {
                 int? foo = 5;
 
-                foo.Condition().IsLessOrEqualTo(5).Success();
+                foo.Cond().IsLessOrEqualTo(5).Success();
             }
             {
                 int? foo = 0;
 
-                foo.Condition().IsLessOrEqualTo(5).Success();
+                foo.Cond().IsLessOrEqualTo(5).Success();
             }
             {
                 int? foo = null;
 
-                foo.Condition().IsLessOrEqualTo(5).Fail();
+                foo.Cond().IsLessOrEqualTo(5).Fail();
             }
         }
 
@@ -313,38 +313,38 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 10;
 
-                foo.Condition().IsGreaterThan(5).Success();
+                foo.Cond().IsGreaterThan(5).Success();
             }
             {
                 int foo = 5;
 
-                foo.Condition().IsGreaterThan(5).Fail();
+                foo.Cond().IsGreaterThan(5).Fail();
             }
             {
                 int foo = 0;
 
-                foo.Condition().IsGreaterThan(5).Fail();
+                foo.Cond().IsGreaterThan(5).Fail();
             }
             //---------
             {
                 int? foo = 10;
 
-                foo.Condition().IsGreaterThan(5).Success();
+                foo.Cond().IsGreaterThan(5).Success();
             }
             {
                 int? foo = 5;
 
-                foo.Condition().IsGreaterThan(5).Fail();
+                foo.Cond().IsGreaterThan(5).Fail();
             }
             {
                 int? foo = 0;
 
-                foo.Condition().IsGreaterThan(5).Fail();
+                foo.Cond().IsGreaterThan(5).Fail();
             }
             {
                 int? foo = null;
 
-                foo.Condition().IsGreaterThan(5).Fail();
+                foo.Cond().IsGreaterThan(5).Fail();
             }
         }
 
@@ -354,38 +354,38 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 10;
 
-                foo.Condition().IsGreaterOrEqualTo(5).Success();
+                foo.Cond().IsGreaterOrEqualTo(5).Success();
             }
             {
                 int foo = 5;
 
-                foo.Condition().IsGreaterOrEqualTo(5).Success();
+                foo.Cond().IsGreaterOrEqualTo(5).Success();
             }
             {
                 int foo = 0;
 
-                foo.Condition().IsGreaterOrEqualTo(5).Fail();
+                foo.Cond().IsGreaterOrEqualTo(5).Fail();
             }
             //---------
             {
                 int? foo = 10;
 
-                foo.Condition().IsGreaterOrEqualTo(5).Success();
+                foo.Cond().IsGreaterOrEqualTo(5).Success();
             }
             {
                 int? foo = 5;
 
-                foo.Condition().IsGreaterOrEqualTo(5).Success();
+                foo.Cond().IsGreaterOrEqualTo(5).Success();
             }
             {
                 int? foo = 0;
 
-                foo.Condition().IsGreaterOrEqualTo(5).Fail();
+                foo.Cond().IsGreaterOrEqualTo(5).Fail();
             }
             {
                 int? foo = null;
 
-                foo.Condition().IsGreaterOrEqualTo(5).Fail();
+                foo.Cond().IsGreaterOrEqualTo(5).Fail();
             }
         }
 
@@ -395,48 +395,48 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 10;
 
-                foo.Condition().IsInRange(4, 6).Fail();
+                foo.Cond().IsInRange(4, 6).Fail();
             }
             {
                 int foo = 5;
 
-                foo.Condition().IsInRange(4, 6).Success();
+                foo.Cond().IsInRange(4, 6).Success();
             }
             {
                 int foo = 4;
 
-                foo.Condition().IsInRange(4, 6).Success();
+                foo.Cond().IsInRange(4, 6).Success();
             }
             {
                 int foo = 0;
 
-                foo.Condition().IsInRange(4, 6).Fail();
+                foo.Cond().IsInRange(4, 6).Fail();
             }
             //---------
             {
                 int? foo = 10;
 
-                foo.Condition().IsInRange(4, 6).Fail();
+                foo.Cond().IsInRange(4, 6).Fail();
             }
             {
                 int? foo = 5;
 
-                foo.Condition().IsInRange(4, 6).Success();
+                foo.Cond().IsInRange(4, 6).Success();
             }
             {
                 int? foo = 4;
 
-                foo.Condition().IsInRange(4, 6).Success();
+                foo.Cond().IsInRange(4, 6).Success();
             }
             {
                 int? foo = 0;
 
-                foo.Condition().IsInRange(4, 6).Fail();
+                foo.Cond().IsInRange(4, 6).Fail();
             }
             {
                 int? foo = null;
 
-                foo.Condition().IsInRange(4, 6).Fail();
+                foo.Cond().IsInRange(4, 6).Fail();
             }
         }
 
@@ -446,44 +446,44 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 10;
 
-                foo.Condition().IsOneOf(null).Throws();
+                foo.Cond().IsOneOf(null).Throws();
             }
             {
                 int foo = 10;
 
-                foo.Condition().IsOneOf(4, 6).Fail();
+                foo.Cond().IsOneOf(4, 6).Fail();
             }
             {
                 int foo = 10;
 
-                foo.Condition().IsOneOf(4, 10, 6).Success();
+                foo.Cond().IsOneOf(4, 10, 6).Success();
             }
             //--------------
             {
                 int? foo = 10;
 
-                foo.Condition().IsOneOf(null).Throws();
+                foo.Cond().IsOneOf(null).Throws();
             }
             {
                 int? foo = 10;
 
-                foo.Condition().IsOneOf(4, 6).Fail();
+                foo.Cond().IsOneOf(4, 6).Fail();
             }
             {
                 int? foo = 10;
 
-                foo.Condition().IsOneOf(4, 10, 6).Success();
+                foo.Cond().IsOneOf(4, 10, 6).Success();
             }
             //--------------
             {
                 int? foo = null;
 
-                foo.Condition().IsOneOf(null).Throws();
+                foo.Cond().IsOneOf(null).Throws();
             }
             {
                 int? foo = null;
 
-                foo.Condition().IsOneOf(4, 6).Fail();
+                foo.Cond().IsOneOf(4, 6).Fail();
             }
         }
 

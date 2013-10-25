@@ -12,12 +12,12 @@ namespace MPConditions.Test.UnitTests
             {
                 int foo = 5;
 
-                foo.Condition().IsInRange(3, 6).Pass().Should().BeTrue();
+                foo.Cond().IsInRange(3, 6).Pass().Should().BeTrue();
             }
             {
                 int foo = 5;
 
-                foo.Condition().IsInRange(6, 10).Pass().Should().BeFalse();
+                foo.Cond().IsInRange(6, 10).Pass().Should().BeFalse();
             }
         }
 

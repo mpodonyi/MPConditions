@@ -10,12 +10,12 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsNotNull().Success();
+                foo.Cond().IsNotNull().Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().IsNotNull().Fail();
+                foo.Cond().IsNotNull().Fail();
             }
         }
 
@@ -25,12 +25,12 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsNull().Fail();
+                foo.Cond().IsNull().Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().IsNull().Success();
+                foo.Cond().IsNull().Success();
             }
         }
 
@@ -40,12 +40,12 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsOfType<string>().Success();
+                foo.Cond().IsOfType<string>().Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsOfType<int>().Fail();
+                foo.Cond().IsOfType<int>().Fail();
             }
         }
 
@@ -69,37 +69,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsWith("Mike").Success();
+                foo.Cond().StartsWith("Mike").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsWith("mike").Fail();
+                foo.Cond().StartsWith("mike").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsWith("Miko").Fail();
+                foo.Cond().StartsWith("Miko").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().StartsWith("Miko").Fail();
+                foo.Cond().StartsWith("Miko").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().StartsWith("Miko").Fail();
+                foo.Cond().StartsWith("Miko").Fail();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().StartsWith(null).Throws();
+                foo.Cond().StartsWith(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().StartsWith("").Throws();
+                foo.Cond().StartsWith("").Throws();
             }
         }
 
@@ -119,42 +119,42 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().Is("Mike was here").Success();
+                foo.Cond().Is("Mike was here").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().Is("mike was here").Fail();
+                foo.Cond().Is("mike was here").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().Is("Mike was hero").Fail();
+                foo.Cond().Is("Mike was hero").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().Is("Miko").Fail();
+                foo.Cond().Is("Miko").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().Is("Miko").Fail();
+                foo.Cond().Is("Miko").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().Is("").Success();
+                foo.Cond().Is("").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().Is(null).Fail();
+                foo.Cond().Is(null).Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().Is(null).Success();
+                foo.Cond().Is(null).Success();
             }
         }
 
@@ -164,27 +164,27 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsOneOf("foo", "bar").Fail();
+                foo.Cond().IsOneOf("foo", "bar").Fail();
             }
             {
                 string foo = "Mike";
 
-                foo.Condition().IsOneOf(null).Throws();
+                foo.Cond().IsOneOf(null).Throws();
             }
             {
                 string foo = "Mike";
 
-                foo.Condition().IsOneOf("foo", "bar").Fail();
+                foo.Cond().IsOneOf("foo", "bar").Fail();
             }
             {
                 string foo = "Mike";
 
-                foo.Condition().IsOneOf("foo", "Mike", "bar").Success();
+                foo.Cond().IsOneOf("foo", "Mike", "bar").Success();
             }
             {
                 string foo = "Mike";
 
-                foo.Condition().IsOneOf("foo", "mike", "bar").Fail();
+                foo.Cond().IsOneOf("foo", "mike", "bar").Fail();
             }
         }
 
@@ -200,27 +200,27 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsEquivalentTo("Mike was here").Success();
+                foo.Cond().IsEquivalentTo("Mike was here").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsEquivalentTo("mike was here").Success();
+                foo.Cond().IsEquivalentTo("mike was here").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsEquivalentTo("Mike was hero").Fail();
+                foo.Cond().IsEquivalentTo("Mike was hero").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().IsEquivalentTo("Miko").Fail();
+                foo.Cond().IsEquivalentTo("Miko").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsEquivalentTo("Miko").Fail();
+                foo.Cond().IsEquivalentTo("Miko").Fail();
             }
 
         }
@@ -231,42 +231,42 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsNot("Mike was here").Fail();
+                foo.Cond().IsNot("Mike was here").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsNot("mike was here").Success();
+                foo.Cond().IsNot("mike was here").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().IsNot("Mike was hero").Success();
+                foo.Cond().IsNot("Mike was hero").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().IsNot("Miko").Success();
+                foo.Cond().IsNot("Miko").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsNot("Miko").Success();
+                foo.Cond().IsNot("Miko").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsNot("").Fail();
+                foo.Cond().IsNot("").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsNot(null).Success();
+                foo.Cond().IsNot(null).Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().IsNot(null).Fail();
+                foo.Cond().IsNot(null).Fail();
             }
         }
 
@@ -276,37 +276,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Foo@Bar.Com";
 
-                foo.Condition().Matches("*@*.Com").Success();
+                foo.Cond().Matches("*@*.Com").Success();
             }
             {
                 string foo = "Foo@Bar.Com";
 
-                foo.Condition().Matches("*@*.com").Fail();
+                foo.Cond().Matches("*@*.com").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().Matches(null).Success();
+                foo.Cond().Matches(null).Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().Matches("").Fail();
+                foo.Cond().Matches("").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().Matches(null).Fail();
+                foo.Cond().Matches(null).Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().Matches("").Success();
+                foo.Cond().Matches("").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().Matches("*").Success();
+                foo.Cond().Matches("*").Success();
             }
         }
 
@@ -316,37 +316,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Foo@Bar.Com";
 
-                foo.Condition().MatchesNot("*@*.Com").Fail();
+                foo.Cond().MatchesNot("*@*.Com").Fail();
             }
             {
                 string foo = "Foo@Bar.Com";
 
-                foo.Condition().MatchesNot("*@*.com").Success();
+                foo.Cond().MatchesNot("*@*.com").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().MatchesNot(null).Fail();
+                foo.Cond().MatchesNot(null).Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().MatchesNot("").Success();
+                foo.Cond().MatchesNot("").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesNot(null).Success();
+                foo.Cond().MatchesNot(null).Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesNot("").Fail();
+                foo.Cond().MatchesNot("").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesNot("*").Fail();
+                foo.Cond().MatchesNot("*").Fail();
             }
         }
 
@@ -356,37 +356,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Foo@Bar.Com";
 
-                foo.Condition().MatchesEquivalentOf("*@*.Com").Success();
+                foo.Cond().MatchesEquivalentOf("*@*.Com").Success();
             }
             {
                 string foo = "Foo@Bar.Com";
 
-                foo.Condition().MatchesEquivalentOf("*@*.com").Success();
+                foo.Cond().MatchesEquivalentOf("*@*.com").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().MatchesEquivalentOf(null).Success();
+                foo.Cond().MatchesEquivalentOf(null).Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().MatchesEquivalentOf("").Fail();
+                foo.Cond().MatchesEquivalentOf("").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesEquivalentOf(null).Fail();
+                foo.Cond().MatchesEquivalentOf(null).Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesEquivalentOf("").Success();
+                foo.Cond().MatchesEquivalentOf("").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesEquivalentOf("*").Success();
+                foo.Cond().MatchesEquivalentOf("*").Success();
             }
 
         }
@@ -397,37 +397,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Foo@Bar.Com";
 
-                foo.Condition().MatchesNotEquivalentOf("*@*.Com").Fail();
+                foo.Cond().MatchesNotEquivalentOf("*@*.Com").Fail();
             }
             {
                 string foo = "Foo@Bar.Com";
 
-                foo.Condition().MatchesNotEquivalentOf("*@*.com").Fail();
+                foo.Cond().MatchesNotEquivalentOf("*@*.com").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().MatchesNotEquivalentOf(null).Fail();
+                foo.Cond().MatchesNotEquivalentOf(null).Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().MatchesNotEquivalentOf("").Success();
+                foo.Cond().MatchesNotEquivalentOf("").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesNotEquivalentOf(null).Success();
+                foo.Cond().MatchesNotEquivalentOf(null).Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesNotEquivalentOf("").Fail();
+                foo.Cond().MatchesNotEquivalentOf("").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().MatchesNotEquivalentOf("*").Fail();
+                foo.Cond().MatchesNotEquivalentOf("*").Fail();
             }
 
         }
@@ -440,37 +440,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsNotWith("Mike").Fail();
+                foo.Cond().StartsNotWith("Mike").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsNotWith("mike").Success();
+                foo.Cond().StartsNotWith("mike").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsNotWith("Miko").Success();
+                foo.Cond().StartsNotWith("Miko").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().StartsNotWith("Miko").Success();
+                foo.Cond().StartsNotWith("Miko").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().StartsNotWith("Miko").Success();
+                foo.Cond().StartsNotWith("Miko").Success();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().StartsNotWith(null).Throws();
+                foo.Cond().StartsNotWith(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().StartsNotWith("").Throws();
+                foo.Cond().StartsNotWith("").Throws();
             }
         }
 
@@ -480,37 +480,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsWithEquivalent("Mike").Success();
+                foo.Cond().StartsWithEquivalent("Mike").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsWithEquivalent("mike").Success();
+                foo.Cond().StartsWithEquivalent("mike").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsWithEquivalent("Miko").Fail();
+                foo.Cond().StartsWithEquivalent("Miko").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().StartsWithEquivalent("Miko").Fail();
+                foo.Cond().StartsWithEquivalent("Miko").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().StartsWithEquivalent("Miko").Fail();
+                foo.Cond().StartsWithEquivalent("Miko").Fail();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().StartsWithEquivalent(null).Throws();
+                foo.Cond().StartsWithEquivalent(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().StartsWithEquivalent("").Throws();
+                foo.Cond().StartsWithEquivalent("").Throws();
             }
 
 
@@ -522,37 +522,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsNotWithEquivalentOf("Mike").Fail();
+                foo.Cond().StartsNotWithEquivalentOf("Mike").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsNotWithEquivalentOf("mike").Fail();
+                foo.Cond().StartsNotWithEquivalentOf("mike").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().StartsNotWithEquivalentOf("Miko").Success();
+                foo.Cond().StartsNotWithEquivalentOf("Miko").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().StartsNotWithEquivalentOf("Miko").Success();
+                foo.Cond().StartsNotWithEquivalentOf("Miko").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().StartsNotWithEquivalentOf("Miko").Success();
+                foo.Cond().StartsNotWithEquivalentOf("Miko").Success();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().StartsNotWithEquivalentOf(null).Throws();
+                foo.Cond().StartsNotWithEquivalentOf(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().StartsNotWithEquivalentOf("").Throws();
+                foo.Cond().StartsNotWithEquivalentOf("").Throws();
             }
 
         }
@@ -563,37 +563,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsWith("here").Success();
+                foo.Cond().EndsWith("here").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsWith("Here").Fail();
+                foo.Cond().EndsWith("Here").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsWith("hero").Fail();
+                foo.Cond().EndsWith("hero").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().EndsWith("hero").Fail();
+                foo.Cond().EndsWith("hero").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().EndsWith("hero").Fail();
+                foo.Cond().EndsWith("hero").Fail();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().EndsWith(null).Throws();
+                foo.Cond().EndsWith(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().EndsWith("").Throws();
+                foo.Cond().EndsWith("").Throws();
             }
         }
 
@@ -603,37 +603,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsNotWith("here").Fail();
+                foo.Cond().EndsNotWith("here").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsNotWith("Here").Success();
+                foo.Cond().EndsNotWith("Here").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsNotWith("hero").Success();
+                foo.Cond().EndsNotWith("hero").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().EndsNotWith("hero").Success();
+                foo.Cond().EndsNotWith("hero").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().EndsNotWith("hero").Success();
+                foo.Cond().EndsNotWith("hero").Success();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().EndsNotWith(null).Throws();
+                foo.Cond().EndsNotWith(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().EndsNotWith("").Throws();
+                foo.Cond().EndsNotWith("").Throws();
             }
 
         }
@@ -644,37 +644,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsWithEquivalent("here").Success();
+                foo.Cond().EndsWithEquivalent("here").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsWithEquivalent("Here").Success();
+                foo.Cond().EndsWithEquivalent("Here").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsWithEquivalent("hero").Fail();
+                foo.Cond().EndsWithEquivalent("hero").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().EndsWithEquivalent("hero").Fail();
+                foo.Cond().EndsWithEquivalent("hero").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().EndsWithEquivalent("hero").Fail();
+                foo.Cond().EndsWithEquivalent("hero").Fail();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().EndsWithEquivalent(null).Throws();
+                foo.Cond().EndsWithEquivalent(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().EndsWithEquivalent("").Throws();
+                foo.Cond().EndsWithEquivalent("").Throws();
             }
 
         }
@@ -685,37 +685,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsNotWithEquivalentOf("here").Fail();
+                foo.Cond().EndsNotWithEquivalentOf("here").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsNotWithEquivalentOf("Here").Fail();
+                foo.Cond().EndsNotWithEquivalentOf("Here").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().EndsNotWithEquivalentOf("hero").Success();
+                foo.Cond().EndsNotWithEquivalentOf("hero").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().EndsNotWithEquivalentOf("hero").Success();
+                foo.Cond().EndsNotWithEquivalentOf("hero").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().EndsNotWithEquivalentOf("hero").Success();
+                foo.Cond().EndsNotWithEquivalentOf("hero").Success();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().EndsNotWithEquivalentOf(null).Throws();
+                foo.Cond().EndsNotWithEquivalentOf(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().EndsNotWithEquivalentOf("").Throws();
+                foo.Cond().EndsNotWithEquivalentOf("").Throws();
             }
 
         }
@@ -726,37 +726,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().Contains("was").Success();
+                foo.Cond().Contains("was").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().Contains("Was").Fail();
+                foo.Cond().Contains("Was").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().Contains("wos").Fail();
+                foo.Cond().Contains("wos").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().Contains("wos").Fail();
+                foo.Cond().Contains("wos").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().Contains("wos").Fail();
+                foo.Cond().Contains("wos").Fail();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().Contains(null).Throws();
+                foo.Cond().Contains(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().Contains("").Throws();
+                foo.Cond().Contains("").Throws();
             }
         }
 
@@ -766,37 +766,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsEquivalentOf("was").Success();
+                foo.Cond().ContainsEquivalentOf("was").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsEquivalentOf("Was").Success();
+                foo.Cond().ContainsEquivalentOf("Was").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsEquivalentOf("wos").Fail();
+                foo.Cond().ContainsEquivalentOf("wos").Fail();
             }
             {
                 string foo = null;
 
-                foo.Condition().ContainsEquivalentOf("wos").Fail();
+                foo.Cond().ContainsEquivalentOf("wos").Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().ContainsEquivalentOf("wos").Fail();
+                foo.Cond().ContainsEquivalentOf("wos").Fail();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().ContainsEquivalentOf(null).Throws();
+                foo.Cond().ContainsEquivalentOf(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().ContainsEquivalentOf("").Throws();
+                foo.Cond().ContainsEquivalentOf("").Throws();
             }
         }
 
@@ -806,37 +806,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsNot("was").Fail();
+                foo.Cond().ContainsNot("was").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsNot("Was").Success();
+                foo.Cond().ContainsNot("Was").Success();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsNot("wos").Success();
+                foo.Cond().ContainsNot("wos").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().ContainsNot("wos").Success();
+                foo.Cond().ContainsNot("wos").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().ContainsNot("wos").Success();
+                foo.Cond().ContainsNot("wos").Success();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().ContainsNot(null).Throws();
+                foo.Cond().ContainsNot(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().ContainsNot("").Throws();
+                foo.Cond().ContainsNot("").Throws();
             }
         }
 
@@ -846,37 +846,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsNotEquivalentOf("was").Fail();
+                foo.Cond().ContainsNotEquivalentOf("was").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsNotEquivalentOf("Was").Fail();
+                foo.Cond().ContainsNotEquivalentOf("Was").Fail();
             }
             {
                 string foo = "Mike was here";
 
-                foo.Condition().ContainsNotEquivalentOf("wos").Success();
+                foo.Cond().ContainsNotEquivalentOf("wos").Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().ContainsNotEquivalentOf("wos").Success();
+                foo.Cond().ContainsNotEquivalentOf("wos").Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().ContainsNotEquivalentOf("wos").Success();
+                foo.Cond().ContainsNotEquivalentOf("wos").Success();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().ContainsNotEquivalentOf(null).Throws();
+                foo.Cond().ContainsNotEquivalentOf(null).Throws();
             }
             {
                 string foo = "foo";
 
-                foo.Condition().ContainsNotEquivalentOf("").Throws();
+                foo.Cond().ContainsNotEquivalentOf("").Throws();
             }
 
 
@@ -888,22 +888,22 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsEmpty().Fail();
+                foo.Cond().IsEmpty().Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsEmpty().Success();
+                foo.Cond().IsEmpty().Success();
             }
             {
                 string foo = " ";
 
-                foo.Condition().IsEmpty().Fail();
+                foo.Cond().IsEmpty().Fail();
             }
             {
                 string foo = "Whatever";
 
-                foo.Condition().IsEmpty().Fail();
+                foo.Cond().IsEmpty().Fail();
             }
         }
 
@@ -913,22 +913,22 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsNotEmpty().Success();
+                foo.Cond().IsNotEmpty().Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsNotEmpty().Fail();
+                foo.Cond().IsNotEmpty().Fail();
             }
             {
                 string foo = " ";
 
-                foo.Condition().IsNotEmpty().Success();
+                foo.Cond().IsNotEmpty().Success();
             }
             {
                 string foo = "Whatever";
 
-                foo.Condition().IsNotEmpty().Success();
+                foo.Cond().IsNotEmpty().Success();
             }
         }
 
@@ -938,37 +938,37 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().HasLength(8).Fail();
+                foo.Cond().HasLength(8).Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().HasLength(8).Fail();
+                foo.Cond().HasLength(8).Fail();
             }
             {
                 string foo = " ";
 
-                foo.Condition().HasLength(8).Fail();
+                foo.Cond().HasLength(8).Fail();
             }
             {
                 string foo = "Whatever";
 
-                foo.Condition().HasLength(8).Success();
+                foo.Cond().HasLength(8).Success();
             }
             {
                 string foo = null;
 
-                foo.Condition().HasLength(0).Fail();
+                foo.Cond().HasLength(0).Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().HasLength(0).Success();
+                foo.Cond().HasLength(0).Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().HasLength(-5).Fail();
+                foo.Cond().HasLength(-5).Fail();
             }
         }
 
@@ -978,22 +978,22 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsNotNullOrEmpty().Fail();
+                foo.Cond().IsNotNullOrEmpty().Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsNotNullOrEmpty().Fail();
+                foo.Cond().IsNotNullOrEmpty().Fail();
             }
             {
                 string foo = " ";
 
-                foo.Condition().IsNotNullOrEmpty().Success();
+                foo.Cond().IsNotNullOrEmpty().Success();
             }
             {
                 string foo = "Whatever";
 
-                foo.Condition().IsNotNullOrEmpty().Success();
+                foo.Cond().IsNotNullOrEmpty().Success();
             }
 
         }
@@ -1004,22 +1004,22 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsNullOrEmpty().Success();
+                foo.Cond().IsNullOrEmpty().Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsNullOrEmpty().Success();
+                foo.Cond().IsNullOrEmpty().Success();
             }
             {
                 string foo = " ";
 
-                foo.Condition().IsNullOrEmpty().Fail();
+                foo.Cond().IsNullOrEmpty().Fail();
             }
             {
                 string foo = "Whatever";
 
-                foo.Condition().IsNullOrEmpty().Fail();
+                foo.Cond().IsNullOrEmpty().Fail();
             }
 
         }
@@ -1030,22 +1030,22 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsNotBlank().Fail();
+                foo.Cond().IsNotBlank().Fail();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsNotBlank().Fail();
+                foo.Cond().IsNotBlank().Fail();
             }
             {
                 string foo = " ";
 
-                foo.Condition().IsNotBlank().Fail();
+                foo.Cond().IsNotBlank().Fail();
             }
             {
                 string foo = "Whatever";
 
-                foo.Condition().IsNotBlank().Success();
+                foo.Cond().IsNotBlank().Success();
             }
         }
 
@@ -1055,22 +1055,22 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Condition().IsBlank().Success();
+                foo.Cond().IsBlank().Success();
             }
             {
                 string foo = "";
 
-                foo.Condition().IsBlank().Success();
+                foo.Cond().IsBlank().Success();
             }
             {
                 string foo = " ";
 
-                foo.Condition().IsBlank().Success();
+                foo.Cond().IsBlank().Success();
             }
             {
                 string foo = "Whatever";
 
-                foo.Condition().IsBlank().Fail();
+                foo.Cond().IsBlank().Fail();
             }
         }
     }
