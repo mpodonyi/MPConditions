@@ -1030,22 +1030,22 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Cond().IsNotBlank().Fail();
+                foo.Cond().IsNotNullOrWhiteSpace().Fail();
             }
             {
                 string foo = "";
 
-                foo.Cond().IsNotBlank().Fail();
+                foo.Cond().IsNotNullOrWhiteSpace().Fail();
             }
             {
                 string foo = " ";
 
-                foo.Cond().IsNotBlank().Fail();
+                foo.Cond().IsNotNullOrWhiteSpace().Fail();
             }
             {
                 string foo = "Whatever";
 
-                foo.Cond().IsNotBlank().Success();
+                foo.Cond().IsNotNullOrWhiteSpace().Success();
             }
         }
 
@@ -1055,22 +1055,22 @@ namespace MPConditions.Test.UnitTests
             {
                 string foo = null;
 
-                foo.Cond().IsBlank().Success();
+                foo.Cond().IsNullOrWhiteSpace().Success();
             }
             {
                 string foo = "";
 
-                foo.Cond().IsBlank().Success();
+                foo.Cond().IsNullOrWhiteSpace().Success();
             }
             {
                 string foo = " ";
 
-                foo.Cond().IsBlank().Success();
+                foo.Cond().IsNullOrWhiteSpace().Success();
             }
             {
                 string foo = "Whatever";
 
-                foo.Cond().IsBlank().Fail();
+                foo.Cond().IsNullOrWhiteSpace().Fail();
             }
         }
     }

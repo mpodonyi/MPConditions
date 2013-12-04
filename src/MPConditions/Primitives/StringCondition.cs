@@ -650,7 +650,7 @@ namespace MPConditions.Primitives
             return this;
         }
 
-        public StringCondition IsNotBlank()
+        public StringCondition IsNotNullOrWhiteSpace()
         {
             this.Push(() =>
             {
@@ -670,7 +670,7 @@ namespace MPConditions.Primitives
             return this;
         }
 
-        public StringCondition IsBlank()
+        public StringCondition IsNullOrWhiteSpace()
         {
             this.Push(() =>
             {
